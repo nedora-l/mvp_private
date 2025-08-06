@@ -1,0 +1,521 @@
+{
+  "app": {
+    "title": "DAWS Intranet",
+    "description": "Digital Workspace Solution"
+  },
+  "nav": {
+    "home": "Home",
+    "chat": "Chat",
+    "teams": "Teams",
+    "candidates": "Candidates",
+    "employees": "Employees",
+    "tasks": "Tasks",
+    "projects": "Projects",
+    "documents": "Documents",
+    "calendar": "Calendar",
+    "directory": "Directory",
+    "company": "Company",
+    "settings": "Settings",
+    "profile": "Profile",
+    "help": "Help",
+    "it": "IT Support",
+    "hr": "hr",
+    "learning": "Learning",
+    "recognition": "Recognition",
+    "passwordManager": "Password Manager",
+    "logout": "Log Out",
+    "marketing": "Marketing",
+    "campaigns": "Campaigns",
+    "leads": "Leads",
+    "segments": "Segments",
+    "analytics": "Analytics",
+    "compta": "Accounting",
+    "dashboard": "Dashboard",
+    "payable": "Accounts Payable",
+    "receivable": "Accounts Receivable",
+    "banking": "Banking",
+    "expenses": "Expenses",
+    "reports": "Reports",
+    "budgeting": "Budgeting",
+    "overview": "Overview",
+    "boards": "Boards",
+    "timeline": "Timeline",
+    "files": "Files",
+    "security": "Security",
+    "accessControl": "Access Control",
+    "accessControlBiometric": "Biometric Access Control",
+    "accessControlCamera": "Camera Access Control",
+    "threatDetection": "Threat Detection",
+    "vulnerabilityManagement": "Vulnerability Management",
+    "auditLogs": "Audit Logs",
+    "dataLossPrevention": "Data Loss Prevention",
+    "compliance": "Compliance",
+    "securityPolicies": "Security Policies",
+    "chartOfAccounts": "Chart of Accounts",
+    "accountsPayable": "Accounts Payable",
+    "accountsReceivable": "Accounts Receivable",
+    "expenseManagement": "Expense Management",
+    "financialReports": "Financial Reports",
+    "leadManagement": "Lead Management",
+    "customerSegments": "Customer Segments",
+    "emailMarketing": "Email Marketing",
+    "socialMedia": "Social Media",
+    "contentHub": "Content Hub",
+    "invoices": "Invoices",
+    "payments": "Payments",
+    "transactions": "Transactions"
+  },
+  "auth": {
+    "logout": "Log Out",
+    "login": "Log In",
+    "signup": "Sign Up",
+    "forgotPassword": "Forgot Password"
+  },
+  "actions": {
+    "share": "Share",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "add": "Add",
+    "search": "Search",
+    "view": "View Details",
+    "upload": "Upload",
+    "download": "Download",
+    "create": "Create",
+    "update": "Update",
+    "remove": "Remove",
+    "filter": "Filter",
+    "sort": "Sort",
+    "close": "Close",
+    "open": "Open",
+    "confirm": "Confirm",
+    "send": "Send",
+    "topup": "Top-up"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "emptyState": "No items to display",
+    "noResults": "No results found",
+    "showMore": "Show more",
+    "showLess": "Show less",
+    "seeAll": "View All",
+    "cancel": "Cancel",
+    "more": "More"
+  },
+  "errors": {
+    "notFound": "Not found",
+    "serverError": "Server error",
+    "unauthorized": "Unauthorized",
+    "forbidden": "Forbidden",
+    "offline": "You are offline",
+    "validation": "Validation error"
+  },
+  "messages": {
+    "welcome": "Welcome back",
+    "farewell": "Goodbye",
+    "saveSuccess": "Saved successfully",
+    "saveError": "Failed to save",
+    "deleteConfirm": "Are you sure you want to delete this?",
+    "deleteSuccess": "Deleted successfully",
+    "deleteError": "Failed to delete"
+  },
+  "dates": {
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "tomorrow": "Tomorrow",
+    "formatFull": "MMMM d, yyyy",
+    "formatShort": "MM/dd/yyyy"
+  },
+  "plurals": {
+    "items": {
+      "singular": "{{count}} item",
+      "plural": "{{count}} items"
+    },
+    "members": {
+      "singular": "{{count}} member",
+      "plural": "{{count}} members"
+    },
+    "tasks": {
+      "singular": "{{count}} task",
+      "plural": "{{count}} tasks"
+    },
+    "projects": {
+      "singular": "{{count}} project",
+      "plural": "{{count}} projects"
+    },
+    "documents": {
+      "singular": "{{count}} document",
+      "plural": "{{count}} documents"
+    },
+    "events": {
+      "singular": "{{count}} event",
+      "plural": "{{count}} events"
+    }
+  },
+  "home": {
+    "title": "Home",
+    "welcome": "Welcome to your digital workspace",
+    "hello": "Hello, {{name}}",
+    "subtitle": "Here’s an overview of your workspace",
+    "description": "Stay informed and connected with the latest news, events, and team activities.",
+    "loading": "Loading...",
+    "quickLinks": {
+      "title": "Quick Links",
+      "viewAll": "View All"
+    },
+    "companyAnnouncements": {
+      "title": "Company Announcements",
+      "viewAll": "View All",
+      "noAnnouncements": "No announcements"
+    },
+    "upcomingEvents": {
+      "title": "Upcoming Events",
+      "viewAll": "View All",
+      "noEvents": "No upcoming events",
+      "today": "Today",
+      "tomorrow": "Tomorrow"
+    },
+    "recentDocuments": {
+      "title": "Recent Documents",
+      "viewAll": "View All",
+      "noDocuments": "No recent documents"
+    },
+    "teamActivity": {
+      "title": "Team Activity",
+      "viewAll": "View All",
+      "noActivity": "No recent activity"
+    },
+    "birthdaysAndAnniversaries": {
+      "title": "Birthdays & Anniversaries",
+      "viewAll": "View All",
+      "noBirthdays": "No birthdays today",
+      "noAnniversaries": "No work anniversaries today",
+      "birthdayToday": "Birthday today",
+      "anniversary": "{{count}} year anniversary",
+      "anniversaryPlural": "{{count}} year anniversary"
+    },
+    "stats": {
+      "tasksCompleted": "Tasks completed",
+      "documentsUploaded": "Documents uploaded",
+      "teamMembers": "Team members",
+      "upcomingDeadlines": "Upcoming deadlines"
+    }
+  },
+  "teams": {
+    "title": "Teams",
+    "createNew": "Create New Team",
+    "memberSingular": "member",
+    "memberPlural": "members",
+    "projectSingular": "project",
+    "projectPlural": "projects",
+    "myTeams": "My Teams",
+    "activeProjects": "Active Projects",
+    "newProject": "New Project",
+    "viewTeam": "View Team",
+    "viewProject": "View Project",
+    "chat": "Chat",
+    "recentActivity": "Recent Team Activity",
+    "viewAllActivity": "View All Activity",
+    "progress": "Progress",
+    "due": "Due",
+    "priority": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "details": {
+      "title": "Team Details",
+      "description": "Description",
+      "members": "Members",
+      "projects": "Projects",
+      "activity": "Activity"
+    },
+    "status": {
+      "active": "Active",
+      "archived": "Archived",
+      "pending": "Pending",
+      "inProgress": "In Progress"
+    },
+    "list": {
+      "title": "All Teams",
+      "noTeams": "No teams found",
+      "search": "Search teams or projects...",
+      "filterBy": "Filter by"
+    },
+    "actions": {
+      "join": "Join Team",
+      "leave": "Leave Team",
+      "edit": "Edit Team",
+      "delete": "Delete Team",
+      "addMember": "Add Member",
+      "removeMember": "Remove Member",
+      "createProject": "Create Project"
+    },
+    "roles": {
+      "admin": "Admin",
+      "member": "Member",
+      "guest": "Guest"
+    },
+    "confirmations": {
+      "deleteTitle": "Delete Team",
+      "deleteDescription": "This action cannot be undone. Are you sure you want to delete this team?",
+      "leaveTitle": "Leave Team",
+      "leaveDescription": "Are you sure you want to leave this team?"
+    },
+    "activity": {
+      "title": "Recent Activity"
+    }
+  },
+  "calendar": {
+    "title": "Calendar",
+    "target": "Event",
+    "day": "Day",
+    "week": "Week",
+    "month": "Month",
+    "agenda": "Agenda",
+    "weekView": "Week View",
+    "weekViewDevelopment": "Week view is under development",
+    "upcomingEvents": "Upcoming Events",
+    "noEventsDay": "No events scheduled for this day",
+    "addEvent": "Add Event",
+    "join": "Join",
+    "invite": "Invite",
+    "eventType": {
+      "meeting": "Meeting",
+      "workshop": "Workshop",
+      "planning": "Planning",
+      "training": "Training",
+      "virtual": "Virtual"
+    }
+  },
+  
+  "passwordManager": {
+    "title": "Password Manager",
+    "description": "Securely store and manage your passwords",
+    "vault": "Password Vault",
+    "shared": "Shared Passwords",
+    "search": "Search passwords...",
+    "newPassword": "New Password",
+    "credentials": {
+      "title": "Credentials",
+      "username": "Username",
+      "password": "Password",
+      "website": "Website",
+      "notes": "Notes",
+      "created": "Created",
+      "updated": "Last Updated",
+      "expiresOn": "Expires On",
+      "category": "Category",
+      "strength": "Password Strength"
+    },
+    "actions": {
+      "reveal": "Show Password",
+      "hide": "Hide Password",
+      "copy": "Copy to Clipboard",
+      "edit": "Edit Password",
+      "delete": "Delete Password",
+      "share": "Share Password",
+      "generate": "Generate Password",
+      "favorite": "Add to Favorites",
+      "unfavorite": "Remove from Favorites"
+    },
+    "categories": {
+      "all": "All Passwords",
+      "favorites": "Favorites",
+      "social": "Social Media",
+      "finance": "Finance",
+      "shopping": "Shopping",
+      "work": "Work",
+      "personal": "Personal",
+      "email": "Email",
+      "entertainment": "Entertainment",
+      "other": "Other"
+    },
+    "sharing": {
+      "title": "Sharing Settings",
+      "sharedWith": "Shared with",
+      "addPeople": "Add People or Teams",
+      "permissions": "Permissions",
+      "permissionTypes": {
+        "view": "View",
+        "edit": "Edit",
+        "admin": "Admin"
+      },
+      "stopSharing": "Stop Sharing"
+    },
+    "generator": {
+      "title": "Password Generator",
+      "length": "Password Length",
+      "includeUppercase": "Include Uppercase Letters",
+      "includeLowercase": "Include Lowercase Letters",
+      "includeNumbers": "Include Numbers",
+      "includeSymbols": "Include Symbols",
+      "excludeSimilar": "Exclude Similar Characters",
+      "excludeAmbiguous": "Exclude Ambiguous Characters",
+      "generate": "Generate Password",
+      "copy": "Copy Password"
+    },
+    "security": {
+      "title": "Security Dashboard",
+      "overall": "Overall Security",
+      "issues": "Security Issues",
+      "weak": "Weak Passwords",
+      "reused": "Reused Passwords",
+      "old": "Old Passwords",
+      "compromised": "Compromised Passwords",
+      "lastScan": "Last Security Scan",
+      "scanNow": "Scan Now"
+    },
+    "empty": {
+      "title": "No passwords yet",
+      "description": "Add your first password to get started with secure password management.",
+      "action": "Add Password"
+    },
+    "form": {
+      "required": "Required",
+      "optional": "Optional",
+      "createTitle": "Create New Password",
+      "editTitle": "Edit Password",
+      "save": "Save Password",
+      "cancel": "Cancel"
+    }
+  },
+  "settings": {
+    "account": {
+      "title": "Account",
+      "description": "Manage your account details"
+    }
+  },
+  "chat": {
+    "seeLess": "See less",
+    "seeMore": "See more",
+    "bar": {
+      "openChatLabel": "Open chat",
+      "title": "Chat",
+      "closeChatLabel": "Close chat",
+      "messagePlaceholder": "Type a message...",
+      "sendButton": "Send",
+      "openFullChatButton": "Open Full Chat"
+    },
+    "page": {
+      "mobileTitle": "Chat",
+      "settingsTitle": "AI Tools Settings",
+      "modelLabel": "Model:",
+      "modelGpt4Turbo": "GPT-4 Turbo",
+      "modelClaude3Opus": "Claude 3 Opus",
+      "modelGeminiPro": "Gemini Pro",
+      "temperatureLabel": "Temperature:",
+      "temperatureDescription": "Adjust creativity vs. coherence.",
+      "moreSettingsButton": "More Settings",
+      "contextFilesLabel": "Context Files:",
+      "uploadFileButton": "Upload File",
+      "fileSizeLimit": "Max 5MB per file.",
+      "desktopTitle": "Chat (Desktop)",
+      "closeSettings": {
+        "label": "Close settings"
+      },
+      "modelTitle": "AI Model",
+      "selectModelPlaceholder": "Select a model",
+      "noFilesUploaded": "No files uploaded",
+      "input": {
+        "attachFileLabel": "Attach file",
+        "placeholder": "Type your message here...",
+        "micLabel": "Use microphone",
+        "sendLabel": "Send message"
+      }
+    },
+    "welcome": {
+      "title": "Welcome to Chat",
+      "description": "Start a new chat or explore examples.",
+      "startNewChat": "Start New Chat",
+      "exploreExamples": "Explore Examples",
+      "recentChatsTitle": "Recent Chats",
+      "viewAllHistory": "View All History"
+    },
+    "history": {
+      "title": "Chat History",
+      "lastMessagePrefix": "Last message: ",
+      "deleteConversationLabelPrefix": "Delete conversation: ",
+      "noHistory": "No chat history found.",
+      "archiveAllButton": "Archive All Chats",
+      "refreshButton": "Refresh"
+    },
+    "settings": {
+      "title": "AI Tools Settings",
+      "description": "Configure your AI assistant preferences and model parameters.",
+      "apiKeyLabel": "API Key",
+      "apiKeyPlaceholder": "Enter your API key",
+      "hideApiKeyLabel": "Hide API key",
+      "showApiKeyLabel": "Show API key",
+      "aiModelLabel": "AI Model",
+      "selectModelPlaceholder": "Select a model",
+      "modelGpt4Turbo": "GPT-4 Turbo",
+      "modelGpt35Turbo": "GPT-3.5 Turbo",
+      "modelClaude3Opus": "Claude 3 Opus",
+      "modelClaude3Sonnet": "Claude 3 Sonnet",
+      "modelGeminiPro": "Gemini Pro",
+      "temperatureLabelPrefix": "Temperature: ",
+      "temperatureTooltip": "Controls randomness: Lower values make the model more deterministic, higher values make it more creative.",
+      "autoSuggestLabel": "Enable Auto-Suggestions",
+      "autoSuggestDescription": "Get AI-powered suggestions as you type.",
+      "enableHistoryLabel": "Enable Chat History",
+      "enableHistoryDescription": "Save conversations for future reference.",
+      "contextManagementTitle": "Context Management",
+      "dragDropText": "Drag & drop files here or",
+      "uploadFilesButton": "Upload Files",
+      "fileConstraints": "Max file size: 5MB. Supported types: PDF, TXT, DOCX.",
+      "saveButton": "Save Settings"
+    }
+  },
+  "pagination": {
+    "pageSize": "Page Size",
+    "itemsPerPage": "Items per page",
+    "showing": "Showing {start} to {end} of {total}",
+    "previous": "Previous",
+    "total": "Total",
+    "next": "Next",
+    "pageInfo": "Page {current} of {total}"
+  },
+  "documents": {
+    "title": "Documents",
+    "documentCenter": "Document Center",
+    "allFiles": "All Files",
+    "recentFiles": "Recent Files",
+    "sharedFiles": "Shared Files",
+    "starredFiles": "Starred Files",
+    "upload": "Upload",
+    "newFolder": "New Folder",
+    "newFile": "New File",
+    "filter": "Filter Files",
+    "filters": "File Filters",
+    "category": "Category",
+    "categories": "Categories",
+    "type": "Type",
+    "types": "Types",
+    "folder": "Folder",
+    "folders": "Folders",
+    "file": "File",
+    "files": "Files",
+
+    "selected": "Selected",
+    "selectAll": "Select All",
+    "deselectAll": "Deselect All",
+    "shared": {
+      "title": "Shared Documents",
+      "noSharedFiles": "No shared files",
+      "description": "Files shared with you or by you.",
+      "shareButton": "Share File"
+    },
+    "datatable": {
+      "name": "Name",
+      "type": "Type",
+      "size": "Size",
+      "modified": "Modified",
+      "actions": "Actions",
+      "author": "Author"
+    }
+  }
+}

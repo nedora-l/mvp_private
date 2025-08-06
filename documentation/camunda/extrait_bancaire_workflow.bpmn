@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_06cyaxb" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.35.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.23.0">
+  <bpmn:process id="Process_BankStatementImport" name="BankStatementImport" isExecutable="true" camunda:versionTag="2" camunda:historyTimeToLive="P10D">
+    <bpmn:extensionElements>
+      <camunda:properties>
+        <camunda:property name="kaliApiBaseUrl" value="https://kali-api-367414693106.us-central1.run.app/api/v1" />
+        <camunda:property name="dbApiBaseUrl" value="http://localhost:8080/api/dbz/v1" />
+        <camunda:property name="metaRecordId" value="df698f6d-32bd-49db-8d88-7069b2e67503" />
+        <camunda:property name="defaultPollingInterval" value="PT60S" />
+        <camunda:property name="maxRetries" value="10" />
+      </camunda:properties>
+    </bpmn:extensionElements>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:extensionElements>
+        <camunda:executionListener expression="${execution.setVariable(&#39;processStartTime&#39;, now())}" event="start" />
+        <camunda:executionListener expression="${execution.setVariable(&#39;apiServer&#39;, &#39;http://localhost:8080&#39;)}" event="start" />
+        <camunda:executionListener expression="${execution.setVariable(&#39;maxRetries&#39;, 10)}" event="start" />
+        <camunda:executionListener expression="${execution.setVariable(&#39;currentRetry&#39;, 0)}" event="start" />
+        <camunda:executionListener expression="${execution.setVariable(&#39;processStatus&#39;, &#39;INITIATED&#39;)}" event="start" />
+        <camunda:executionListener expression="${execution.setVariable(&#39;dbApiBaseUrl&#39;, &#39;http://localhost:8080/api/dbz/v1&#39;)}" event="start" />
+        <camunda:executionListener expression="${execution.setVariable(&#39;fileRecordId&#39;, &#39;0b850fa2-3b86-46ae-8850-e3cf5cecd999&#39;)}" event="start" />
+        <camunda:executionListener expression="${execution.setVariable(&#39;authToken&#39;, &#39;eyJhbGciOiJIUzI1NiJ9.eyJvcmdhbml6YXRpb25JZCI6MSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VySWQiOjMsImVtYWlsIjoiY2xvdWRleHBlcnRpc2UubWFAZ21haWwuY29tIiwic3ViIjoiYWRtaW4iLCJpYXQiOjE3NTA0MzUxOTAsImV4cCI6MTc1MDQ2NTE5MH0.UytStDp_jzTPgrAIw_rPS6p5NS5nB1p7SAN6NkE2jYU&#39;)}" event="start" />
+      </bpmn:extensionElements>
+      <bpmn:outgoing>Flow_14o61cg</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="Activity_add_entity" name="Verify File" camunda:class="com.example.demo.workflows.delegates.apis.RestClientDelegate">
+      <bpmn:extensionElements>
+        <camunda:executionListener expression="${execution.setVariable(&#39;stepStartTime&#39;, now())}" event="start" />
+        <camunda:executionListener expression="${execution.setVariable(&#39;currentStep&#39;, &#39;WHOIS_INITIATION&#39;)}" event="start" />
+        <camunda:inputOutput>
+          <camunda:inputParameter name="apiUrl">${apiServer}/api/v1/app-files-derivatives/${fileRecordId}/derivatives</camunda:inputParameter>
+          <camunda:inputParameter name="httpMethod">GET</camunda:inputParameter>
+          <camunda:inputParameter name="outputVariableName">fileDerivativesResponse</camunda:inputParameter>
+          <camunda:inputParameter name="errorVariableName">fileDerivativesResponseError</camunda:inputParameter>
+          <camunda:inputParameter name="requestHeaders">{
+  "Authorization": "Bearer ${authToken}",
+  "Content-Type": "application/json"
+}</camunda:inputParameter>
+          <camunda:inputParameter name="outputVarType">json</camunda:inputParameter>
+        </camunda:inputOutput>
+        <camunda:executionListener expression="${execution.setVariable(&#39;stepEndTime&#39;, now())}" event="end" />
+        <camunda:executionListener expression="${execution.setVariable(&#39;countDerivatives&#39;, S(fileDerivativesResponse).elements().size())}" event="end" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_14o61cg</bpmn:incoming>
+      <bpmn:incoming>Flow_0o6u3wk</bpmn:incoming>
+      <bpmn:outgoing>Flow_0jtyhie</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_07g57bb" name="countDerivatives == 0" sourceRef="Gateway_1qo7800" targetRef="Generate_D">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${countDerivatives == 0 &amp;&amp; currentRetry == 0 }</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:intermediateCatchEvent id="Event_06rpk0r" name="WAIT">
+      <bpmn:extensionElements>
+        <camunda:executionListener expression="${execution.setVariable(&#39;currentStep&#39;, &#39;WAITING_TIMER&#39;)}" event="start" />
+        <camunda:executionListener expression="${execution.setVariable(&#39;currentRetry&#39;, 1)}" event="start" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0wm2qlg</bpmn:incoming>
+      <bpmn:outgoing>Flow_0o6u3wk</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_0da8hy0">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT30S</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="Flow_0wm2qlg" sourceRef="Generate_D" targetRef="Event_06rpk0r" />
+    <bpmn:serviceTask id="Activity_077kdui" name="JSON" camunda:class="com.example.demo.workflows.delegates.apis.RestClientDelegate">
+      <bpmn:extensionElements>
+        <camunda:executionListener expression="${execution.setVariable(&#39;stepStartTime&#39;, now())}" event="start" />
+        <camunda:executionListener expression="${execution.setVariable(&#39;currentStep&#39;, &#39;RESULTS_RETRIEVAL&#39;)}" event="start" />
+        <camunda:inputOutput>
+          <camunda:inputParameter name="apiUrl">${apiServer}/api/v1/app-files-derivatives/${currentItemId}/convert-content-json?agentId=1</camunda:inputParameter>
+          <camunda:inputParameter name="httpMethod">POST</camunda:inputParameter>
+          <camunda:inputParameter name="outputVariableName">jsonResultResponse</camunda:inputParameter>
+          <camunda:inputParameter name="errorVariableName">jsonResultResponseError</camunda:inputParameter>
+          <camunda:inputParameter name="requestHeaders">{"Content-Type":"application/json"}</camunda:inputParameter>
+          <camunda:inputParameter name="outputVarType">Json</camunda:inputParameter>
+        </camunda:inputOutput>
+        <camunda:executionListener expression="${execution.setVariable(&#39;stepEndTime&#39;, now())}" event="end" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0wvz91o</bpmn:incoming>
+      <bpmn:outgoing>Flow_0q9mmpo</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_0u2lwyi">
+      <bpmn:extensionElements>
+        <camunda:executionListener expression="${execution.setVariable(&#39;processEndTime&#39;, now())}" event="start" />
+        <camunda:executionListener expression="${execution.setVariable(&#39;processStatus&#39;, execution.hasVariable(&#39;saveError&#39;) ? &#39;FAILED&#39; : &#39;COMPLETED&#39;)}" event="start" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0q9mmpo</bpmn:incoming>
+      <bpmn:incoming>Flow_0uhbz58</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_14o61cg" sourceRef="StartEvent_1" targetRef="Activity_add_entity" />
+    <bpmn:sequenceFlow id="Flow_0q9mmpo" sourceRef="Activity_077kdui" targetRef="Event_0u2lwyi" />
+    <bpmn:sequenceFlow id="Flow_0o6u3wk" sourceRef="Event_06rpk0r" targetRef="Activity_add_entity" />
+    <bpmn:exclusiveGateway id="Gateway_1qo7800" name="CheckDerivatives">
+      <bpmn:incoming>Flow_0jtyhie</bpmn:incoming>
+      <bpmn:outgoing>Flow_0udjjfz</bpmn:outgoing>
+      <bpmn:outgoing>Flow_07g57bb</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0uhbz58</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0jtyhie" sourceRef="Activity_add_entity" targetRef="Gateway_1qo7800" />
+    <bpmn:sequenceFlow id="Flow_0udjjfz" name="countDerivatives &#62; 0" sourceRef="Gateway_1qo7800" targetRef="processItemLOOP">
+      <bpmn:extensionElements>
+        <camunda:executionListener expression="${execution.setVariable(&#39;loopIndex&#39;, 0 )}" event="take" />
+      </bpmn:extensionElements>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${countDerivatives &gt; 0 }</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="Generate_D" name="Generate Derivatives" camunda:class="com.example.demo.workflows.delegates.apis.RestClientDelegate">
+      <bpmn:extensionElements>
+        <camunda:executionListener expression="${execution.setVariable(&#39;currentStep&#39;, &#39;PENDING_WAIT&#39;)}" event="start" />
+        <camunda:executionListener expression="${execution.setVariable(&#39;waitStartTime&#39;, now())}" event="start" />
+        <camunda:inputOutput>
+          <camunda:inputParameter name="apiUrl">${apiServer}/api/v1/app-files-derivatives/${fileRecordId}/generate-pdf-page-images-async</camunda:inputParameter>
+          <camunda:inputParameter name="httpMethod">POST</camunda:inputParameter>
+          <camunda:inputParameter name="outputVariableName">fileDerivativesInitResponse</camunda:inputParameter>
+          <camunda:inputParameter name="requestHeaders">{
+  "Authorization": "Bearer ${authToken}",
+  "Content-Type": "application/json"
+}</camunda:inputParameter>
+          <camunda:inputParameter name="outputVarType">json</camunda:inputParameter>
+          <camunda:inputParameter name="errorVariableName">fileDerivativesInitResponseError</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_07g57bb</bpmn:incoming>
+      <bpmn:outgoing>Flow_0wm2qlg</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0uhbz58" name="retries &#62; 2" sourceRef="Gateway_1qo7800" targetRef="Event_0u2lwyi">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${countDerivatives == 0 &amp;&amp; currentRetry &gt; 0 }</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="processItemLOOP" name="LOOP" camunda:expression="${execution.setVariable(&#39;currentItemStepId&#39;, currentItem.prop(&#39;id&#39;))}" camunda:resultVariable="currentItemStep">
+      <bpmn:extensionElements />
+      <bpmn:incoming>Flow_0udjjfz</bpmn:incoming>
+      <bpmn:outgoing>Flow_0wvz91o</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics camunda:collection="${listDerivatives}" camunda:elementVariable="currentItem">
+        <bpmn:loopCardinality>${loopIndex}</bpmn:loopCardinality>
+        <bpmn:completionCondition xsi:type="bpmn:tFormalExpression">${countDerivatives}</bpmn:completionCondition>
+      </bpmn:multiInstanceLoopCharacteristics>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0wvz91o" sourceRef="processItemLOOP" targetRef="Activity_077kdui">
+      <bpmn:extensionElements>
+        <camunda:executionListener delegateExpression="${execution.setVariable(&#39;currentItemId&#39;, currentItem.prop(&#39;id&#39;))}" event="take" />
+      </bpmn:extensionElements>
+    </bpmn:sequenceFlow>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_BankStatementImport">
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="152" y="262" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_add_entity_di" bpmnElement="Activity_add_entity">
+        <dc:Bounds x="300" y="240" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_06rpk0r_di" bpmnElement="Event_06rpk0r">
+        <dc:Bounds x="332" y="112" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="337" y="82" width="27" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0u2lwyi_di" bpmnElement="Event_0u2lwyi">
+        <dc:Bounds x="1592" y="262" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1qo7800_di" bpmnElement="Gateway_1qo7800" isMarkerVisible="true">
+        <dc:Bounds x="495" y="255" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="480" y="312" width="87" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0xcwv5l_di" bpmnElement="Generate_D">
+        <dc:Bounds x="470" y="90" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_10y9qrr_di" bpmnElement="processItemLOOP">
+        <dc:Bounds x="770" y="240" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1ywav0b" bpmnElement="Activity_077kdui">
+        <dc:Bounds x="1130" y="240" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_14o61cg_di" bpmnElement="Flow_14o61cg">
+        <di:waypoint x="188" y="280" />
+        <di:waypoint x="300" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0o6u3wk_di" bpmnElement="Flow_0o6u3wk">
+        <di:waypoint x="350" y="148" />
+        <di:waypoint x="350" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0jtyhie_di" bpmnElement="Flow_0jtyhie">
+        <di:waypoint x="400" y="280" />
+        <di:waypoint x="495" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wm2qlg_di" bpmnElement="Flow_0wm2qlg">
+        <di:waypoint x="470" y="130" />
+        <di:waypoint x="368" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0q9mmpo_di" bpmnElement="Flow_0q9mmpo">
+        <di:waypoint x="1230" y="280" />
+        <di:waypoint x="1592" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0uhbz58_di" bpmnElement="Flow_0uhbz58">
+        <di:waypoint x="520" y="305" />
+        <di:waypoint x="520" y="440" />
+        <di:waypoint x="1610" y="440" />
+        <di:waypoint x="1610" y="298" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1040" y="422" width="50" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07g57bb_di" bpmnElement="Flow_07g57bb">
+        <di:waypoint x="520" y="255" />
+        <di:waypoint x="520" y="170" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="539" y="210" width="82" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0udjjfz_di" bpmnElement="Flow_0udjjfz">
+        <di:waypoint x="545" y="280" />
+        <di:waypoint x="770" y="280" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="604" y="286" width="82" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wvz91o_di" bpmnElement="Flow_0wvz91o">
+        <di:waypoint x="870" y="280" />
+        <di:waypoint x="1130" y="280" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

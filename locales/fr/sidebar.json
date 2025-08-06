@@ -1,0 +1,37 @@
+{
+  "sidebar": {
+    "dashboard": "Tableau de bord",
+    "analytics": "Analyses",
+    "directory": "Annuaire",
+    "company": "Entreprise",
+    "teams": "Équipes",
+    "hr": "Ressources Humaines",
+    "compta": "Comptabilité",
+    "security": "Sécurité",
+    "settings": "Paramètres",
+    "calendar": "Calendrier",
+    "files": "Fichiers",
+    "live": "En direct",
+    "messages": "Messages",
+    "notifications": "Notifications",
+    "help": "Aide",
+    "gettingStarted": "Pour commencer",
+    "companyPolicies": "Politiques de l'entreprise",
+    "itAndSecurity": "IT & Sécurité",
+    "departments": "Départements",
+    "toolsAndSoftware": "Outils & Logiciels",
+    "professionalDevelopment": "Développement professionnel",
+    
+    "helpcenter": {
+      "title": "Centre d'aide",
+      "description": "Trouvez des réponses à vos questions.",
+      "help": "Aide",
+      "gettingStarted": "Pour commencer",
+      "companyPolicies": "Politiques de l'entreprise",
+      "itAndSecurity": "IT & Sécurité",
+      "departments": "Départements",
+      "toolsAndSoftware": "Outils & Logiciels",
+      "professionalDevelopment": "Développement professionnel"
+    }
+  }
+}

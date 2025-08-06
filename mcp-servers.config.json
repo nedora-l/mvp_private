@@ -1,0 +1,57 @@
+{
+  "$schema": "./mcp-servers.schema.json",
+  "servers": [
+    {
+      "id": "web_search_alpha",
+      "name": "Web Search Alpha",
+      "description": "Alpha instance of the Web Search MCP server.",
+      "type": "web_search",
+      "baseUrl": "https://api.example.com/websearch/alpha",
+      "auth": {
+        "type": "API_KEY",
+        "credentials": {
+          "apiKey": "YOUR_ALPHA_API_KEY_HERE"
+        }
+      },
+      "enabled": true,
+      "timeout": 5000,
+      "retryPolicy": {
+        "attempts": 3,
+        "delay": 1000
+      },
+      "supportedTools": ["search", "fetch_page_content"]
+    },
+    {
+      "id": "data_analyzer_beta",
+      "name": "Data Analyzer Beta",
+      "description": "Beta instance of the Data Analyzer MCP server.",
+      "type": "data_analysis",
+      "baseUrl": "https://api.example.com/dataanalyzer/beta",
+      "auth": {
+        "type": "OAUTH2_CLIENT_CREDENTIALS",
+        "credentials": {
+          "clientId": "YOUR_BETA_CLIENT_ID",
+          "clientSecret": "YOUR_BETA_CLIENT_SECRET",
+          "tokenUrl": "https://auth.example.com/oauth/token"
+        }
+      },
+      "enabled": true,
+      "supportedTools": ["analyze_dataset", "generate_report"],
+      "customConfig": {
+        "defaultModel": "model-v2-beta"
+      }
+    },
+    {
+      "id": "internal_tool_server_v1",
+      "name": "Internal Tools v1",
+      "description": "Access to internal company tools.",
+      "type": "custom",
+      "baseUrl": "http://localhost:8080/api/v1",
+      "auth": {
+        "type": "NONE"
+      },
+      "enabled": false,
+      "supportedTools": ["get_user_permissions", "update_database_record"]
+    }
+  ]
+}

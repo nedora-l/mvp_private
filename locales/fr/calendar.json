@@ -1,0 +1,24 @@
+{
+  "calendar": {
+    "title": "Calendrier",
+    "target": "Objectif",
+    "day": "Jour",
+    "week": "Semaine",
+    "month": "Mois",
+    "agenda": "Agenda",
+    "weekView": "Vue de la semaine",
+    "weekViewDevelopment": "Développement de la vue hebdomadaire",
+    "upcomingEvents": "Événements à venir",
+    "noEventsDay": "Aucun événement prévu pour aujourd'hui",
+    "addEvent": "Ajouter un événement",
+    "join": "Rejoindre",
+    "invite": "Inviter",
+    "eventType": {
+      "meeting": "Réunion",
+      "workshop": "Atelier",
+      "planning": "Planification",
+      "training": "Formation",
+      "virtual": "Réunion virtuelle"
+    }
+  }
+}

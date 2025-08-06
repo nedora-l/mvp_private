@@ -1,0 +1,52 @@
+{
+  "home": {
+    "title": "Dashboard",
+    "welcome": "Welcome to the DAWS Management System",
+    "hello": "Hello, {{name}}",
+    "subtitle": "Here’s an overview of your workspace",
+    "description": "Stay informed and connected with the latest news, events, and team activities.",
+    "loading": "Loading...",
+    "quickLinks": {
+      "title": "Quick Links",
+      "viewAll": "View All",
+      "add": "Add custom link"
+    },
+    "companyAnnouncements": {
+      "title": "Company Announcements",
+      "viewAll": "View All",
+      "noAnnouncements": "No new announcements"
+    },
+    "upcomingEvents": {
+      "title": "Upcoming Events",
+      "viewAll": "View All Events",
+      "noEvents": "No upcoming events",
+      "today": "Today",
+      "tomorrow": "Tomorrow"
+    },
+    "recentDocuments": {
+      "title": "Recent Documents",
+      "viewAll": "View All Documents",
+      "noDocuments": "No recent documents"
+    },
+    "teamActivity": {
+      "title": "Team Activity",
+      "viewAll": "View All Activity",
+      "noActivity": "No recent team activity"
+    },
+    "birthdaysAndAnniversaries": {
+      "title": "Birthdays & Anniversaries",
+      "viewAll": "View All",
+      "noBirthdays": "No upcoming birthdays",
+      "noAnniversaries": "No upcoming work anniversaries",
+      "birthdayToday": "Birthday today",
+      "anniversary": "{{count}} year at the company",
+      "anniversaryPlural": "{{count}} years at the company"
+    },
+    "stats": {
+      "tasksCompleted": "Tasks Completed",
+      "documentsUploaded": "Documents Uploaded",
+      "teamMembers": "Team Members",
+      "upcomingDeadlines": "Upcoming Deadlines"
+    }
+  }
+}

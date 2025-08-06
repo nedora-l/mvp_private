@@ -1,0 +1,36 @@
+{
+  "directory": {
+    "title": "Répertoire des Employés",
+    "search": {
+      "placeholder": "Rechercher par nom, titre ou département..."
+    },
+    "filters": "Filtres",
+    "tabs": {
+      "all": "Tous",
+      "byDepartment": "Par Département",
+      "byLocation": "Par Emplacement",
+      "byRole": "Par Rôle",
+      "byTeam": "Par Équipe"
+    },
+    "showing": "Affichage de {{count}} employés",
+    "labels": {
+      "departments": "Départements",
+      "locations": "Emplacements",
+      "allDepartments": "Tous les Départements",
+      "allLocations": "Tous les Emplacements",
+      "allRoles": "Tous les Rôles",
+      "allTeams": "Toutes les Équipes",
+      "teams": "Équipes",
+      "roles": "Rôles"
+    },
+    "locations": {
+      "casaSidiMarouf": "Casablanca : Sidi Maarouf",
+        "casaMaarif": "Casablanca : Maarif",
+        "merrakesh": "Merrakesh"
+    },
+    "actions": {
+      "message": "Message",
+      "viewProfile": "Voir le Profil"
+    }
+  }
+}

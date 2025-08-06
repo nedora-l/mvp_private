@@ -1,0 +1,152 @@
+{
+  "title": "إدارة المشاريع",
+  "overview": "نظرة عامة",
+  "auth": {
+    "signInRequired": "مطلوب المصادقة",
+    "signInMessage": "يرجى تسجيل الدخول للوصول إلى نظام إدارة المشاريع. تحتاج إلى المصادقة لعرض وإدارة المشاريع."
+  },
+  "loading": {
+    "projects": "جاري تحميل المشاريع...",
+    "members": "جاري تحميل الأعضاء...",
+    "employees": "جاري تحميل الموظفين...",
+    "projectRoles": "جاري تحميل أدوار المشروع..."
+  },
+  "search": {
+    "placeholder": "البحث عن المشاريع..."
+  },
+  "views": {
+    "gridView": "عرض الشبكة",
+    "listView": "عرض القائمة",
+    "projectsList": "قائمة المشاريع"
+  },
+  "actions": {
+    "newProject": "مشروع جديد",
+    "refresh": "تحديث",
+    "retry": "إعادة المحاولة",
+    "edit": "تحرير",
+    "details": "التفاصيل",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "create": "إنشاء المشروع",
+    "update": "تحديث المشروع",
+    "delete": "حذف",
+    "addMember": "إضافة عضو",
+    "removeMember": "إزالة العضو",
+    "connectToOrg": "الاتصال بالمؤسسة",
+    "editProject": "تحرير المشروع",
+    "deleteProject": "حذف المشروع",
+    "creating": "جاري الإنشاء...",
+    "updating": "جاري التحديث...",
+    "adding": "جاري الإضافة..."
+  },
+  "form": {
+    "title": "عنوان المشروع",
+    "titleRequired": "عنوان المشروع *",
+    "description": "الوصف",
+    "startDate": "تاريخ البداية",
+    "endDate": "تاريخ النهاية",
+    "budget": "الميزانية ($)",
+    "active": "نشط",
+    "archived": "مؤرشف",
+    "selectEmployee": "اختر موظف *",
+    "selectProjectRole": "اختر دور المشروع *",
+    "placeholders": {
+      "title": "أدخل عنوان المشروع",
+      "description": "أدخل وصف المشروع",
+      "employee": "اختر موظف",
+      "projectRole": "اختر دور المشروع",
+      "searchEmployees": "البحث عن الموظفين...",
+      "searchProjectRoles": "البحث عن أدوار المشروع..."
+    },
+    "emptyText": {
+      "noEmployee": "لم يتم العثور على موظف.",
+      "noProjectRole": "لم يتم العثور على دور مشروع."
+    }
+  },
+  "dialogs": {
+    "createProject": "إنشاء مشروع جديد",
+    "editProject": "تحرير المشروع",
+    "projectDetails": "تفاصيل المشروع",
+    "addMember": "إضافة عضو للمشروع",
+    "connectToOrg": "الاتصال بالمؤسسة"
+  },
+  "status": {
+    "active": "نشط",
+    "inactive": "غير نشط",
+    "archived": "مؤرشف"
+  },
+  "labels": {
+    "start": "البداية:",
+    "end": "النهاية:",
+    "created": "أُنشئ:",
+    "starts": "يبدأ:",
+    "ends": "ينتهي:",
+    "budget": "الميزانية:",
+    "added": "أُضيف:",
+    "description": "الوصف",
+    "startDate": "تاريخ البداية",
+    "endDate": "تاريخ النهاية",
+    "budget_label": "الميزانية",
+    "created_label": "أُنشئ"
+  },
+  "empty": {
+    "noProjects": "لم يتم العثور على مشاريع",
+    "noProjectsSubtitle": "أنشئ مشروعك الأول للبدء",
+    "noMembers": "لا يوجد أعضاء مخصصون لهذا المشروع",
+    "noMembersSubtitle": "أضف أعضاء للبدء",
+    "noEmployees": "لم يتم العثور على موظفين",
+    "noProjectRoles": "لم يتم العثور على أدوار مشروع"
+  },
+  "success": {
+    "projectCreated": "تم إنشاء المشروع بنجاح!",
+    "projectUpdated": "تم تحديث المشروع بنجاح!",
+    "projectDeleted": "تم حذف المشروع بنجاح!",
+    "memberAdded": "تمت إضافة العضو بنجاح!",
+    "memberRemoved": "تمت إزالة العضو بنجاح!",
+    "urlCopied": "تم نسخ الرابط إلى الحافظة!",
+    "redirectingToOrg": "جاري التوجه إلى صفحة دخول المؤسسة..."
+  },
+  "errors": {
+    "titleRequired": "عنوان المشروع مطلوب",
+    "selectEmployeeAndRole": "يرجى اختيار موظف ودور مشروع",
+    "loadProjects": "فشل في تحميل المشاريع",
+    "createProject": "فشل في إنشاء المشروع",
+    "updateProject": "فشل في تحديث المشروع",
+    "deleteProject": "فشل في حذف المشروع",
+    "addMember": "فشل في إضافة العضو",
+    "removeMember": "فشل في إزالة العضو",
+    "loadEmployees": "فشل في تحميل الموظفين",
+    "loadProjectRoles": "فشل في تحميل أدوار المشروع",
+    "loadMembers": "فشل في تحميل أعضاء المشروع"
+  },
+  "confirmations": {
+    "deleteProject": "هل أنت متأكد من رغبتك في حذف",
+    "deleteProjectSuffix": "؟",
+    "removeMember": "هل أنت متأكد من رغبتك في إزالة",
+    "removeMemberSuffix": "من هذا المشروع؟",
+    "actionCannotBeUndone": "لا يمكن التراجع عن هذا الإجراء."
+  },
+  "accessControl": {
+    "restrictedTitle": "الوصول مقيد",
+    "restrictedMessage": "ليس لديك صلاحية للوصول إلى هذا المشروع. فقط منشئو المشاريع والأعضاء يمكنهم عرض تفاصيل المشروع والإجراءات.",
+    "projectActions": "إجراءات المشروع",
+    "projectManagement": "إدارة المشروع"
+  },
+  "sso": {
+    "title": "الاتصال بالمؤسسة",
+    "generating": "جاري إنشاء اتصال SSO",
+    "generatingMessage": "جاري إنشاء اتصال آمن مع مؤسستك...",
+    "ready": "الاتصال جاهز!",
+    "readyMessage": "تم إنشاء رابط اتصال SSO بنجاح.",
+    "url": "رابط اتصال SSO:",
+    "redirecting": "جاري التوجيه...",
+    "redirectingMessage": "جاري توجيهك إلى صفحة دخول المؤسسة.",
+    "complete": "مكتمل",
+    "connect": "الاتصال بالمؤسسة"
+  },
+  "members": {
+    "title": "أعضاء المشروع",
+    "addMember": "إضافة عضو",
+    "memberIdLabel": "رقم العضو:"
+  }
+}

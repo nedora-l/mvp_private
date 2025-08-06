@@ -1,0 +1,24 @@
+{
+  "calendar": {
+    "title": "Calendar",
+    "target": "Target",
+    "day": "Day",
+    "week": "Week",
+    "month": "Month",
+    "agenda": "Agenda",
+    "weekView": "Week View",
+    "weekViewDevelopment": "Week View Development",
+    "upcomingEvents": "Upcoming Events",
+    "noEventsDay": "No events scheduled for today",
+    "addEvent": "Add Event",
+    "join": "Join",
+    "invite": "Invite",
+    "eventType": {
+      "meeting": "Meeting",
+      "workshop": "Workshop",
+      "planning": "Planning",
+      "training": "Training",
+      "virtual": "Virtual Meeting"
+    }
+  }
+}

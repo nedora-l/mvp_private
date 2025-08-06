@@ -1,0 +1,454 @@
+{
+  "title": "Centre d'aide",
+  "subtitle": "Trouvez des réponses à vos questions et obtenez de l'aide avec notre plateforme",
+  "header": {
+    "title": "Centre d'aide",
+    "subtitle": "Trouvez des réponses à vos questions et obtenez de l'aide avec notre plateforme"
+  },
+  "search": {
+    "placeholder": "Rechercher de l'aide...",
+    "button": "Rechercher"
+  },
+  "topics": {
+    "title": "Besoin d'aide ? Nous sommes là pour vous.",
+    "description": "Des paramètres de compte aux permissions, trouvez de l'aide pour tout Discord.",
+    "newUserHelp": "Si vous êtes nouveau sur Discord et cherchez des conseils, consultez notre",
+    "beginnersGuide": "Guide du débutant"
+  },
+  "contact": {
+    "title": "Avez-vous une autre question ?",
+    "submitRequest": "Soumettre une demande"
+  },
+  "admin": {
+    "refresh": "Actualiser",
+    "addTopic": "Ajouter un sujet"
+  },
+  "messages": {
+    "topicSaved": "Catégorie sauvegardée",
+    "topicSavedDescription": "La catégorie \"{title}\" a été sauvegardée dans la base de données.",
+    "topicAdded": "Catégorie ajoutée",
+    "topicAddedDescription": "La catégorie \"{title}\" a été ajoutée avec succès.",
+    "saveError": "Erreur de sauvegarde",
+    "saveErrorDescription": "Erreur: {error}"
+  },
+  "categories": {
+    "getting-started": "Démarrage",
+    "company-policies": "Politiques de l'entreprise",
+    "departments": "Départements",
+    "tools-software": "Outils et logiciels",
+    "professional-development": "Développement professionnel",
+    "cyber-concerns": "Préoccupations cybersécurité"
+  },
+  "common": {
+    "back": "Retour",
+    "next": "Suivant",
+    "close": "Fermer",
+    "submit": "Soumettre",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "view": "Voir",
+    "download": "Télécharger",
+    "upload": "Uploader",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "sort": "Trier",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "warning": "Avertissement",
+    "info": "Info"
+  },
+  "gettingStarted": {
+    "title": "Démarrage",
+    "description": "Tout ce que vous devez savoir pour commencer avec notre plateforme",
+    "welcome": {
+      "title": "Bienvenue dans DAWS",
+      "description": "Votre solution d'espace de travail administratif numérique",
+      "subtitle": "Rejoignez notre équipe grandissante d'innovateurs"
+    },
+    "quickStart": {
+      "title": "Guide de démarrage rapide",
+      "description": "Commencez en quelques minutes"
+    },
+    "firstSteps": {
+      "title": "Premières étapes",
+      "description": "Étapes essentielles pour configurer votre espace de travail"
+    },
+    "basicNavigation": {
+      "title": "Navigation de base",
+      "description": "Apprenez à naviguer dans la plateforme"
+    },
+    "accountSetup": {
+      "title": "Configuration du compte",
+      "description": "Configurez votre compte et vos préférences"
+    },
+    "journey": {
+      "title": "Votre parcours commence ici",
+      "description": "Chez D&A Technologies, nous croyons qu'un excellent onboarding mène à de grandes expériences. Nous avons conçu ce guide complet pour vous aider à naviguer dans vos premières semaines avec confiance.",
+      "stepByStep": {
+        "title": "Étape par étape",
+        "description": "Suivez notre approche structurée pour être opérationnel rapidement"
+      },
+      "teamSupport": {
+        "title": "Support d'équipe",
+        "description": "Vos collègues sont là pour vous aider à réussir"
+      },
+      "resources": {
+        "title": "Ressources",
+        "description": "Accès à tous les outils et informations dont vous avez besoin"
+      }
+    },
+    "checklist": {
+      "title": "Liste de contrôle du premier jour",
+      "morning": {
+        "title": "Tâches du matin",
+        "arriveEarly": {
+          "title": "Arriver 15 minutes en avance",
+          "description": "Rencontrer votre binôme à l'accueil"
+        },
+        "hrPaperwork": {
+          "title": "Compléter les documents RH",
+          "description": "Apporter les documents requis"
+        },
+        "equipment": {
+          "title": "Recevoir votre équipement",
+          "description": "Ordinateur portable, téléphone, cartes d'accès"
+        },
+        "officeTour": {
+          "title": "Visite du bureau",
+          "description": "Installations, sorties d'urgence, commodités"
+        }
+      },
+      "afternoon": {
+        "title": "Tâches de l'après-midi",
+        "meetManager": {
+          "title": "Rencontrer votre manager",
+          "description": "Discuter des objectifs et attentes"
+        },
+        "meetTeam": {
+          "title": "Rencontrer votre équipe",
+          "description": "Présentation aux collègues"
+        },
+        "systemSetup": {
+          "title": "Configuration système",
+          "description": "Configurer les comptes et outils"
+        },
+        "companyHandbook": {
+          "title": "Réviser le manuel de l'entreprise",
+          "description": "Politiques et procédures"
+        }
+      }
+    },
+    "contacts": {
+      "title": "Contacts essentiels",
+      "hr": {
+        "title": "Département RH",
+        "phone": "(+212) 06 123-4567",
+        "email": "hr@da-tech.com",
+        "description": "Questions des employés, avantages, politiques"
+      },
+      "it": {
+        "title": "Support IT",
+        "phone": "(+212) 06 123-4568",
+        "email": "it@da-tech.ma",
+        "description": "Problèmes techniques, accès système"
+      },
+      "emergency": {
+        "title": "Urgence",
+        "phone": "911 ou Sécurité: (+212) 06 123-4569",
+        "email": "security@da-tech.ma",
+        "description": "Situations d'urgence, préoccupations de sécurité"
+      }
+    },
+    "systemAccess": {
+      "title": "Accès système et comptes",
+      "email": {
+        "title": "Email d'entreprise et Microsoft 365",
+        "description": "Votre compte email d'entreprise est votre outil de communication principal et passerelle vers la plupart des systèmes.",
+        "items": [
+          "Format email : prenom.nom@da-tech.ma",
+          "Accès aux applications Office 365 (Word, Excel, PowerPoint, Teams)",
+          "OneDrive pour le stockage et partage de fichiers",
+          "SharePoint pour la collaboration d'équipe",
+          "Intégration calendrier pour réunions et planification"
+        ]
+      },
+      "development": {
+        "title": "Environnement de développement",
+        "description": "Pour les rôles techniques, vous aurez besoin d'accès à nos outils et plateformes de développement.",
+        "items": [
+          "GitHub Enterprise pour les dépôts de code",
+          "Jira pour la gestion de projet et suivi des problèmes",
+          "Azure DevOps pour les pipelines CI/CD",
+          "Accès VPN pour le travail à distance",
+          "Serveurs de développement et environnements de test"
+        ]
+      },
+      "business": {
+        "title": "Applications métier",
+        "description": "Accès au CRM, ERP et autres applications critiques pour l'entreprise.",
+        "items": [
+          "Salesforce CRM pour la gestion de la relation client",
+          "SAP pour la planification des ressources d'entreprise",
+          "Slack pour la communication d'équipe",
+          "Zoom pour les visioconférences",
+          "Système de rapport de frais"
+        ]
+      }
+    },
+    "office": {
+      "title": "Orientation du bureau",
+      "physical": {
+        "title": "Espaces physiques",
+        "layoutTitle": "Agencement du bureau principal",
+        "items": [
+          "• Réception et zone visiteurs (Rez-de-chaussée)",
+          "• Espace de travail ouvert (Étages 1-2)",
+          "• Salles de réunion (Chaque étage)",
+          "• Salles de repos et cuisine (Chaque étage)",
+          "• Bureaux exécutifs (Étage 3)",
+          "• Salle serveurs IT (Sous-sol - Accès restreint)"
+        ]
+      },
+      "amenities": {
+        "title": "Commodités et services",
+        "facilitiesTitle": "Installations disponibles",
+        "items": [
+          "• Cafétéria (7h00 - 18h00)",
+          "• Centre de fitness (24h/24 avec accès par badge)",
+          "• Parking souterrain (Places réservées disponibles)",
+          "• Salle d'allaitement (Étage 2)",
+          "• Salles silencieuses pour appels/travail concentré",
+          "• Salle de jeux et zone de loisirs"
+        ]
+      }
+    },
+    "policies": {
+      "title": "Résumé des politiques clés",
+      "workHours": {
+        "title": "Horaires de travail et flexibilité",
+        "items": [
+          "Heures de base : 9h00 - 15h00",
+          "Horaires de début/fin flexibles",
+          "Options de travail à distance disponibles",
+          "Pause déjeuner minimum de 30 minutes"
+        ]
+      },
+      "communication": {
+        "title": "Directives de communication",
+        "items": [
+          "Réponse email dans les 24 heures",
+          "Utiliser Slack pour les questions rapides",
+          "Teams pour les visioconférences",
+          "Respecter l'équilibre travail-vie"
+        ]
+      },
+      "conduct": {
+        "title": "Code de conduite",
+        "items": [
+          "Traiter tout le monde avec respect",
+          "Aucun harcèlement ou discrimination",
+          "Maintenir la confidentialité",
+          "Signaler les préoccupations aux RH"
+        ]
+      },
+      "technology": {
+        "title": "Utilisation de la technologie",
+        "items": [
+          "Utilisation professionnelle des appareils de l'entreprise",
+          "Aucune installation de logiciel personnel",
+          "Mises à jour régulières des mots de passe",
+          "Signaler les incidents de sécurité"
+        ]
+      }
+    },
+    "emergency": {
+      "title": "Procédures d'urgence",
+      "fire": {
+        "title": "Urgence incendie",
+        "steps": [
+          "Déclencher l'alarme incendie",
+          "Sortir par l'escalier le plus proche",
+          "Se réunir au point de rassemblement désigné",
+          "Attendre l'autorisation des autorités"
+        ]
+      },
+      "medical": {
+        "title": "Urgence médicale",
+        "steps": [
+          "Appeler le 911 immédiatement",
+          "Notifier la sécurité au poste 911",
+          "Rester avec la personne blessée",
+          "Diriger les secours d'urgence"
+        ]
+      },
+      "security": {
+        "title": "Menace de sécurité",
+        "steps": [
+          "Appeler la sécurité immédiatement",
+          "Rester calme et silencieux",
+          "Suivre les procédures de confinement",
+          "Attendre les instructions officielles"
+        ]
+      }
+    }
+  },
+  "companyPolicies": {
+    "title": "Politiques de l'entreprise",
+    "description": "Politiques et directives importantes pour notre organisation",
+    "codeOfConduct": {
+      "title": "Code de conduite",
+      "description": "Nos standards de comportement professionnel"
+    },
+    "privacyPolicy": {
+      "title": "Politique de confidentialité",
+      "description": "Comment nous traitons et protégeons vos données"
+    },
+    "termsOfService": {
+      "title": "Conditions d'utilisation",
+      "description": "Termes légaux et conditions d'utilisation de notre plateforme"
+    },
+    "hrPolicies": {
+      "title": "Politiques RH",
+      "description": "Politiques et procédures des ressources humaines"
+    },
+    "complianceGuidelines": {
+      "title": "Directives de conformité",
+      "description": "Exigences de conformité réglementaire"
+    }
+  },
+  "departments": {
+    "title": "Départements",
+    "description": "Informations sur les différents départements et leurs fonctions",
+    "humanResources": {
+      "title": "Ressources humaines",
+      "description": "Services et support aux employés"
+    },
+    "finance": {
+      "title": "Finance",
+      "description": "Opérations financières et comptabilité"
+    },
+    "it": {
+      "title": "Département IT",
+      "description": "Support et services de technologie de l'information"
+    },
+    "marketing": {
+      "title": "Marketing",
+      "description": "Marketing et communications"
+    },
+    "operations": {
+      "title": "Opérations",
+      "description": "Opérations quotidiennes et processus"
+    },
+    "legal": {
+      "title": "Juridique",
+      "description": "Affaires juridiques et conformité"
+    }
+  },
+  "toolsSoftware": {
+    "title": "Outils et logiciels",
+    "description": "Guides et tutoriels pour les outils et logiciels que nous utilisons",
+    "platformOverview": {
+      "title": "Aperçu de la plateforme",
+      "description": "Aperçu des principales fonctionnalités de notre plateforme"
+    },
+    "integrations": {
+      "title": "Intégrations",
+      "description": "Intégrations et connexions tierces"
+    },
+    "mobileApp": {
+      "title": "Application mobile",
+      "description": "Comment utiliser notre application mobile"
+    },
+    "apiDocumentation": {
+      "title": "Documentation API",
+      "description": "Documentation technique pour les développeurs"
+    },
+    "troubleshooting": {
+      "title": "Dépannage",
+      "description": "Problèmes courants et solutions"
+    }
+  },
+  "professionalDevelopment": {
+    "title": "Développement professionnel",
+    "description": "Ressources pour la croissance de carrière et le développement des compétences",
+    "trainingPrograms": {
+      "title": "Programmes de formation",
+      "description": "Cours et programmes de formation disponibles"
+    },
+    "careerPaths": {
+      "title": "Parcours de carrière",
+      "description": "Opportunités d'avancement professionnel"
+    },
+    "skillAssessment": {
+      "title": "Évaluation des compétences",
+      "description": "Évaluez et améliorez vos compétences"
+    },
+    "certifications": {
+      "title": "Certifications",
+      "description": "Certifications et accréditations professionnelles"
+    },
+    "mentorship": {
+      "title": "Mentorat",
+      "description": "Programmes et opportunités de mentorat"
+    }
+  },
+  "cyberConcerns": {
+    "title": "Préoccupations cybersécurité",
+    "description": "Directives de sécurité et meilleures pratiques",
+    "securityBestPractices": {
+      "title": "Meilleures pratiques de sécurité",
+      "description": "Directives de sécurité essentielles pour tous les utilisateurs"
+    },
+    "passwordManagement": {
+      "title": "Gestion des mots de passe",
+      "description": "Comment créer et gérer des mots de passe sécurisés"
+    },
+    "phishingAwareness": {
+      "title": "Sensibilisation au phishing",
+      "description": "Comment identifier et éviter les tentatives de phishing"
+    },
+    "dataProtection": {
+      "title": "Protection des données",
+      "description": "Protéger les données sensibles de l'entreprise et personnelles"
+    },
+    "incidentReporting": {
+      "title": "Signalement d'incidents",
+      "description": "Comment signaler des incidents de sécurité"
+    },
+    "remoteWorkSecurity": {
+      "title": "Sécurité du travail à distance",
+      "description": "Considérations de sécurité pour le travail à distance"
+    }
+  },
+  "components": {
+    "cyberSecurity": {
+      "navigation": {
+        "bestPractices": "Bonnes Pratiques",
+        "internet": "Internet",
+        "email": "Messagerie",
+        "equipment": "Matériel",
+        "passwords": "Mot de Passe"
+      },
+      "welcome": {
+        "title": "Cybersécurité : Tous Concernés !",
+        "description": "Naviguez dans le monde numérique en toute sécurité. Protégez vos données professionnelles et personnelles face à la cybercriminalité croissante.",
+        "subtitle": "La Cybersécurité, une Priorité pour Tous !"
+      },
+      "sections": {
+        "bestPractices": "Les Bonnes Pratiques Partagées",
+        "internetSafety": "Naviguez sur Internet avec Vigilance",
+        "emailSecurity": "Messagerie : les points de vigilance",
+        "equipmentSecurity": "Ne laissez pas votre matériel s'envoler !",
+        "passwordSecurity": "Mot de passe : votre première ligne de défense"
+      },
+      "alerts": {
+        "whenToReact": "Identifiez les situations à risque et réagissez !",
+        "contactSupport": "Contactez le service D&A immédiatement.",
+        "urgentAction": "Si vous identifiez l'une de ces situations ou avez toute autre question ou remontée, n'attendez pas :"
+      }
+    }
+  }
+}

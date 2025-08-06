@@ -1,0 +1,37 @@
+{
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "analytics": "Analytics",
+    "directory": "Directory",
+    "company": "Company",
+    "teams": "Teams",
+    "hr": "HR",
+    "compta": "Accounting",
+    "security": "Security",
+    "settings": "Settings",
+    "calendar": "Calendar",
+    "files": "Files",
+    "live": "Live",
+    "messages": "Messages",
+    "notifications": "Notifications",
+    "help": "Help",
+    "gettingStarted": "Getting Started",
+    "companyPolicies": "Company Policies",
+    "itAndSecurity": "IT & Security",
+    "departments": "Departments",
+    "toolsAndSoftware": "Tools & Software",
+    "professionalDevelopment": "Professional Development",
+    
+    "helpcenter": {
+      "title": "Help Center",
+      "description": "Find answers to your questions.",
+      "help": "Help",
+      "gettingStarted": "Getting Started",
+      "companyPolicies": "Company Policies",
+      "itAndSecurity": "IT & Security",
+      "departments": "Departments",
+      "toolsAndSoftware": "Tools & Software",
+      "professionalDevelopment": "Professional Development"
+    }
+  }
+}

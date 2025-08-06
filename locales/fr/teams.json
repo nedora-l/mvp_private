@@ -1,0 +1,49 @@
+{
+  "title": "Équipes",
+  "createNew": "Créer une nouvelle équipe",
+  "memberSingular": "membre",
+  "memberPlural": "membres",
+  "projectSingular": "projet",
+  "projectPlural": "projets",
+  "details": {
+    "title": "Détails de l'équipe",
+    "description": "Description",
+    "members": "Membres",
+    "projects": "Projets",
+    "activity": "Activité"
+  },
+  "status": {
+    "active": "Actif",
+    "archived": "Archivé",
+    "pending": "En attente"
+  },
+  "list": {
+    "title": "Toutes les équipes",
+    "noTeams": "Aucune équipe trouvée",
+    "search": "Rechercher des équipes",
+    "filterBy": "Filtrer par"
+  },
+  "actions": {
+    "join": "Rejoindre l'équipe",
+    "leave": "Quitter l'équipe",
+    "edit": "Modifier l'équipe",
+    "delete": "Supprimer l'équipe",
+    "addMember": "Ajouter un membre",
+    "removeMember": "Supprimer un membre",
+    "createProject": "Créer un projet"
+  },
+  "roles": {
+    "admin": "Administrateur",
+    "member": "Membre",
+    "guest": "Invité"
+  },
+  "confirmations": {
+    "deleteTitle": "Supprimer l'équipe",
+    "deleteDescription": "Cette action ne peut pas être annulée. Êtes-vous sûr de vouloir supprimer cette équipe?",
+    "leaveTitle": "Quitter l'équipe",
+    "leaveDescription": "Êtes-vous sûr de vouloir quitter cette équipe?"
+  },
+  "activity": {
+    "title": "Activité de l'équipe"
+  }
+}

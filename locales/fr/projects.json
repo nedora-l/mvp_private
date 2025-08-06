@@ -1,0 +1,223 @@
+{
+  "title": "Gestion des Projets",
+  "overview": "Aperçu",
+  "auth": {
+    "signInRequired": "Authentification Requise",
+    "signInMessage": "Veuillez vous connecter pour accéder au système de gestion des projets. Vous devez être authentifié pour visualiser et gérer les projets."
+  },
+  "loading": {
+    "projects": "Chargement des projets...",
+    "members": "Chargement des membres...",
+    "employees": "Chargement des employés...",
+    "projectRoles": "Chargement des rôles de projet..."
+  },
+  "search": {
+    "placeholder": "Rechercher des projets..."
+  },
+  "views": {
+    "gridView": "Vue Grille",
+    "listView": "Vue Liste",
+    "projectsList": "Liste des Projets"
+  },
+  "actions": {
+    "newProject": "Nouveau Projet",
+    "refresh": "Actualiser",
+    "retry": "Réessayer",
+    "edit": "Modifier",
+    "details": "Détails",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "create": "Créer le Projet",
+    "update": "Mettre à jour le Projet",
+    "delete": "Supprimer",
+    "addMember": "Ajouter un Membre",
+    "removeMember": "Retirer le Membre",
+    "connectToOrg": "Se connecter à l'ORG",
+    "editProject": "Modifier le Projet",
+    "deleteProject": "Supprimer le Projet",
+    "creating": "Création...",
+    "updating": "Mise à jour...",
+    "adding": "Ajout..."
+  },
+  "form": {
+    "title": "Titre du Projet",
+    "titleRequired": "Titre du Projet *",
+    "description": "Description",
+    "startDate": "Date de Début",
+    "endDate": "Date de Fin",
+    "budget": "Budget ($)",
+    "active": "Actif",
+    "archived": "Archivé",
+    "selectEmployee": "Sélectionner un Employé *",
+    "selectProjectRole": "Sélectionner un Rôle de Projet *",
+    "placeholders": {
+      "title": "Entrez le titre du projet",
+      "description": "Entrez la description du projet",
+      "employee": "Sélectionnez un employé",
+      "projectRole": "Sélectionnez un rôle de projet",
+      "searchEmployees": "Rechercher des employés...",
+      "searchProjectRoles": "Rechercher des rôles de projet..."
+    },
+    "emptyText": {
+      "noEmployee": "Aucun employé trouvé.",
+      "noProjectRole": "Aucun rôle de projet trouvé."
+    }
+  },
+  "dialogs": {
+    "createProject": "Créer un Nouveau Projet",
+    "editProject": "Modifier le Projet",
+    "projectDetails": "Détails du Projet",
+    "addMember": "Ajouter un Membre au Projet",
+    "connectToOrg": "Se connecter à l'Organisation"
+  },
+  "status": {
+    "active": "Actif",
+    "inactive": "Inactif",
+    "archived": "Archivé"
+  },
+  "labels": {
+    "start": "Début :",
+    "end": "Fin :",
+    "created": "Créé :",
+    "starts": "Débute :",
+    "ends": "Finit :",
+    "budget": "Budget :",
+    "added": "Ajouté :",
+    "description": "Description",
+    "startDate": "Date de Début",
+    "endDate": "Date de Fin",
+    "budget_label": "Budget",
+    "created_label": "Créé"
+  },
+  "empty": {
+    "noProjects": "Aucun projet trouvé",
+    "noProjectsSubtitle": "Créez votre premier projet pour commencer",
+    "noMembers": "Aucun membre assigné à ce projet",
+    "noMembersSubtitle": "Ajoutez des membres pour commencer",
+    "noEmployees": "Aucun employé trouvé",
+    "noProjectRoles": "Aucun rôle de projet trouvé"
+  },
+  "success": {
+    "projectCreated": "Projet créé avec succès !",
+    "projectUpdated": "Projet mis à jour avec succès !",
+    "projectDeleted": "Projet supprimé avec succès !",
+    "memberAdded": "Membre ajouté avec succès !",
+    "memberRemoved": "Membre retiré avec succès !",
+    "urlCopied": "URL copiée dans le presse-papiers !",
+    "redirectingToOrg": "Redirection vers la connexion de l'organisation..."
+  },
+  "errors": {
+    "titleRequired": "Le titre du projet est requis",
+    "selectEmployeeAndRole": "Veuillez sélectionner un employé et un rôle de projet",
+    "loadProjects": "Échec du chargement des projets",
+    "createProject": "Échec de la création du projet",
+    "updateProject": "Échec de la mise à jour du projet",
+    "deleteProject": "Échec de la suppression du projet",
+    "addMember": "Échec de l'ajout du membre",
+    "removeMember": "Échec de la suppression du membre",
+    "loadEmployees": "Échec du chargement des employés",
+    "loadProjectRoles": "Échec du chargement des rôles de projet",
+    "loadMembers": "Échec du chargement des membres du projet"
+  },
+  "confirmations": {
+    "deleteProject": "Êtes-vous sûr de vouloir supprimer",
+    "deleteProjectSuffix": " ?",
+    "removeMember": "Êtes-vous sûr de vouloir retirer",
+    "removeMemberSuffix": "de ce projet ?",
+    "actionCannotBeUndone": "Cette action ne peut pas être annulée."
+  },
+  "accessControl": {
+    "restrictedTitle": "Accès Restreint",
+    "restrictedMessage": "Vous n'avez pas accès à ce projet. Seuls les créateurs de projets et les membres peuvent visualiser les détails et les actions du projet.",
+    "projectActions": "Actions du Projet",
+    "projectManagement": "Gestion du Projet"
+  },
+  "sso": {
+    "title": "Se connecter à l'Organisation",
+    "generating": "Génération de la Connexion SSO",
+    "generatingMessage": "Création d'une connexion sécurisée à votre organisation...",
+    "ready": "Connexion Prête !",
+    "readyMessage": "Votre URL de connexion SSO a été générée avec succès.",
+    "url": "URL de Connexion SSO :",
+    "redirecting": "Redirection...",
+    "redirectingMessage": "Vous redirige vers la page de connexion de l'organisation.",
+    "complete": "Terminé",
+    "connect": "Se connecter à l'Organisation"
+  },
+  "members": {
+    "title": "Membres du Projet",
+    "addMember": "Ajouter un Membre",
+    "memberIdLabel": "ID du Membre :"
+  },
+  "atimeus": {
+    "indicators": {
+      "title": "Indicateurs Financiers",
+      "no_data": "Aucune Donnée Atimeus",
+      "no_data_description": "Aucune donnée financière n'est disponible pour ce projet depuis Atimeus."
+    },
+    "sections": {
+      "overview": "Aperçu Financier",
+      "tasks": "Métriques des Tâches",
+      "trading": "Trading",
+      "expenses": "Dépenses",
+      "invoicing": "Facturation et Contrats",
+      "management": "Gestion de Projet"
+    },
+    "metrics": {
+      "revenue_ytd": "Revenus Année en Cours",
+      "costs_ytd": "Coûts Année en Cours",
+      "margin_ytd": "Marge Année en Cours",
+      "margin_rate": "Taux de Marge",
+      "valuation_amount": "Montant d'Évaluation",
+      "valuation_cost": "Coût d'Évaluation",
+      "forecast_margin": "Marge Prévisionnelle",
+      "current_year": "Année Actuelle"
+    },
+    "tasks": {
+      "total_price": "Prix Total",
+      "estimated_tjm": "TJM Estimé",
+      "valued_tjm": "TJM Valorisé",
+      "total_consumption": "Consommation Totale",
+      "efficiency": "Efficacité",
+      "total_remaining": "Total Restant",
+      "tasks_margin": "Marge des Tâches",
+      "exceptional_tasks": "Ce projet a des tâches exceptionnelles"
+    },
+    "trading": {
+      "sold_price": "Prix de Vente",
+      "valuation_amount": "Montant d'Évaluation",
+      "margin_amount": "Montant de Marge",
+      "forecast_amount": "Montant Prévisionnel",
+      "forecast_margin": "Marge Prévisionnelle"
+    },
+    "expenses": {
+      "valuation_amount": "Montant d'Évaluation",
+      "margin_amount": "Montant de Marge",
+      "margin_rate": "Taux de Marge",
+      "rebillable_amount": "Montant Refacturable",
+      "to_valuate": "À Valoriser"
+    },
+    "invoicing": {
+      "title": "Facturation",
+      "invoiced_amount": "Montant Facturé",
+      "invoiced_rate": "Taux de Facturation",
+      "paid_amount": "Montant Payé",
+      "provisions_amount": "Montant des Provisions"
+    },
+    "contracts": {
+      "title": "Contrats",
+      "total_amount": "Montant Total",
+      "active_contracts": "Contrats Actifs",
+      "subcontractor_amount": "Montant Sous-traitant"
+    },
+    "management": {
+      "project_managers": "Chefs de Projet",
+      "customer": "Client",
+      "final_customer": "Client Final",
+      "activity": "Activité",
+      "deal": "Affaire",
+      "status": "Statut",
+      "last_update": "Dernière Mise à Jour"
+    }
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "info": {
+    "_postman_id": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+    "name": "DAWS MCP API Tests",
+    "description": "A collection of requests to test the DAWS MCP Client API endpoint (/api/v1/mcp/chat). \n\n**Prerequisites:**\n1. Ensure the DAWS application is running.\n2. Configure `mcp-servers.config.json` with appropriate server details (e.g., `my_web_search_server` as shown in `readme.mcp.client.md`).\n3. Set any required environment variables for authentication (e.g., `MOCK_SEARCH_API_KEY`) if your server configurations reference them.\n4. The `baseUrl` variable in this collection should point to your application (default: `http://localhost:3000`).\n\n**Testing Timeouts:**\nTo test request timeouts, the upstream service specified in `baseUrl` of your `mcp-servers.config.json` for a given server (e.g., `http://localhost:3001/mock-search-api/search`) must intentionally delay its response beyond the `timeout_ms` configured for that server.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Successful 'search' Tool Call",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"server_id\": \"my_web_search_server\",\n  \"tool_name\": \"search\",\n  \"tool_input\": {\n    \"query\": \"latest AI advancements\",\n    \"limit\": 3\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/mcp/chat",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "mcp",
+            "chat"
+          ]
+        },
+        "description": "Tests a successful call to the 'search' tool for a configured web search server."
+      },
+      "response": []
+    },
+    {
+      "name": "Successful 'fetch_page_content' Tool Call",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"server_id\": \"my_web_search_server\",\n  \"tool_name\": \"fetch_page_content\",\n  \"tool_input\": {\n    \"url\": \"https://example.com/some-article-to-fetch\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/mcp/chat",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "mcp",
+            "chat"
+          ]
+        },
+        "description": "Tests a successful call to the 'fetch_page_content' tool for a configured web search server."
+      },
+      "response": []
+    },
+    {
+      "name": "Error: Server Configuration Not Found",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"server_id\": \"non_existent_server\",\n  \"tool_name\": \"search\",\n  \"tool_input\": { \"query\": \"test\" }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/mcp/chat",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "mcp",
+            "chat"
+          ]
+        },
+        "description": "Tests the API's response when the provided `server_id` does not match any configuration."
+      },
+      "response": []
+    },
+    {
+      "name": "Error: Unsupported Tool",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"server_id\": \"my_web_search_server\",\n  \"tool_name\": \"do_something_unknown\",\n  \"tool_input\": {}\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/mcp/chat",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "mcp",
+            "chat"
+          ]
+        },
+        "description": "Tests the API's response when an unsupported `tool_name` is provided for an existing server connector."
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string",
+      "description": "The base URL of your DAWS application API."
+    }
+  ]
+}

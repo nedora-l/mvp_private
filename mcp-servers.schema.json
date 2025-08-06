@@ -1,0 +1,106 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MCP Server Configurations",
+  "description": "Configuration for multiple MCP (Model Context Protocol) servers",
+  "type": "object",
+  "properties": {
+    "servers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for this server instance"
+          },
+          "name": {
+            "type": "string",
+            "description": "User-friendly name for this instance"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["jira", "slack", "web_search", "salesforce", "asana", "custom", "data_analysis"],
+            "description": "Type of MCP server"
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Allows enabling/disabling this server instance"
+          },
+          "baseUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "Base URL for the MCP server API (e.g., https://your-domain.atlassian.net)"
+          },
+          "authentication": {
+            "type": "object",
+            "properties": {
+              "method": {
+                "type": "string",
+                "enum": ["api_key", "oauth2", "pat", "basic_auth", "none"],
+                "description": "Authentication method"
+              },
+              "credentialsRef": {
+                "type": "string",
+                "description": "Reference to where credentials are stored (e.g., environment variable name, vault key for API key/PAT/Basic Auth user:pass)"
+              },
+              "clientIdRef": {
+                "type": "string",
+                "description": "Reference to OAuth2 Client ID (e.g., environment variable name)"
+              },
+              "clientSecretRef": {
+                "type": "string",
+                "description": "Reference to OAuth2 Client Secret (e.g., environment variable name)"
+              },
+              "tokenUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "URL for obtaining OAuth2 tokens"
+              },
+              "scopes": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "OAuth2 scopes"
+              },
+              "apiKeyHeader": {
+                "type": "string",
+                "description": "HTTP Header name for API Key (e.g., X-API-Key or Authorization if used with prefix)"
+              },
+              "apiKeyPrefix": {
+                "type": "string",
+                "description": "Prefix for the API Key in the header (e.g., Bearer ) - include trailing space if needed"
+              }
+            },
+            "required": ["method"]
+          },
+          "server_specific_config": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Any other parameters specific to this server type (e.g., Jira project keys, Slack default channel)"
+          },
+          "tool_mapping": {
+            "type": "object",
+            "additionalProperties": { "type": "string" },
+            "description": "Optional: Mapping generic AI tool names to server-specific functions/endpoints if needed"
+          },
+          "retry_policy": {
+            "type": "object",
+            "properties": {
+              "max_attempts": { "type": "integer", "minimum": 0 },
+              "backoff_ms": { "type": "integer", "minimum": 0 }
+            },
+            "required": ["max_attempts", "backoff_ms"]
+          },
+          "rate_limits": {
+            "type": "object",
+            "properties": {
+              "requests_per_minute": { "type": "integer", "minimum": 0 }
+            },
+            "required": ["requests_per_minute"]
+          }
+        },
+        "required": ["id", "name", "type", "enabled"]
+      }
+    }
+  },
+  "required": ["servers"]
+}

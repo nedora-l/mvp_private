@@ -1,0 +1,27 @@
+Objet : Votre aperçu de sécurité Africa CyberInsur pour [{{DOMAIN_NAME}}]
+
+Africa CyberInsur (Bêta)
+=========================
+Aperçu Initié !
+-------------------
+Bonjour,
+Merci de votre intérêt pour Africa CyberInsur !
+Nous avons bien reçu votre demande et avons lancé un aperçu de sécurité externe préliminaire et automatisé pour le domaine :
+[{{DOMAIN_NAME}}]
+Note : En raison d'une forte demande, nous connaissons actuellement un volume de demandes d'audit plus élevé que d'habitude. Bien que nous traitions généralement les demandes rapidement, vous pourriez remarquer un léger délai dans le démarrage de votre audit. Nous vous remercions de votre patience.
+Cette analyse initiale utilise des outils automatisés pour vérifier les informations publiquement accessibles liées à :
+*   Enregistrements de sécurité du domaine et des e-mails (SPF/DMARC)
+*   Présence web principale et technologie
+*   Découverte de base de la surface d'attaque (Sous-domaines)
+Vous pouvez vous attendre à recevoir votre rapport d'aperçu par e-mail dans environ [15-30 minutes].
+---
+IMPORTANT :
+Ceci est un aperçu limité, uniquement externe, destiné à une démonstration. Il fournit des informations de haut niveau mais n'englobe pas l'analyse approfondie basée sur l'IA, les vérifications internes ou la surveillance continue fournies par la plateforme complète Africa CyberInsur.
+---
+Nous pensons que comprendre votre posture externe est une première étape cruciale et nous sommes impatients de partager vos résultats.
+=========================
+Africa CyberInsur | Sécurisé Aujourd'hui, Prospère Demain
+Visitez notre site web : https://www.africacyberinsur.com/
+[Optionnel : Inclure les instructions de désinscription et/ou l'adresse physique ici si nécessaire :]
+[Pour vous désinscrire de ces e-mails, cliquez ici : [Lien de désinscription]]
+[Nom de l'entreprise, Adresse, Ville, Pays]

@@ -1,0 +1,36 @@
+{
+  "sidebar": {
+    "dashboard": "لوحة القيادة",
+    "analytics": "التحليلات",
+    "directory": "الدليل",
+    "company": "الشركة",
+    "teams": "الفرق",
+    "hr": "الموارد البشرية",
+    "compta": "المحاسبة",
+    "security": "الأمان",
+    "settings": "الإعدادات",
+    "calendar": "التقويم",
+    "files": "الملفات",
+    "live": "مباشر",
+    "messages": "الرسائل",
+    "notifications": "الإشعارات",
+    "help": "مساعدة",
+    "gettingStarted": "البدء",
+    "companyPolicies": "سياسات الشركة",
+    "itAndSecurity": "تكنولوجيا المعلومات والأمن",
+    "departments": "الأقسام",
+    "toolsAndSoftware": "الأدوات والبرامج",
+    "professionalDevelopment": "التطوير المهني",
+    "helpcenter": {
+      "title": "مركز المساعدة",
+      "description": "ابحث عن إجابات لأسئلتك.",
+      "help": "مساعدة",
+      "gettingStarted": "البدء",
+      "companyPolicies": "سياسات الشركة",
+      "itAndSecurity": "تكنولوجيا المعلومات والأمن",
+      "departments": "الأقسام",
+      "toolsAndSoftware": "الأدوات والبرامج",
+      "professionalDevelopment": "التطوير المهني"
+    }
+  }
+}

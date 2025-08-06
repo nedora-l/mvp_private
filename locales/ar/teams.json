@@ -1,0 +1,48 @@
+{
+  "teams": {
+    "title": "الفرق",
+    "createNew": "إنشاء فريق جديد",
+    "memberSingular": "{{count}} عضو",
+    "memberPlural": "{{count}} أعضاء",
+    "projectSingular": "{{count}} مشروع",
+    "projectPlural": "{{count}} مشاريع",
+    "details": {
+      "title": "تفاصيل الفريق",
+      "description": "وصف الفريق",
+      "members": "أعضاء الفريق",
+      "projects": "مشاريع الفريق",
+      "activity": "نشاط الفريق"
+    },
+    "status": {
+      "active": "نشط",
+      "archived": "مؤرشف",
+      "pending": "قيد الانتظار"
+    },
+    "list": {
+      "title": "جميع الفرق",
+      "noTeams": "لم يتم العثور على فرق",
+      "search": "البحث عن الفرق",
+      "filterBy": "تصفية حسب"
+    },
+    "actions": {
+      "join": "الانضمام إلى الفريق",
+      "leave": "مغادرة الفريق",
+      "edit": "تعديل الفريق",
+      "delete": "حذف الفريق",
+      "addMember": "إضافة عضو",
+      "removeMember": "إزالة عضو",
+      "createProject": "إنشاء مشروع"
+    },
+    "roles": {
+      "admin": "مدير الفريق",
+      "member": "عضو الفريق",
+      "guest": "ضيف"
+    },
+    "confirmations": {
+      "deleteTitle": "حذف الفريق",
+      "deleteDescription": "هل أنت متأكد أنك تريد حذف هذا الفريق؟ لا يمكن التراجع عن هذا الإجراء.",
+      "leaveTitle": "مغادرة الفريق",
+      "leaveDescription": "هل أنت متأكد أنك تريد مغادرة هذا الفريق؟"
+    }
+  }
+}

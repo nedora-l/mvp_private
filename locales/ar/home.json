@@ -1,0 +1,52 @@
+{
+  "home": {
+    "title": "لوحة التحكم",
+    "welcome": "مرحبًا بك في نظام إدارة DAWS",
+    "hello": "مرحبًا، {{name}}",
+    "subtitle": "إليك لمحة عن مساحة عملك",
+    "description": "ابق على اطلاع وواصل الاتصال بأحدث الأخبار والفعاليات وأنشطة الفريق.",
+    "loading": "جارٍ التحميل...",
+    "quickLinks": {
+      "title": "روابط سريعة",
+      "viewAll": "عرض الكل",
+      "add": "إضافة رابط مخصص"
+    },
+    "companyAnnouncements": {
+      "title": "إعلانات الشركة",
+      "viewAll": "عرض الكل",
+      "noAnnouncements": "لا توجد إعلانات جديدة"
+    },
+    "upcomingEvents": {
+      "title": "الأحداث القادمة",
+      "viewAll": "عرض كل الأحداث",
+      "noEvents": "لا توجد أحداث قادمة",
+      "today": "اليوم",
+      "tomorrow": "غدًا"
+    },
+    "recentDocuments": {
+      "title": "المستندات الحديثة",
+      "viewAll": "عرض كل المستندات",
+      "noDocuments": "لا توجد مستندات حديثة"
+    },
+    "teamActivity": {
+      "title": "نشاط الفريق",
+      "viewAll": "عرض كل النشاطات",
+      "noActivity": "لا يوجد نشاط حديث للفريق"
+    },
+    "birthdaysAndAnniversaries": {
+      "title": "أعياد الميلاد والذكرى السنوية",
+      "viewAll": "عرض الكل",
+      "noBirthdays": "لا توجد أعياد ميلاد قادمة",
+      "noAnniversaries": "لا توجد ذكرى سنوية للعمل قادمة",
+      "birthdayToday": "عيد ميلاد اليوم",
+      "anniversary": "{{count}} سنة في الشركة",
+      "anniversaryPlural": "{{count}} سنوات في الشركة"
+    },
+    "stats": {
+      "tasksCompleted": "المهام المكتملة",
+      "documentsUploaded": "المستندات المرفوعة",
+      "teamMembers": "أعضاء الفريق",
+      "upcomingDeadlines": "المواعيد النهائية القادمة"
+    }
+  }
+}

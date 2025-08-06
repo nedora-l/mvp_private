@@ -1,0 +1,454 @@
+{
+  "title": "Help Center",
+  "subtitle": "Find answers to your questions and get help with our platform",
+  "header": {
+    "title": "Help Center",
+    "subtitle": "Find answers to your questions and get help with our platform"
+  },
+  "search": {
+    "placeholder": "Search for help...",
+    "button": "Search"
+  },
+  "topics": {
+    "title": "Need help? We've got your back.",
+    "description": "From account settings to permissions, find help for everything Discord.",
+    "newUserHelp": "If you're new to Discord and looking for tips, check out our",
+    "beginnersGuide": "Beginner's Guide"
+  },
+  "contact": {
+    "title": "Have another question?",
+    "submitRequest": "Submit a request"
+  },
+  "admin": {
+    "refresh": "Refresh",
+    "addTopic": "Add Topic"
+  },
+  "messages": {
+    "topicSaved": "Category saved",
+    "topicSavedDescription": "The category \"{title}\" has been saved to the database.",
+    "topicAdded": "Category added",
+    "topicAddedDescription": "The category \"{title}\" has been added successfully.",
+    "saveError": "Save error",
+    "saveErrorDescription": "Error: {error}"
+  },
+  "categories": {
+    "getting-started": "Getting Started",
+    "company-policies": "Company Policies",
+    "departments": "Departments",
+    "tools-software": "Tools & Software",
+    "professional-development": "Professional Development",
+    "cyber-concerns": "Cyber Concerns"
+  },
+  "common": {
+    "back": "Back",
+    "next": "Next",
+    "close": "Close",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "view": "View",
+    "download": "Download",
+    "upload": "Upload",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Info"
+  },
+  "gettingStarted": {
+    "title": "Getting Started",
+    "description": "Everything you need to know to get started with our platform",
+    "welcome": {
+      "title": "Welcome to DAWS",
+      "description": "Your Digital Administrative Workspace Solution",
+      "subtitle": "Join our growing team of innovators"
+    },
+    "quickStart": {
+      "title": "Quick Start Guide",
+      "description": "Get up and running in minutes"
+    },
+    "firstSteps": {
+      "title": "First Steps",
+      "description": "Essential steps to set up your workspace"
+    },
+    "basicNavigation": {
+      "title": "Basic Navigation",
+      "description": "Learn how to navigate through the platform"
+    },
+    "accountSetup": {
+      "title": "Account Setup",
+      "description": "Configure your account and preferences"
+    },
+    "journey": {
+      "title": "Your Journey Starts Here",
+      "description": "At D&A Technologies, we believe that great onboarding leads to great experiences. We've designed this comprehensive guide to help you navigate your first weeks with confidence.",
+      "stepByStep": {
+        "title": "Step by Step",
+        "description": "Follow our structured approach to get up to speed quickly"
+      },
+      "teamSupport": {
+        "title": "Team Support",
+        "description": "Your colleagues are here to help you succeed"
+      },
+      "resources": {
+        "title": "Resources",
+        "description": "Access to all tools and information you need"
+      }
+    },
+    "checklist": {
+      "title": "First Day Checklist",
+      "morning": {
+        "title": "Morning Tasks",
+        "arriveEarly": {
+          "title": "Arrive 15 minutes early",
+          "description": "Meet your buddy at reception"
+        },
+        "hrPaperwork": {
+          "title": "Complete HR paperwork",
+          "description": "Bring required documents"
+        },
+        "equipment": {
+          "title": "Receive your equipment",
+          "description": "Laptop, phone, access cards"
+        },
+        "officeTour": {
+          "title": "Office tour",
+          "description": "Facilities, emergency exits, amenities"
+        }
+      },
+      "afternoon": {
+        "title": "Afternoon Tasks",
+        "meetManager": {
+          "title": "Meet your manager",
+          "description": "Discuss goals and expectations"
+        },
+        "meetTeam": {
+          "title": "Meet your team",
+          "description": "Introduction to colleagues"
+        },
+        "systemSetup": {
+          "title": "System setup",
+          "description": "Configure accounts and tools"
+        },
+        "companyHandbook": {
+          "title": "Review company handbook",
+          "description": "Policies and procedures"
+        }
+      }
+    },
+    "contacts": {
+      "title": "Essential Contacts",
+      "hr": {
+        "title": "HR Department",
+        "phone": "(+212) 06 123-4567",
+        "email": "hr@da-tech.com",
+        "description": "Employee questions, benefits, policies"
+      },
+      "it": {
+        "title": "IT Support",
+        "phone": "(+212) 06 123-4568",
+        "email": "it@da-tech.ma",
+        "description": "Technical issues, system access"
+      },
+      "emergency": {
+        "title": "Emergency",
+        "phone": "911 or Security: (+212) 06 123-4569",
+        "email": "security@da-tech.ma",
+        "description": "Emergency situations, security concerns"
+      }
+    },
+    "systemAccess": {
+      "title": "System Access & Accounts",
+      "email": {
+        "title": "Company Email & Microsoft 365",
+        "description": "Your company email account is your primary communication tool and gateway to most systems.",
+        "items": [
+          "Email format: firstname.lastname@da-tech.ma",
+          "Access Office 365 applications (Word, Excel, PowerPoint, Teams)",
+          "OneDrive for file storage and sharing",
+          "SharePoint for team collaboration",
+          "Calendar integration for meetings and scheduling"
+        ]
+      },
+      "development": {
+        "title": "Development Environment",
+        "description": "For technical roles, you'll need access to our development tools and platforms.",
+        "items": [
+          "GitHub Enterprise for code repositories",
+          "Jira for project management and issue tracking",
+          "Azure DevOps for CI/CD pipelines",
+          "VPN access for remote work",
+          "Development servers and staging environments"
+        ]
+      },
+      "business": {
+        "title": "Business Applications",
+        "description": "Access to CRM, ERP, and other business-critical applications.",
+        "items": [
+          "Salesforce CRM for customer relationship management",
+          "SAP for enterprise resource planning",
+          "Slack for team communication",
+          "Zoom for video conferencing",
+          "Expense reporting system"
+        ]
+      }
+    },
+    "office": {
+      "title": "Office Orientation",
+      "physical": {
+        "title": "Physical Spaces",
+        "layoutTitle": "Main Office Layout",
+        "items": [
+          "• Reception & Visitor Area (Ground Floor)",
+          "• Open Workspace (Floors 1-2)",
+          "• Meeting Rooms (Each Floor)",
+          "• Break Rooms & Kitchen (Each Floor)",
+          "• Executive Offices (Floor 3)",
+          "• IT Server Room (Basement - Restricted)"
+        ]
+      },
+      "amenities": {
+        "title": "Amenities & Services",
+        "facilitiesTitle": "Available Facilities",
+        "items": [
+          "• Cafeteria (7:00 AM - 6:00 PM)",
+          "• Fitness Center (24/7 with badge access)",
+          "• Parking Garage (Reserved spots available)",
+          "• Mother's Room (Floor 2)",
+          "• Quiet Rooms for calls/focus work",
+          "• Game Room & Recreation Area"
+        ]
+      }
+    },
+    "policies": {
+      "title": "Key Policies Summary",
+      "workHours": {
+        "title": "Work Hours & Flexibility",
+        "items": [
+          "Core hours: 9:00 AM - 3:00 PM",
+          "Flexible start/end times",
+          "Remote work options available",
+          "30-minute lunch break minimum"
+        ]
+      },
+      "communication": {
+        "title": "Communication Guidelines",
+        "items": [
+          "Email response within 24 hours",
+          "Use Slack for quick questions",
+          "Teams for video meetings",
+          "Respect work-life balance"
+        ]
+      },
+      "conduct": {
+        "title": "Code of Conduct",
+        "items": [
+          "Treat everyone with respect",
+          "No harassment or discrimination",
+          "Maintain confidentiality",
+          "Report concerns to HR"
+        ]
+      },
+      "technology": {
+        "title": "Technology Use",
+        "items": [
+          "Business use of company devices",
+          "No personal software installation",
+          "Regular password updates",
+          "Report security incidents"
+        ]
+      }
+    },
+    "emergency": {
+      "title": "Emergency Procedures",
+      "fire": {
+        "title": "Fire Emergency",
+        "steps": [
+          "Pull fire alarm",
+          "Exit using nearest stairwell",
+          "Meet at designated assembly point",
+          "Wait for all-clear from authorities"
+        ]
+      },
+      "medical": {
+        "title": "Medical Emergency",
+        "steps": [
+          "Call 911 immediately",
+          "Notify security at ext. 911",
+          "Stay with injured person",
+          "Direct emergency responders"
+        ]
+      },
+      "security": {
+        "title": "Security Threat",
+        "steps": [
+          "Call security immediately",
+          "Remain calm and quiet",
+          "Follow lockdown procedures",
+          "Wait for official instructions"
+        ]
+      }
+    }
+  },
+  "companyPolicies": {
+    "title": "Company Policies",
+    "description": "Important policies and guidelines for our organization",
+    "codeOfConduct": {
+      "title": "Code of Conduct",
+      "description": "Our standards for professional behavior"
+    },
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "description": "How we handle and protect your data"
+    },
+    "termsOfService": {
+      "title": "Terms of Service",
+      "description": "Legal terms and conditions for using our platform"
+    },
+    "hrPolicies": {
+      "title": "HR Policies",
+      "description": "Human resources policies and procedures"
+    },
+    "complianceGuidelines": {
+      "title": "Compliance Guidelines",
+      "description": "Regulatory compliance requirements"
+    }
+  },
+  "departments": {
+    "title": "Departments",
+    "description": "Information about different departments and their functions",
+    "humanResources": {
+      "title": "Human Resources",
+      "description": "Employee services and support"
+    },
+    "finance": {
+      "title": "Finance",
+      "description": "Financial operations and accounting"
+    },
+    "it": {
+      "title": "IT Department",
+      "description": "Information technology support and services"
+    },
+    "marketing": {
+      "title": "Marketing",
+      "description": "Marketing and communications"
+    },
+    "operations": {
+      "title": "Operations",
+      "description": "Daily operations and processes"
+    },
+    "legal": {
+      "title": "Legal",
+      "description": "Legal affairs and compliance"
+    }
+  },
+  "toolsSoftware": {
+    "title": "Tools & Software",
+    "description": "Guides and tutorials for the tools and software we use",
+    "platformOverview": {
+      "title": "Platform Overview",
+      "description": "Overview of our main platform features"
+    },
+    "integrations": {
+      "title": "Integrations",
+      "description": "Third-party integrations and connections"
+    },
+    "mobileApp": {
+      "title": "Mobile App",
+      "description": "How to use our mobile application"
+    },
+    "apiDocumentation": {
+      "title": "API Documentation",
+      "description": "Technical documentation for developers"
+    },
+    "troubleshooting": {
+      "title": "Troubleshooting",
+      "description": "Common issues and solutions"
+    }
+  },
+  "professionalDevelopment": {
+    "title": "Professional Development",
+    "description": "Resources for career growth and skill development",
+    "trainingPrograms": {
+      "title": "Training Programs",
+      "description": "Available training courses and programs"
+    },
+    "careerPaths": {
+      "title": "Career Paths",
+      "description": "Career advancement opportunities"
+    },
+    "skillAssessment": {
+      "title": "Skill Assessment",
+      "description": "Evaluate and improve your skills"
+    },
+    "certifications": {
+      "title": "Certifications",
+      "description": "Professional certifications and credentials"
+    },
+    "mentorship": {
+      "title": "Mentorship",
+      "description": "Mentorship programs and opportunities"
+    }
+  },
+  "cyberConcerns": {
+    "title": "Cyber Concerns",
+    "description": "Security guidelines and best practices",
+    "securityBestPractices": {
+      "title": "Security Best Practices",
+      "description": "Essential security guidelines for all users"
+    },
+    "passwordManagement": {
+      "title": "Password Management",
+      "description": "How to create and manage secure passwords"
+    },
+    "phishingAwareness": {
+      "title": "Phishing Awareness",
+      "description": "How to identify and avoid phishing attempts"
+    },
+    "dataProtection": {
+      "title": "Data Protection",
+      "description": "Protecting sensitive company and personal data"
+    },
+    "incidentReporting": {
+      "title": "Incident Reporting",
+      "description": "How to report security incidents"
+    },
+    "remoteWorkSecurity": {
+      "title": "Remote Work Security",
+      "description": "Security considerations for remote work"
+    }
+  },
+  "components": {
+    "cyberSecurity": {
+      "navigation": {
+        "bestPractices": "Best Practices",
+        "internet": "Internet",
+        "email": "Email",
+        "equipment": "Equipment",
+        "passwords": "Passwords"
+      },
+      "welcome": {
+        "title": "Cybersecurity: Everyone's Concern!",
+        "description": "Navigate the digital world safely. Protect your professional and personal data against growing cybercrime.",
+        "subtitle": "Cybersecurity, a Priority for Everyone!"
+      },
+      "sections": {
+        "bestPractices": "Shared Best Practices",
+        "internetSafety": "Navigate the Internet with Vigilance",
+        "emailSecurity": "Email: Points of Vigilance",
+        "equipmentSecurity": "Don't let your equipment fly away!",
+        "passwordSecurity": "Password: Your First Line of Defense"
+      },
+      "alerts": {
+        "whenToReact": "Identify risky situations and react!",
+        "contactSupport": "Contact D&A service immediately.",
+        "urgentAction": "If you identify any of these situations or have any other questions or reports, don't wait:"
+      }
+    }
+  }
+}

@@ -1,0 +1,633 @@
+{
+	"info": {
+		"_postman_id": "email-logs-admin-api",
+		"name": "Email Logs Admin API",
+		"description": "Comprehensive API collection for managing email logs - monitoring, tracking, analytics, and email delivery management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "email-logs-admin"
+	},
+	"item": [
+		{
+			"name": "Log Management",
+			"item": [
+				{
+					"name": "Get All Logs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/logs?page=0&size=20&sortBy=sentAt&sortDir=desc&status=SENT",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"logs"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"description": "Page number (0-based)"
+								},
+								{
+									"key": "size",
+									"value": "20",
+									"description": "Page size"
+								},
+								{
+									"key": "sortBy",
+									"value": "sentAt",
+									"description": "Field to sort by"
+								},
+								{
+									"key": "sortDir",
+									"value": "desc",
+									"description": "Sort direction (asc/desc)"
+								},
+								{
+									"key": "status",
+									"value": "SENT",
+									"description": "Filter by status (PENDING, SENT, DELIVERED, FAILED, BOUNCED, OPENED, CLICKED)",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get all email logs with pagination and filtering"
+					}
+				},
+				{
+					"name": "Get Log by Message ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/logs/message/{{message_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"logs",
+								"message",
+								"{{message_id}}"
+							]
+						},
+						"description": "Get a specific email log by message ID"
+					}
+				},
+				{
+					"name": "Get Logs by Recipient",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/logs/recipient/{{recipient_email}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"logs",
+								"recipient",
+								"{{recipient_email}}"
+							]
+						},
+						"description": "Get all email logs for a specific recipient"
+					}
+				},
+				{
+					"name": "Get Logs by Campaign",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/logs/campaign/{{campaign_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"logs",
+								"campaign",
+								"{{campaign_id}}"
+							]
+						},
+						"description": "Get all email logs for a specific campaign"
+					}
+				},
+				{
+					"name": "Get Logs by Template",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/logs/template/{{template_id}}?page=0&size=20",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"logs",
+								"template",
+								"{{template_id}}"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"description": "Page number (0-based)"
+								},
+								{
+									"key": "size",
+									"value": "20",
+									"description": "Page size"
+								}
+							]
+						},
+						"description": "Get all email logs for a specific template with pagination"
+					}
+				}
+			],
+			"description": "Basic log retrieval and filtering operations"
+		},
+		{
+			"name": "Date & Time Queries",
+			"item": [
+				{
+					"name": "Get Logs in Date Range",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/logs/date-range?startDate={{start_date}}&endDate={{end_date}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"logs",
+								"date-range"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "{{start_date}}",
+									"description": "Start date (ISO format: 2025-06-22T00:00:00)"
+								},
+								{
+									"key": "endDate",
+									"value": "{{end_date}}",
+									"description": "End date (ISO format: 2025-06-22T23:59:59)"
+								}
+							]
+						},
+						"description": "Get email logs within a specific date range"
+					}
+				},
+				{
+					"name": "Get Failed Emails",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/logs/failed?since={{since_date}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"logs",
+								"failed"
+							],
+							"query": [
+								{
+									"key": "since",
+									"value": "{{since_date}}",
+									"description": "Get failed emails since this date (ISO format)",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get all failed emails (defaults to last 24 hours if no date provided)"
+					}
+				}
+			],
+			"description": "Time-based email log queries"
+		},
+		{
+			"name": "Status Management",
+			"item": [
+				{
+					"name": "Update Email Status",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/logs/message/{{message_id}}/status?status=DELIVERED",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"logs",
+								"message",
+								"{{message_id}}",
+								"status"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "DELIVERED",
+									"description": "New status (PENDING, SENT, DELIVERED, FAILED, BOUNCED, OPENED, CLICKED)"
+								}
+							]
+						},
+						"description": "Update the status of an email log"
+					}
+				}
+			],
+			"description": "Email status update operations"
+		},
+		{
+			"name": "Email Tracking",
+			"item": [
+				{
+					"name": "Mark as Opened",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/logs/message/{{message_id}}/opened",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"logs",
+								"message",
+								"{{message_id}}",
+								"opened"
+							]
+						},
+						"description": "Mark an email as opened (email tracking endpoint)"
+					}
+				},
+				{
+					"name": "Mark as Clicked",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/logs/message/{{message_id}}/clicked",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"logs",
+								"message",
+								"{{message_id}}",
+								"clicked"
+							]
+						},
+						"description": "Mark an email as clicked (link tracking endpoint)"
+					}
+				}
+			],
+			"description": "Email engagement tracking operations"
+		},
+		{
+			"name": "Statistics & Analytics",
+			"item": [
+				{
+					"name": "Get Email Statistics",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/logs/statistics",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"logs",
+								"statistics"
+							]
+						},
+						"description": "Get comprehensive email statistics and analytics"
+					}
+				},
+				{
+					"name": "Get Statistics for Date Range",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/logs/statistics/date-range?startDate={{start_date}}&endDate={{end_date}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"logs",
+								"statistics",
+								"date-range"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "{{start_date}}",
+									"description": "Start date (ISO format: 2025-06-22T00:00:00)"
+								},
+								{
+									"key": "endDate",
+									"value": "{{end_date}}",
+									"description": "End date (ISO format: 2025-06-22T23:59:59)"
+								}
+							]
+						},
+						"description": "Get email statistics for a specific date range"
+					}
+				},
+				{
+					"name": "Get Count by Status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/logs/count/status/{{email_status}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"logs",
+								"count",
+								"status",
+								"{{email_status}}"
+							]
+						},
+						"description": "Get total count of emails by specific status"
+					}
+				},
+				{
+					"name": "Get Count Sent Today",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/logs/count/today",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"logs",
+								"count",
+								"today"
+							]
+						},
+						"description": "Get count of emails sent today"
+					}
+				}
+			],
+			"description": "Email analytics and reporting"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Auto-set date variables for testing",
+					"const now = new Date();",
+					"const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());",
+					"const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);",
+					"",
+					"// Set default date range (today)",
+					"if (!pm.environment.get('start_date')) {",
+					"    pm.environment.set('start_date', startOfDay.toISOString());",
+					"}",
+					"",
+					"if (!pm.environment.get('end_date')) {",
+					"    pm.environment.set('end_date', endOfDay.toISOString());",
+					"}",
+					"",
+					"// Set since date (24 hours ago)",
+					"if (!pm.environment.get('since_date')) {",
+					"    const yesterday = new Date(now.getTime() - 24 * 60 * 60 * 1000);",
+					"    pm.environment.set('since_date', yesterday.toISOString());",
+					"}",
+					"",
+					"// Set common message ID if not provided",
+					"if (!pm.environment.get('message_id')) {",
+					"    pm.environment.set('message_id', 'msg-' + Date.now());",
+					"}",
+					"",
+					"// Set common recipient email if not provided",
+					"if (!pm.environment.get('recipient_email')) {",
+					"    pm.environment.set('recipient_email', 'test@example.com');",
+					"}",
+					"",
+					"// Set common campaign ID if not provided",
+					"if (!pm.environment.get('campaign_id')) {",
+					"    pm.environment.set('campaign_id', 'welcome-campaign-2025');",
+					"}",
+					"",
+					"// Set common email status if not provided",
+					"if (!pm.environment.get('email_status')) {",
+					"    pm.environment.set('email_status', 'SENT');",
+					"}"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Common tests for all requests",
+					"pm.test('Status code is successful', function () {",
+					"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+					"});",
+					"",
+					"pm.test('Response time is acceptable', function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+					"});",
+					"",
+					"// Store message ID from response if available",
+					"if (pm.response.json() && pm.response.json().messageId) {",
+					"    pm.environment.set('message_id', pm.response.json().messageId);",
+					"}"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "jwt_token",
+			"value": "your-jwt-token-here",
+			"type": "string"
+		},
+		{
+			"key": "message_id",
+			"value": "msg-12345",
+			"type": "string"
+		},
+		{
+			"key": "recipient_email",
+			"value": "test@example.com",
+			"type": "string"
+		},
+		{
+			"key": "campaign_id",
+			"value": "welcome-campaign-2025",
+			"type": "string"
+		},
+		{
+			"key": "template_id",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "email_status",
+			"value": "SENT",
+			"type": "string"
+		},
+		{
+			"key": "start_date",
+			"value": "2025-06-22T00:00:00",
+			"type": "string"
+		},
+		{
+			"key": "end_date",
+			"value": "2025-06-22T23:59:59",
+			"type": "string"
+		},
+		{
+			"key": "since_date",
+			"value": "2025-06-21T00:00:00",
+			"type": "string"
+		}
+	]
+}

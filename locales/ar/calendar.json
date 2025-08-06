@@ -1,0 +1,24 @@
+{
+  "calendar": {
+    "title": "التقويم",
+    "target": "الهدف",
+    "day": "يوم",
+    "week": "أسبوع",
+    "month": "شهر",
+    "agenda": "جدول الأعمال",
+    "weekView": "عرض الأسبوع",
+    "weekViewDevelopment": "تطوير عرض الأسبوع",
+    "upcomingEvents": "الأحداث القادمة",
+    "noEventsDay": "لا توجد أحداث مجدولة لليوم",
+    "addEvent": "إضافة حدث",
+    "join": "انضمام",
+    "invite": "دعوة",
+    "eventType": {
+      "meeting": "اجتماع",
+      "workshop": "ورشة عمل",
+      "planning": "تخطيط",
+      "training": "تدريب",
+      "virtual": "اجتماع افتراضي"
+    }
+  }
+}

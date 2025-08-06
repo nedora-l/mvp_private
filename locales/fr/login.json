@@ -1,0 +1,28 @@
+{
+  "login": {
+    "title": "Bon Retour",
+    "description": "Connectez-vous à votre compte pour continuer",
+    "tabs": {
+      "username": "Identifiant & Mot de passe",
+      "google": "Google",
+      "passkey": "Clé d'accès"
+    },
+    "usernamePassword": {
+      "username": "Identifiant ou Email",
+      "password": "Mot de passe",
+      "forgotPassword": "Mot de passe oublié ?",
+      "signIn": "Se connecter",
+      "rememberMe": "Se souvenir de moi"
+    },
+    "google": {
+      "signInWithGoogle": "Se connecter avec Google",
+      "termsNotice": "En continuant avec Google, vous acceptez nos Conditions d'Utilisation et notre Politique de Confidentialité."
+    },
+    "passkey": {
+      "usePasskey": "Utiliser une clé d'accès",
+      "instruction": "Cliquez sur le bouton ci-dessous pour vous connecter avec votre clé d'accès",
+      "noPasskeys": "Vous n'avez pas de clé d'accès ?",
+      "createPasskey": "Créez-en une maintenant"
+    }
+  }
+}

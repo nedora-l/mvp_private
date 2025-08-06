@@ -1,0 +1,74 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "MVP",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "npm run dev"
+        },
+        {
+            "name": "MVP Start",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "npm run start"
+        },
+        {
+            "name": "MVP Build",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "npm run build"
+        },
+        {
+            "name": "MVP Secure",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "npm run  dev:secure"
+        },
+        {
+            "name": "Full stack",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "npm run devt",
+            "serverReadyAction": {
+                "pattern": "- Local:.+(https?://.+)",
+                "uriFormat": "%s",
+                "action": "debugWithChrome"
+            }
+        },
+        {
+            "name": "Full stack dev:secure",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "npm run dev:secure",
+            "serverReadyAction": {
+                "pattern": "- Local:.+(https?://.+)",
+                "uriFormat": "%s",
+                "action": "debugWithChrome"
+            }
+        },
+        {
+            "name": "Next.js: debug server-side",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "npm run devt"
+        },
+        {
+            "name": "Next.js: debug client-side",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:3000"
+        },
+        {
+            "name": "Next.js: debug full stack",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "npm run dev",
+            "serverReadyAction": {
+                "pattern": "- Local:.+(https?://.+)",
+                "uriFormat": "%s",
+                "action": "debugWithChrome"
+            }
+        }
+    ]
+}

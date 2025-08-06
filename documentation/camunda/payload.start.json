@@ -1,0 +1,32 @@
+{
+  "variables": {
+    "scanTarget": {
+      "value": "da-technologies.ma",
+      "type": "String"
+    },
+    "fileRecordId": {
+      "value": "4a5d8b65-9cbe-42f3-8f5a-326ec1fdaba9",
+      "type": "String"
+    },
+    "agentId": {
+      "value": "1",
+      "type": "String"
+    },
+    "authToken": {
+      "value": "eyJhbGciOiJIUzI1NiJ9.eyJvcmdhbml6YXRpb25JZCI6MSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VySWQiOjMsImVtYWlsIjoiY2xvdWRleHBlcnRpc2UubWFAZ21haWwuY29tIiwic3ViIjoiYWRtaW4iLCJpYXQiOjE3NTAzOTE0ODUsImV4cCI6MTc1MDQyMTQ4NX0.sa9ebYCIOWoWazdzcdIwup1NQLEZgJS_Df4rwo8rv3s",
+      "type": "String"
+    },
+    "apiServer": {
+      "value": "http://localhost:8080",
+      "type": "String"
+    },
+    "maxRetries": {
+      "value": 10,
+      "type": "Integer"
+    },
+    "defaultPollingInterval": {
+      "value": "PT30S",
+      "type": "String"
+    }
+  }
+}

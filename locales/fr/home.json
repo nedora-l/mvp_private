@@ -1,0 +1,53 @@
+{
+  "home" : {
+    "title": "Accueil",
+    "hello": "Bonjour, {{name}}",
+    "subtitle": "Voici un aperçu de votre espace de travail",
+    "welcome": "Bienvenue dans votre espace de travail numérique",
+    "description": "Restez informé et connecté avec les dernières nouvelles, événements et activités de l'équipe.",
+    "loading": "Chargement...",
+    "quickLinks": {
+      "title": "Liens rapides",
+      "viewAll": "Voir tout",
+      "add": "Ajouter un lien personnalisé"
+    },
+    "companyAnnouncements": {
+      "title": "Annonces",
+      "viewAll": "Voir tout",
+      "noAnnouncements": "Aucune annonce"
+    },
+    "upcomingEvents": {
+      "title": "Événements à venir",
+      "viewAll": "Voir tout",
+      "noEvents": "Aucun événement à venir",
+      "today": "Aujourd'hui",
+      "tomorrow": "Demain"
+    },
+    "recentDocuments": {
+      "title": "Documents récents",
+      "viewAll": "Voir tout",
+      "noDocuments": "Aucun document récent"
+    },
+    "teamActivity": {
+      "title": "Activité d'équipe",
+      "viewAll": "Voir tout",
+      "noActivity": "Aucune activité récente"
+    },
+    "birthdaysAndAnniversaries": {
+      "title": "Anniversaires & Jubilés",
+      "viewAll": "Voir tout",
+      "noBirthdays": "Pas d'anniversaires aujourd'hui",
+      "noAnniversaries": "Pas de jubilés de travail aujourd'hui",
+      "birthdayToday": "Anniversaire aujourd'hui",
+      "anniversary": "{{count}} an d'ancienneté",
+      "anniversaryPlural": "{{count}} ans d'ancienneté"
+    },
+    "stats": {
+      "tasksCompleted": "Tâches terminées",
+      "documentsUploaded": "Documents téléchargés",
+      "teamMembers": "Membres de l'équipe",
+      "upcomingDeadlines": "Échéances à venir"
+    }
+  }
+  
+}

@@ -1,0 +1,567 @@
+{
+  "app": {
+    "title": "Intranet DAWS",
+    "description": "Solution d'Espace de Travail Numérique"
+  },
+  "nav": {
+    "home": "Accueil",
+    "chat": "Chat",
+    "candidates": "Candidats",
+    "employees": "Employés",
+    "tasks": "Tâches",
+    "teams": "Équipes",
+    "projects": "Projets",
+    "documents": "Documents",
+    "calendar": "Calendrier",
+    "directory": "Répertoire",
+    "company": "Entreprise",
+    "settings": "Paramètres",
+    "profile": "Profil",
+    "help": "Aide",
+    "it": "Support informatique",
+    "hr": "RH",
+    "learning": "Formation",
+    "recognition": "Reconnaissance",
+    "passwordManager": "Gest. de Mots de Passe",
+    "logout": "Déconnexion",
+    "login": "Connexion",
+    "signup": "S'inscrire",
+    "forgotPassword": "Mot de passe oublié",
+    "share": "Partager",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "add": "Ajouter",
+    "search": "Rechercher",
+    "view": "Voir les détails",
+    "upload": "Télécharger",
+    "download": "Télécharger",
+    "create": "Créer",
+    "update": "Mettre à jour",
+    "remove": "Supprimer",
+    "filter": "Filtrer",
+    "sort": "Trier",
+    "close": "Fermer",
+    "open": "Ouvrir",
+    "confirm": "Confirmer",
+    "send": "Envoyer",
+    "topup": "Recharger",
+    "marketing": "Marketing",
+    "campaigns": "Campagnes",
+    "leads": "Pistes",
+    "segments": "Segments",
+    "analytics": "Analytique",
+    "compta": "Comptabilité",
+    "dashboard": "Tableau de bord",
+    "payable": "Comptes fournisseurs",
+    "receivable": "Comptes clients",
+    "banking": "Banque",
+    "expenses": "Dépenses",
+    "reports": "Rapports",
+    "budgeting": "Budgétisation",
+    "overview": "Vue d'ensemble",
+    "boards": "Tableaux",
+    "timeline": "Chronologie",
+    "files": "Fichiers",
+    "security": "Sécurité",
+    "accessControl": "Contrôle d'accès",
+    "accessControlBiometric": "Contrôle d'accès biométrique",
+    "accessControlCamera": "Contrôle d'accès par caméra",
+    "threatDetection": "Détection des menaces",
+    "vulnerabilityManagement": "Gestion des vulnérabilités",
+    "auditLogs": "Journaux d'audit",
+    "dataLossPrevention": "Prévention de perte de données",
+    "compliance": "Conformité",
+    "securityPolicies": "Politiques de sécurité",
+    "chartOfAccounts": "Plan comptable",
+    "accountsPayable": "Comptes fournisseurs",
+    "accountsReceivable": "Comptes clients",
+    "expenseManagement": "Gestion des dépenses",
+    "financialReports": "Rapports financiers",
+    "leadManagement": "Gestion des pistes",
+    "customerSegments": "Segments de clientèle",
+    "emailMarketing": "Marketing par e-mail",
+    "socialMedia": "Médias sociaux",
+    "contentHub": "Hub de contenu",
+    "invoices": "Factures",
+    "payments": "Paiements",
+    "transactions": "Transactions"
+  },
+  "auth": {
+    "logout": "Déconnexion",
+    "login": "Connexion",
+    "signup": "S'inscrire",
+    "forgotPassword": "Mot de passe oublié"
+  },
+  "actions": {
+    "share": "Partager",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "add": "Ajouter",
+    "search": "Rechercher",
+    "view": "Voir les détails",
+    "upload": "Télécharger",
+    "download": "Télécharger",
+    "create": "Créer",
+    "update": "Mettre à jour",
+    "remove": "Supprimer",
+    "filter": "Filtrer",
+    "sort": "Trier",
+    "close": "Fermer",
+    "open": "Ouvrir",
+    "confirm": "Confirmer",
+    "send": "Envoyer",
+    "topup": "Recharger"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "emptyState": "Aucun élément à afficher",
+    "noResults": "Aucun résultat trouvé",
+    "showMore": "Afficher plus",
+    "showLess": "Afficher moins",
+    "seeAll": "Voir tout",
+    "cancel": "Annuler",
+    "more": "Plus"
+  },
+  "errors": {
+    "notFound": "Non trouvé",
+    "serverError": "Erreur serveur",
+    "unauthorized": "Non autorisé",
+    "forbidden": "Interdit",
+    "offline": "Vous êtes hors ligne",
+    "validation": "Erreur de validation"
+  },
+  "messages": {
+    "welcome": "Bienvenue",
+    "farewell": "Au revoir",
+    "saveSuccess": "Enregistré avec succès",
+    "saveError": "Échec de l'enregistrement",
+    "deleteConfirm": "Êtes-vous sûr de vouloir supprimer ceci?",
+    "deleteSuccess": "Supprimé avec succès",
+    "deleteError": "Échec de la suppression"
+  },
+  "dates": {
+    "today": "Aujourd'hui",
+    "yesterday": "Hier",
+    "tomorrow": "Demain",
+    "formatFull": "d MMMM yyyy",
+    "formatShort": "dd/MM/yyyy",
+    "months": {
+      "january": "Janvier",
+      "february": "Février",
+      "march": "Mars",
+      "april": "Avril",
+      "may": "Mai",
+      "june": "Juin",
+      "july": "Juillet",
+      "august": "Août",
+      "september": "Septembre",
+      "october": "Octobre",
+      "november": "Novembre",
+      "december": "Décembre"
+    },
+    "weekdays": {
+      "monday": "Lundi",
+      "tuesday": "Mardi",
+      "wednesday": "Mercredi",
+      "thursday": "Jeudi",
+      "friday": "Vendredi",
+      "saturday": "Samedi",
+      "sunday": "Dimanche"
+    }
+  },
+  "plurals": {
+    "items": {
+      "singular": "{{count}} élément",
+      "plural": "{{count}} éléments"
+    },
+    "members": {
+      "singular": "{{count}} membre",
+      "plural": "{{count}} membres"
+    },
+    "tasks": {
+      "singular": "{{count}} tâche",
+      "plural": "{{count}} tâches"
+    },
+    "projects": {
+      "singular": "{{count}} projet",
+      "plural": "{{count}} projets"
+    },
+    "documents": {
+      "singular": "{{count}} document",
+      "plural": "{{count}} documents"
+    },
+    "events": {
+      "singular": "{{count}} événement",
+      "plural": "{{count}} événements"
+    }
+  },
+  "home": {
+    "title": "Accueil",
+    "hello": "Bonjour, {{name}}",
+    "subtitle": "Voici un aperçu de votre espace de travail",
+    "welcome": "Bienvenue dans votre espace de travail numérique",
+    "description": "Restez informé et connecté avec les dernières nouvelles, événements et activités de l'équipe.",
+    "loading": "Chargement...",
+    "quickLinks": {
+      "title": "Liens rapides",
+      "viewAll": "Voir tout"
+    },
+    "companyAnnouncements": {
+      "title": "Annonces",
+      "viewAll": "Voir tout",
+      "noAnnouncements": "Aucune annonce"
+    },
+    "upcomingEvents": {
+      "title": "Événements à venir",
+      "viewAll": "Voir tout",
+      "noEvents": "Aucun événement à venir",
+      "today": "Aujourd'hui",
+      "tomorrow": "Demain"
+    },
+    "recentDocuments": {
+      "title": "Documents récents",
+      "viewAll": "Voir tout",
+      "noDocuments": "Aucun document récent"
+    },
+    "teamActivity": {
+      "title": "Activité d'équipe",
+      "viewAll": "Voir tout",
+      "noActivity": "Aucune activité récente"
+    },
+    "birthdaysAndAnniversaries": {
+      "title": "Anniversaires & Jubilés",
+      "viewAll": "Voir tout",
+      "noBirthdays": "Pas d'anniversaires aujourd'hui",
+      "noAnniversaries": "Pas de jubilés de travail aujourd'hui",
+      "birthdayToday": "Anniversaire aujourd'hui",
+      "anniversary": "{{count}} an d'ancienneté",
+      "anniversaryPlural": "{{count}} ans d'ancienneté"
+    },
+    "stats": {
+      "tasksCompleted": "Tâches terminées",
+      "documentsUploaded": "Documents téléchargés",
+      "teamMembers": "Membres de l'équipe",
+      "upcomingDeadlines": "Échéances à venir"
+    }
+  },
+  "teams": {
+    "title": "Équipes",
+    "createNew": "Créer une nouvelle équipe",
+    "memberSingular": "membre",
+    "memberPlural": "membres",
+    "projectSingular": "projet",
+    "projectPlural": "projets",
+    "myTeams": "Mes équipes",
+    "activeProjects": "Projets actifs",
+    "newProject": "Nouveau projet",
+    "viewTeam": "Voir l'équipe",
+    "viewProject": "Voir le projet",
+    "chat": "Discuter",
+    "recentActivity": "Activité récente de l'équipe",
+    "viewAllActivity": "Voir toutes les activités",
+    "progress": "Progression",
+    "due": "Échéance",
+    "priority": {
+      "high": "Élevée",
+      "medium": "Moyenne",
+      "low": "Faible"
+    },
+    "details": {
+      "title": "Détails de l'équipe",
+      "description": "Description",
+      "members": "Membres",
+      "projects": "Projets",
+      "activity": "Activité"
+    },
+    "status": {
+      "active": "Actif",
+      "archived": "Archivé",
+      "pending": "En attente",
+      "inProgress": "En cours"
+    },
+    "list": {
+      "title": "Toutes les équipes",
+      "noTeams": "Aucune équipe trouvée",
+      "search": "Rechercher des équipes ou projets...",
+      "filterBy": "Filtrer par"
+    },
+    "actions": {
+      "join": "Rejoindre l'équipe",
+      "leave": "Quitter l'équipe",
+      "edit": "Modifier l'équipe",
+      "delete": "Supprimer l'équipe",
+      "addMember": "Ajouter un membre",
+      "removeMember": "Supprimer un membre",
+      "createProject": "Créer un projet"
+    },
+    "roles": {
+      "admin": "Administrateur",
+      "member": "Membre",
+      "guest": "Invité"
+    },
+    "confirmations": {
+      "deleteTitle": "Supprimer l'équipe",
+      "deleteDescription": "Cette action ne peut pas être annulée. Êtes-vous sûr de vouloir supprimer cette équipe?",
+      "leaveTitle": "Quitter l'équipe",
+      "leaveDescription": "Êtes-vous sûr de vouloir quitter cette équipe?"
+    },
+    "activity": {
+      "title": "Activité récente"
+    }
+  },
+  "calendar": {
+    "title": "Calendrier",
+    "target": "Événement",
+    "day": "Jour",
+    "week": "Semaine",
+    "month": "Mois",
+    "agenda": "Agenda",
+    "weekView": "Vue par semaine",
+    "weekViewDevelopment": "Vue par semaine en cours de développement",
+    "upcomingEvents": "Événements à venir",
+    "noEventsDay": "Aucun événement prévu pour ce jour",
+    "addEvent": "Ajouter un événement",
+    "join": "Rejoindre",
+    "invite": "Inviter",
+    "eventType": {
+      "meeting": "Réunion",
+      "workshop": "Atelier",
+      "planning": "Planification",
+      "training": "Formation",
+      "virtual": "Virtuel"
+    }
+  },
+  "passwordManager": {
+    "title": "Gestionnaire de Mots de Passe",
+    "description": "Stockez et gérez vos mots de passe en toute sécurité",
+    "vault": "Coffre-fort de Mots de Passe",
+    "shared": "Mots de Passe Partagés",
+    "categoriesTitle": "Catégories",
+    "search": "Rechercher des mots de passe...",
+    "newPassword": "Nouveau Mot de Passe",
+    "credentials": {
+      "title": "Identifiants",
+      "username": "Nom d'utilisateur",
+      "password": "Mot de passe",
+      "website": "Site web",
+      "notes": "Notes",
+      "created": "Créé le",
+      "updated": "Dernière mise à jour",
+      "expiresOn": "Expire le",
+      "category": "Catégorie",
+      "strength": "Force du mot de passe"
+    },
+    "actions": {
+      "reveal": "Afficher le mot de passe",
+      "hide": "Masquer le mot de passe",
+      "copy": "Copier dans le presse-papiers",
+      "edit": "Modifier le mot de passe",
+      "delete": "Supprimer le mot de passe",
+      "share": "Partager le mot de passe",
+      "generate": "Générer un mot de passe",
+      "favorite": "Ajouter aux favoris",
+      "unfavorite": "Retirer des favoris"
+    },
+    "categories": {
+      "all": "Tous les mots de passe",
+      "favorites": "Favoris",
+      "social": "Réseaux sociaux",
+      "finance": "Finance",
+      "shopping": "Shopping",
+      "work": "Travail",
+      "personal": "Personnel",
+      "email": "Email",
+      "entertainment": "Divertissement",
+      "other": "Autre"
+    },
+    "sharing": {
+      "title": "Paramètres de partage",
+      "sharedWith": "Partagé avec",
+      "addPeople": "Ajouter des personnes ou des équipes",
+      "permissions": "Permissions",
+      "permissionTypes": {
+        "view": "Voir",
+        "edit": "Modifier",
+        "admin": "Admin"
+      },
+      "stopSharing": "Arrêter le partage"
+    },
+    "generator": {
+      "title": "Générateur de Mot de Passe",
+      "length": "Longueur du mot de passe",
+      "includeUppercase": "Inclure des lettres majuscules",
+      "includeLowercase": "Inclure des lettres minuscules",
+      "includeNumbers": "Inclure des chiffres",
+      "includeSymbols": "Inclure des symboles",
+      "excludeSimilar": "Exclure les caractères similaires",
+      "excludeAmbiguous": "Exclure les caractères ambigus",
+      "generate": "Générer un mot de passe",
+      "copy": "Copier le mot de passe"
+    },
+    "security": {
+      "title": "Tableau de Bord de Sécurité",
+      "overall": "Sécurité Globale",
+      "issues": "Problèmes de Sécurité",
+      "weak": "Mots de passe faibles",
+      "reused": "Mots de passe réutilisés",
+      "old": "Mots de passe anciens",
+      "compromised": "Mots de passe compromis",
+      "lastScan": "Dernière analyse de sécurité",
+      "scanNow": "Analyser maintenant"
+    },
+    "empty": {
+      "title": "Pas encore de mots de passe",
+      "description": "Ajoutez votre premier mot de passe pour commencer à utiliser le gestionnaire de mots de passe sécurisé.",
+      "action": "Ajouter un mot de passe"
+    },
+    "form": {
+      "required": "Obligatoire",
+      "optional": "Optionnel",
+      "createTitle": "Créer un nouveau mot de passe",
+      "editTitle": "Modifier le mot de passe",
+      "save": "Enregistrer le mot de passe",
+      "cancel": "Annuler"
+    }
+  },
+  "chat": {
+    "seeLess": "Voir moins",
+    "seeMore": "Voir plus",
+    "bar": {
+      "openChatLabel": "Ouvrir le chat",
+      "title": "Chat",
+      "closeChatLabel": "Fermer le chat",
+      "messagePlaceholder": "Écrivez un message...",
+      "sendButton": "Envoyer",
+      "openFullChatButton": "Ouvrir le chat complet"
+    },
+    "welcome": {
+      "title": "Bienvenue sur le Chat",
+      "description": "Commencez une nouvelle discussion ou explorez des exemples.",
+      "startNewChat": "Commencer une nouvelle discussion",
+      "exploreExamples": "Explorer les exemples",
+      "recentChatsTitle": "Discussions récentes",
+      "viewAllHistory": "Voir tout l'historique"
+    },
+    "page": {
+      "modelGpt4Turbo": "GPT-4 Turbo",
+      "modelClaude3Opus": "Claude 3 Opus",
+      "modelGeminiPro": "Gemini Pro",
+      "mobileTitle": "Chat",
+      "desktopTitle": "Chat (Bureau)",
+      "settingsTitle": "Paramètres des outils IA",
+      "closeSettings": {
+        "label": "Fermer les paramètres"
+      },
+      "modelTitle": "Modèle IA",
+      "modelLabel": "Modèle :",
+      "selectModelPlaceholder": "Sélectionnez un modèle",
+      "temperatureLabel": "Température :",
+      "temperatureDescription": "Ajustez la créativité par rapport à la cohérence.",
+      "moreSettingsButton": "Plus de paramètres",
+      "contextFilesLabel": "Fichiers de contexte :",
+      "uploadFileButton": "Télécharger un fichier",
+      "fileSizeLimit": "Max 5Mo par fichier.",
+      "noFilesUploaded": "Aucun fichier téléchargé",
+      "input": {
+        "attachFileLabel": "Joindre un fichier",
+        "placeholder": "Écrivez votre message ici...",
+        "micLabel": "Utiliser le microphone",
+        "sendLabel": "Envoyer le message"
+      }
+    },
+    "history": {
+      "title": "Historique des chats",
+      "lastMessagePrefix": "Dernier message : ",
+      "deleteConversationLabelPrefix": "Supprimer la conversation : ",
+      "noHistory": "Aucun historique de chat trouvé.",
+      "archiveAllButton": "Archiver tous les chats",
+      "refreshButton": "Actualiser"
+    },
+    "settings": {
+      "title": "Paramètres des outils IA",
+      "description": "Configurez vos préférences d'assistant IA et les paramètres du modèle.",
+      "apiKeyLabel": "Clé API",
+      "apiKeyPlaceholder": "Entrez votre clé API",
+      "hideApiKeyLabel": "Masquer la clé API",
+      "showApiKeyLabel": "Afficher la clé API",
+      "aiModelLabel": "Modèle IA",
+      "selectModelPlaceholder": "Sélectionnez un modèle",
+      "modelGpt4Turbo": "GPT-4 Turbo",
+      "modelGpt35Turbo": "GPT-3.5 Turbo",
+      "modelClaude3Opus": "Claude 3 Opus",
+      "modelClaude3Sonnet": "Claude 3 Sonnet",
+      "modelGeminiPro": "Gemini Pro",
+      "temperatureLabelPrefix": "Température : ",
+      "temperatureTooltip": "Contrôle l'aléa : des valeurs plus basses rendent le modèle plus déterministe, des valeurs plus élevées le rendent plus créatif.",
+      "autoSuggestLabel": "Activer les suggestions automatiques",
+      "autoSuggestDescription": "Obtenez des suggestions basées sur l'IA pendant que vous tapez.",
+      "enableHistoryLabel": "Activer l'historique des chats",
+      "enableHistoryDescription": "Enregistrez les conversations pour référence future.",
+      "contextManagementTitle": "Gestion du contexte",
+      "dragDropText": "Glissez-déposez des fichiers ici ou",
+      "uploadFilesButton": "Télécharger des fichiers",
+      "fileConstraints": "Taille max. du fichier : 5Mo. Types supportés : PDF, TXT, DOCX.",
+      "saveButton": "Enregistrer les paramètres"
+    }
+  },
+  "settings": {
+    "account": {
+      "title": "Compte",
+      "description": "Gérer les détails de votre compte"
+    }
+  },
+  "pagination": {
+    "pageSize": "Taille de la page",
+    "itemsPerPage": "Éléments par page",
+    "showing": "Affichage de {start} à {end} sur {total}",
+    "previous": "Précédent",
+    "total": "Total",
+    "next": "Suivant",
+    "pageInfo": "Page {current} sur {total}"
+  },
+  "documents": {
+    "title": "Documents",
+    "documentCenter": "Document Center",
+    "allFiles": "All Files",
+    "recentFiles": "Recent Files",
+    "sharedFiles": "Shared Files",
+    "starredFiles": "Starred Files",
+    "upload": "Upload",
+    "newFolder": "New Folder",
+    "newFile": "New File",
+    "filter": "Filter Files",
+    "filters": "File Filters",
+    "category": "Category",
+    "categories": "Categories",
+    "type": "Type",
+    "types": "Types",
+    "folder": "Folder",
+    "folders": "Folders",
+    "file": "File",
+    "files": "Files",
+
+    "selected": "Sélectionné",
+    "selectAll": "Tout sélectionner",
+    "deselectAll": "Tout désélectionner",
+    "shared": {
+      "title": "Shared Documents",
+      "noSharedFiles": "No shared files",
+      "description": "Files shared with you or by you.",
+      "shareButton": "Share File"
+    },
+    "datatable": {
+      "name": "Nom",
+      "type": "Type",
+      "size": "Taille",
+      "modified": "Modifié",
+      "actions": "Actions",
+      "author": "Author"
+    }
+  }
+}

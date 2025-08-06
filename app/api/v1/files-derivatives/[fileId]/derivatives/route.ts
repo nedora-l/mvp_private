@@ -1,0 +1,27 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { derivativesServerService } from '@/lib/services/server/files/derivatives.server.service';
+
+
+/**
+ * Extract token from Authorization header
+ */
+export function extractToken(req: NextRequest): string | null {
+  const authHeader = req.headers.get('Authorization');
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return null;
+  }
+  return authHeader.substring(7); // Remove 'Bearer ' prefix
+}
+
+export async function GET(req: NextRequest, { params }: { params: { fileId: string } }) {
+  const token = extractToken(req);
+  if (!token) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+  try {
+    const derivatives = await derivativesServerService.getDerivatives(token, params.fileId);
+    return NextResponse.json(derivatives);
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message || 'Failed to fetch derivatives' }, { status: 500 });
+  }
+}

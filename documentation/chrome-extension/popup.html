@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DAWS Password Manager</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="icons/icon48.png" alt="DAWS Password Manager">
+      <h1>DAWS Password Manager</h1>
+    </div>
+    
+    <div class="status-container">
+      <div id="connection-status" class="status connected">
+        <span class="status-dot"></span>
+        <span class="status-text">Connected to DAWS</span>
+      </div>
+    </div>
+    
+    <div class="content">
+      <div id="site-credentials">
+        <h2>Current Site</h2>
+        <div id="current-site">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="site-icon"><path d="M12 2H2v10h10V2z"></path><path d="M12 12H2v10h10V12z"></path><path d="M22 2h-10v20h10V2z"></path></svg>
+          <span id="site-domain">Loading site...</span>
+        </div>
+        <div id="credentials-list" class="credentials-list"></div>
+        <div id="no-credentials" class="hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="empty-icon"><circle cx="12" cy="12" r="9"></circle><line x1="9" y1="10" x2="9.01" y2="10"></line><line x1="15" y1="10" x2="15.01" y2="10"></line><path d="M9.5 15a3.5 3.5 0 0 0 5 0"></path></svg>
+          No saved credentials found for this site.
+        </div>
+      </div>
+      
+      <div class="actions">
+        <button id="check-site-btn" class="btn primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          Check for Credentials
+        </button>
+        <button id="open-manager-btn" class="btn secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 0 0 4.561 21h14.878a2 2 0 0 0 1.94-1.515L22 17"></path></svg>
+          Open Manager
+        </button>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>DAWS Password Manager <span class="version">v1.0</span></p>
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>

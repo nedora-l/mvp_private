@@ -1,0 +1,223 @@
+{
+  "title": "Projects Management",
+  "overview": "Overview",
+  "auth": {
+    "signInRequired": "Authentication Required",
+    "signInMessage": "Please sign in to access the projects management system. You need to be authenticated to view and manage projects."
+  },
+  "loading": {
+    "projects": "Loading projects...",
+    "members": "Loading members...",
+    "employees": "Loading employees...",
+    "projectRoles": "Loading project roles..."
+  },
+  "search": {
+    "placeholder": "Search projects..."
+  },
+  "views": {
+    "gridView": "Grid View",
+    "listView": "List View",
+    "projectsList": "Projects List"
+  },
+  "actions": {
+    "newProject": "New Project",
+    "refresh": "Refresh",
+    "retry": "Retry",
+    "edit": "Edit",
+    "details": "Details",
+    "save": "Save",
+    "cancel": "Cancel",
+    "create": "Create Project",
+    "update": "Update Project",
+    "delete": "Delete",
+    "addMember": "Add Member",
+    "removeMember": "Remove Member",
+    "connectToOrg": "Connect to ORG",
+    "editProject": "Edit Project",
+    "deleteProject": "Delete Project",
+    "creating": "Creating...",
+    "updating": "Updating...",
+    "adding": "Adding..."
+  },
+  "form": {
+    "title": "Project Title",
+    "titleRequired": "Project Title *",
+    "description": "Description",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "budget": "Budget ($)",
+    "active": "Active",
+    "archived": "Archived",
+    "selectEmployee": "Select Employee *",
+    "selectProjectRole": "Select Project Role *",
+    "placeholders": {
+      "title": "Enter project title",
+      "description": "Enter project description",
+      "employee": "Select an employee",
+      "projectRole": "Select a project role",
+      "searchEmployees": "Search employees...",
+      "searchProjectRoles": "Search project roles..."
+    },
+    "emptyText": {
+      "noEmployee": "No employee found.",
+      "noProjectRole": "No project role found."
+    }
+  },
+  "dialogs": {
+    "createProject": "Create New Project",
+    "editProject": "Edit Project",
+    "projectDetails": "Project Details",
+    "addMember": "Add Project Member",
+    "connectToOrg": "Connect to Organization"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "archived": "Archived"
+  },
+  "labels": {
+    "start": "Start:",
+    "end": "End:",
+    "created": "Created:",
+    "starts": "Starts:",
+    "ends": "Ends:",
+    "budget": "Budget:",
+    "added": "Added:",
+    "description": "Description",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "budget_label": "Budget",
+    "created_label": "Created"
+  },
+  "empty": {
+    "noProjects": "No projects found",
+    "noProjectsSubtitle": "Create your first project to get started",
+    "noMembers": "No members assigned to this project",
+    "noMembersSubtitle": "Add members to get started",
+    "noEmployees": "No employees found",
+    "noProjectRoles": "No project roles found"
+  },
+  "success": {
+    "projectCreated": "Project created successfully!",
+    "projectUpdated": "Project updated successfully!",
+    "projectDeleted": "Project deleted successfully!",
+    "memberAdded": "Member added successfully!",
+    "memberRemoved": "Member removed successfully!",
+    "urlCopied": "URL copied to clipboard!",
+    "redirectingToOrg": "Redirecting to organization login..."
+  },
+  "errors": {
+    "titleRequired": "Project title is required",
+    "selectEmployeeAndRole": "Please select an employee and a project role",
+    "loadProjects": "Failed to load projects",
+    "createProject": "Failed to create project",
+    "updateProject": "Failed to update project",
+    "deleteProject": "Failed to delete project",
+    "addMember": "Failed to add member",
+    "removeMember": "Failed to remove member",
+    "loadEmployees": "Failed to load employees",
+    "loadProjectRoles": "Failed to load project roles",
+    "loadMembers": "Failed to load project members"
+  },
+  "confirmations": {
+    "deleteProject": "Are you sure you want to delete",
+    "deleteProjectSuffix": "?",
+    "removeMember": "Are you sure you want to remove",
+    "removeMemberSuffix": "from this project?",
+    "actionCannotBeUndone": "This action cannot be undone."
+  },
+  "accessControl": {
+    "restrictedTitle": "Access Restricted",
+    "restrictedMessage": "You do not have access to this project. Only project creators and members can view project details and actions.",
+    "projectActions": "Project Actions",
+    "projectManagement": "Project Management"
+  },
+  "sso": {
+    "title": "Connect to Organization",
+    "generating": "Generating SSO Connection",
+    "generatingMessage": "Creating secure connection to your organization...",
+    "ready": "Connection Ready!",
+    "readyMessage": "Your SSO connection URL has been generated successfully.",
+    "url": "SSO Connection URL:",
+    "redirecting": "Redirecting...",
+    "redirectingMessage": "Taking you to the organization login page.",
+    "complete": "Complete",
+    "connect": "Connect to Organization"
+  },
+  "members": {
+    "title": "Project Members",
+    "addMember": "Add Member",
+    "memberIdLabel": "Member ID:"
+  },
+  "atimeus": {
+    "indicators": {
+      "title": "Financial Indicators",
+      "no_data": "No Atimeus Data",
+      "no_data_description": "No financial data is available for this project from Atimeus."
+    },
+    "sections": {
+      "overview": "Financial Overview",
+      "tasks": "Tasks Metrics",
+      "trading": "Trading",
+      "expenses": "Expenses",
+      "invoicing": "Invoicing & Contracts",
+      "management": "Project Management"
+    },
+    "metrics": {
+      "revenue_ytd": "Revenue YTD",
+      "costs_ytd": "Costs YTD",
+      "margin_ytd": "Margin YTD",
+      "margin_rate": "Margin Rate",
+      "valuation_amount": "Valuation Amount",
+      "valuation_cost": "Valuation Cost",
+      "forecast_margin": "Forecast Margin",
+      "current_year": "Current Year"
+    },
+    "tasks": {
+      "total_price": "Total Price",
+      "estimated_tjm": "Estimated TJM",
+      "valued_tjm": "Valued TJM",
+      "total_consumption": "Total Consumption",
+      "efficiency": "Efficiency",
+      "total_remaining": "Total Remaining",
+      "tasks_margin": "Tasks Margin",
+      "exceptional_tasks": "This project has exceptional tasks"
+    },
+    "trading": {
+      "sold_price": "Sold Price",
+      "valuation_amount": "Valuation Amount",
+      "margin_amount": "Margin Amount",
+      "forecast_amount": "Forecast Amount",
+      "forecast_margin": "Forecast Margin"
+    },
+    "expenses": {
+      "valuation_amount": "Valuation Amount",
+      "margin_amount": "Margin Amount",
+      "margin_rate": "Margin Rate",
+      "rebillable_amount": "Rebillable Amount",
+      "to_valuate": "To Valuate"
+    },
+    "invoicing": {
+      "title": "Invoicing",
+      "invoiced_amount": "Invoiced Amount",
+      "invoiced_rate": "Invoiced Rate",
+      "paid_amount": "Paid Amount",
+      "provisions_amount": "Provisions Amount"
+    },
+    "contracts": {
+      "title": "Contracts",
+      "total_amount": "Total Amount",
+      "active_contracts": "Active Contracts",
+      "subcontractor_amount": "Subcontractor Amount"
+    },
+    "management": {
+      "project_managers": "Project Managers",
+      "customer": "Customer",
+      "final_customer": "Final Customer",
+      "activity": "Activity",
+      "deal": "Deal",
+      "status": "Status",
+      "last_update": "Last Update"
+    }
+  }
+}

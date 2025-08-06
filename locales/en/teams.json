@@ -1,0 +1,48 @@
+{
+  "teams": {
+    "title": "Teams",
+    "createNew": "Create New Team",
+    "memberSingular": "{{count}} member",
+    "memberPlural": "{{count}} members",
+    "projectSingular": "{{count}} project",
+    "projectPlural": "{{count}} projects",
+    "details": {
+      "title": "Team Details",
+      "description": "Team Description",
+      "members": "Team Members",
+      "projects": "Team Projects",
+      "activity": "Team Activity"
+    },
+    "status": {
+      "active": "Active",
+      "archived": "Archived",
+      "pending": "Pending"
+    },
+    "list": {
+      "title": "All Teams",
+      "noTeams": "No teams found",
+      "search": "Search teams",
+      "filterBy": "Filter by"
+    },
+    "actions": {
+      "join": "Join Team",
+      "leave": "Leave Team",
+      "edit": "Edit Team",
+      "delete": "Delete Team",
+      "addMember": "Add Member",
+      "removeMember": "Remove Member",
+      "createProject": "Create Project"
+    },
+    "roles": {
+      "admin": "Team Admin",
+      "member": "Team Member",
+      "guest": "Guest"
+    },
+    "confirmations": {
+      "deleteTitle": "Delete Team",
+      "deleteDescription": "Are you sure you want to delete this team? This action cannot be undone.",
+      "leaveTitle": "Leave Team",
+      "leaveDescription": "Are you sure you want to leave this team?"
+    }
+  }
+}

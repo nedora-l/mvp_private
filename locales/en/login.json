@@ -1,0 +1,28 @@
+{
+  "login": {
+    "title": "Welcome Back",
+    "description": "Sign in to your account to continue",
+    "tabs": {
+      "username": "Username & Password",
+      "google": "Google",
+      "passkey": "Passkey"
+    },
+    "usernamePassword": {
+      "username": "Username or Email",
+      "password": "Password",
+      "forgotPassword": "Forgot password?",
+      "signIn": "Sign In",
+      "rememberMe": "Remember me"
+    },
+    "google": {
+      "signInWithGoogle": "Sign in with Google",
+      "termsNotice": "By continuing with Google, you agree to our Terms of Service and Privacy Policy."
+    },
+    "passkey": {
+      "usePasskey": "Use passkey",
+      "instruction": "Click the button below to sign in with your passkey",
+      "noPasskeys": "Don't have a passkey?",
+      "createPasskey": "Create one now"
+    }
+  }
+}

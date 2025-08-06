@@ -1,0 +1,527 @@
+{
+  "app": {
+    "title": "انترانت داوس",
+    "description": "حل مساحة العمل الرقمية"
+  },
+  "nav": {
+    "home": "الرئيسية",
+    "chat": "الدردشة",
+    "teams": "الفرق",
+    "candidates": "المتقدمون",
+    "employees": "الموظفون",
+    "tasks": "المهام",
+    "projects": "المشاريع",
+    "documents": "المستندات",
+    "calendar": "التقويم",
+    "directory": "الدليل",
+    "company": "الشركة",
+    "settings": "الإعدادات",
+    "profile": "الملف الشخصي",
+    "help": "المساعدة",
+    "it": "الدعم الفني",
+    "hr": "الموارد البشرية",
+    "learning": "التعلم",
+    "recognition": "التقدير",
+    "passwordManager": "مدير كلمات المرور",
+    "logout": "تسجيل الخروج",
+    "login": "تسجيل الدخول",
+    "signup": "إنشاء حساب",
+    "forgotPassword": "نسيت كلمة المرور",
+    "share": "مشاركة",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "add": "إضافة",
+    "search": "بحث",
+    "view": "عرض التفاصيل",
+    "upload": "رفع",
+    "download": "تنزيل",
+    "create": "إنشاء",
+    "update": "تحديث",
+    "remove": "إزالة",
+    "filter": "تصفية",
+    "sort": "ترتيب",
+    "close": "إغلاق",
+    "open": "فتح",
+    "confirm": "تأكيد",
+    "send": "إرسال",
+    "topup": "شحن",
+    "marketing": "التسويق",
+    "campaigns": "الحملات",
+    "leads": "العملاء المحتملون",
+    "segments": "الشرائح",
+    "analytics": "التحليلات",
+    "compta": "المحاسبة",
+    "dashboard": "لوحة التحكم",
+    "payable": "الحسابات الدائنة",
+    "receivable": "الحسابات المدينة",
+    "banking": "الأعمال المصرفية",
+    "expenses": "المصروفات",
+    "reports": "التقارير",
+    "budgeting": "الميزانية",
+    "overview": "نظرة عامة",
+    "boards": "اللوحات",
+    "timeline": "الجدول الزمني",
+    "files": "الملفات",
+    "security": "الأمان",
+    "accessControl": "التحكم في الوصول",
+    "accessControlBiometric": "التحكم في الوصول البيومتري",
+    "accessControlCamera": "التحكم في  الكاميرا",
+    "threatDetection": "كشف التهديدات",
+    "vulnerabilityManagement": "إدارة الثغرات الأمنية",
+    "auditLogs": "سجلات التدقيق",
+    "dataLossPrevention": "منع فقدان البيانات",
+    "compliance": "الامتثال",
+    "securityPolicies": "سياسات الأمان",
+    "chartOfAccounts": "شجرة الحسابات",
+    "accountsPayable": "الحسابات الدائنة",
+    "accountsReceivable": "الحسابات المدينة",
+    "expenseManagement": "إدارة المصروفات",
+    "financialReports": "التقارير المالية",
+    "leadManagement": "إدارة العملاء المحتملين",
+    "customerSegments": "شرائح العملاء",
+    "emailMarketing": "التسويق عبر البريد الإلكتروني",
+    "socialMedia": "وسائل التواصل الاجتماعي",
+    "contentHub": "مركز المحتوى",
+    "invoices": "الفواتير",
+    "payments": "المدفوعات",
+    "transactions": "المعاملات"
+  },
+  "auth": {
+    "logout": "تسجيل الخروج",
+    "login": "تسجيل الدخول",
+    "signup": "إنشاء حساب",
+    "forgotPassword": "نسيت كلمة المرور"
+  },
+  "actions": {
+    "share": "مشاركة",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "add": "إضافة",
+    "search": "بحث",
+    "view": "عرض التفاصيل",
+    "upload": "رفع",
+    "download": "تنزيل",
+    "create": "إنشاء",
+    "update": "تحديث",
+    "remove": "إزالة",
+    "filter": "تصفية",
+    "sort": "ترتيب",
+    "close": "إغلاق",
+    "open": "فتح",
+    "confirm": "تأكيد",
+    "send": "إرسال",
+    "topup": "شحن"
+  },
+  "common": {
+    "loading": "جاري التحميل...",
+    "error": "خطأ",
+    "success": "تم بنجاح",
+    "emptyState": "لا توجد عناصر للعرض",
+    "noResults": "لا توجد نتائج",
+    "showMore": "عرض المزيد",
+    "showLess": "عرض أقل",
+    "seeAll": "عرض الكل",
+    "cancel": "إلغاء",
+    "more": "المزيد"
+  },
+  "errors": {
+    "notFound": "غير موجود",
+    "serverError": "خطأ في الخادم",
+    "unauthorized": "غير مصرح",
+    "forbidden": "ممنوع",
+    "offline": "أنت غير متصل بالإنترنت",
+    "validation": "خطأ في التحقق"
+  },
+  "messages": {
+    "welcome": "مرحبًا بعودتك",
+    "farewell": "مع السلامة",
+    "saveSuccess": "تم الحفظ بنجاح",
+    "saveError": "فشل في الحفظ",
+    "deleteConfirm": "هل أنت متأكد أنك تريد حذف هذا؟",
+    "deleteSuccess": "تم الحذف بنجاح",
+    "deleteError": "فشل في الحذف"
+  },
+  "dates": {
+    "today": "اليوم",
+    "yesterday": "الأمس",
+    "tomorrow": "غدًا",
+    "formatFull": "d MMMM yyyy",
+    "formatShort": "dd/MM/yyyy"
+  },
+  "plurals": {
+    "items": {
+      "zero": "{{count}} عنصر",
+      "one": "عنصر واحد",
+      "two": "عنصران",
+      "few": "{{count}} عناصر",
+      "many": "{{count}} عنصراً",
+      "other": "{{count}} عنصر"
+    },
+    "members": {
+      "zero": "{{count}} عضو",
+      "one": "عضو واحد",
+      "two": "عضوان",
+      "few": "{{count}} أعضاء",
+      "many": "{{count}} عضواً",
+      "other": "{{count}} عضو"
+    },
+    "tasks": {
+      "zero": "{{count}} مهمة",
+      "one": "مهمة واحدة",
+      "two": "مهمتان",
+      "few": "{{count}} مهام",
+      "many": "{{count}} مهمة",
+      "other": "{{count}} مهمة"
+    },
+    "projects": {
+      "zero": "{{count}} مشروع",
+      "one": "مشروع واحد",
+      "two": "مشروعان",
+      "few": "{{count}} مشاريع",
+      "many": "{{count}} مشروعاً",
+      "other": "{{count}} مشروع"
+    },
+    "documents": {
+      "zero": "{{count}} مستند",
+      "one": "مستند واحد",
+      "two": "مستندات",
+      "few": "{{count}} مستندات",
+      "many": "{{count}} مستنداً",
+      "other": "{{count}} مستند"
+    },
+    "events": {
+      "zero": "{{count}} حدث",
+      "one": "حدث واحد",
+      "two": "حدثان",
+      "few": "{{count}} أحداث",
+      "many": "{{count}} حدثاً",
+      "other": "{{count}} حدث"
+    }
+  },
+  "home": {
+    "title": "الرئيسية",
+    "welcome": "مرحبًا بك في مساحة العمل الرقمية",
+    "hello": "مرحبًا، {{name}}",
+    "subtitle": "إليك لمحة عن مساحة عملك",
+    "description": "ابق على اطلاع وواصل الاتصال بأحدث الأخبار والفعاليات وأنشطة الفريق.",
+    "loading": "جارٍ التحميل...",
+    "quickLinks": {
+      "title": "روابط سريعة",
+      "viewAll": "عرض الكل"
+    },
+    "companyAnnouncements": {
+      "title": "إعلانات الشركة",
+      "viewAll": "عرض الكل",
+      "noAnnouncements": "لا توجد إعلانات"
+    },
+    "upcomingEvents": {
+      "title": "الأحداث القادمة",
+      "viewAll": "عرض الكل",
+      "noEvents": "لا توجد أحداث قادمة",
+      "today": "اليوم",
+      "tomorrow": "غدًا"
+    },
+    "recentDocuments": {
+      "title": "المستندات الحديثة",
+      "viewAll": "عرض الكل",
+      "noDocuments": "لا توجد مستندات حديثة"
+    },
+    "teamActivity": {
+      "title": "نشاط الفريق",
+      "viewAll": "عرض الكل",
+      "noActivity": "لا يوجد نشاط حديث"
+    },
+    "birthdaysAndAnniversaries": {
+      "title": "أعياد الميلاد والذكرى السنوية",
+      "viewAll": "عرض الكل",
+      "noBirthdays": "لا توجد أعياد ميلاد اليوم",
+      "noAnniversaries": "لا توجد ذكرى سنوية للعمل اليوم",
+      "birthdayToday": "عيد ميلاد اليوم",
+      "anniversary": "الذكرى السنوية {{count}}",
+      "anniversaryPlural": "الذكرى السنوية {{count}}"
+    },
+    "stats": {
+      "tasksCompleted": "المهام المكتملة",
+      "documentsUploaded": "المستندات المرفوعة",
+      "teamMembers": "أعضاء الفريق",
+      "upcomingDeadlines": "المواعيد النهائية القادمة"
+    }
+  },
+  "teams": {
+    "title": "الفرق",
+    "createNew": "إنشاء فريق جديد",
+    "memberSingular": "عضو",
+    "memberPlural": "أعضاء",
+    "projectSingular": "مشروع",
+    "projectPlural": "مشاريع",
+    "myTeams": "فرقي",
+    "activeProjects": "المشاريع النشطة",
+    "newProject": "مشروع جديد",
+    "viewTeam": "عرض الفريق",
+    "viewProject": "عرض المشروع",
+    "chat": "محادثة",
+    "recentActivity": "النشاط الحديث للفريق",
+    "viewAllActivity": "عرض كل النشاطات",
+    "progress": "التقدم",
+    "due": "موعد الاستحقاق",
+    "priority": {
+      "high": "عالية",
+      "medium": "متوسطة",
+      "low": "منخفضة"
+    },
+    "details": {
+      "title": "تفاصيل الفريق",
+      "description": "الوصف",
+      "members": "الأعضاء",
+      "projects": "المشاريع",
+      "activity": "النشاط"
+    },
+    "status": {
+      "active": "نشط",
+      "archived": "مؤرشف",
+      "pending": "قيد الانتظار",
+      "inProgress": "قيد التنفيذ"
+    },
+    "list": {
+      "title": "جميع الفرق",
+      "noTeams": "لم يتم العثور على فرق",
+      "search": "البحث في الفرق أو المشاريع...",
+      "filterBy": "تصفية حسب"
+    },
+    "actions": {
+      "join": "الانضمام للفريق",
+      "leave": "مغادرة الفريق",
+      "edit": "تعديل الفريق",
+      "delete": "حذف الفريق",
+      "addMember": "إضافة عضو",
+      "removeMember": "إزالة عضو",
+      "createProject": "إنشاء مشروع"
+    },
+    "roles": {
+      "admin": "مدير",
+      "member": "عضو",
+      "guest": "ضيف"
+    },
+    "confirmations": {
+      "deleteTitle": "حذف الفريق",
+      "deleteDescription": "لا يمكن التراجع عن هذا الإجراء. هل أنت متأكد أنك تريد حذف هذا الفريق؟",
+      "leaveTitle": "مغادرة الفريق",
+      "leaveDescription": "هل أنت متأكد أنك تريد مغادرة هذا الفريق؟"
+    },
+    "activity": {
+      "title": "النشاط الحديث"
+    }
+  },
+  "calendar": {
+    "title": "التقويم",
+    "target": "حدث",
+    "day": "يوم",
+    "week": "أسبوع",
+    "month": "شهر",
+    "agenda": "جدول الأعمال",
+    "weekView": "عرض الأسبوع",
+    "weekViewDevelopment": "عرض الأسبوع قيد التطوير",
+    "upcomingEvents": "الأحداث القادمة",
+    "noEventsDay": "لا توجد أحداث مجدولة لهذا اليوم",
+    "addEvent": "إضافة حدث",
+    "join": "انضمام",
+    "invite": "دعوة",
+    "eventType": {
+      "meeting": "اجتماع",
+      "workshop": "ورشة عمل",
+      "planning": "تخطيط",
+      "training": "تدريب",
+      "virtual": "افتراضي"
+    }
+  },
+  "passwordManager": {
+    "title": "مدير كلمات المرور",
+    "description": "خزن وأدر كلمات المرور الخاصة بك بأمان",
+    "vault": "خزنة كلمات المرور",
+    "shared": "كلمات المرور المشتركة",
+    "search": "البحث عن كلمات المرور...",
+    "newPassword": "كلمة مرور جديدة",
+    "credentials": {
+      "title": "بيانات الاعتماد",
+      "username": "اسم المستخدم",
+      "password": "كلمة المرور",
+      "website": "الموقع الإلكتروني",
+      "notes": "ملاحظات",
+      "created": "تم الإنشاء في",
+      "updated": "آخر تحديث",
+      "expiresOn": "تنتهي في",
+      "category": "التصنيف",
+      "strength": "قوة كلمة المرور"
+    },
+    "actions": {
+      "reveal": "إظهار كلمة المرور",
+      "hide": "إخفاء كلمة المرور",
+      "copy": "نسخ إلى الحافظة",
+      "edit": "تعديل كلمة المرور",
+      "delete": "حذف كلمة المرور",
+      "share": "مشاركة كلمة المرور",
+      "generate": "إنشاء كلمة مرور",
+      "favorite": "إضافة إلى المفضلة",
+      "unfavorite": "إزالة من المفضلة"
+    },
+    "categories": {
+      "all": "جميع كلمات المرور",
+      "favorites": "المفضلة",
+      "social": "وسائل التواصل الاجتماعي",
+      "finance": "المالية",
+      "shopping": "التسوق",
+      "work": "العمل",
+      "personal": "شخصي",
+      "email": "البريد الإلكتروني",
+      "entertainment": "الترفيه",
+      "other": "أخرى"
+    },
+    "sharing": {
+      "title": "إعدادات المشاركة",
+      "sharedWith": "مشاركة مع",
+      "addPeople": "إضافة أشخاص أو فرق",
+      "permissions": "الصلاحيات",
+      "permissionTypes": {
+        "view": "عرض",
+        "edit": "تعديل",
+        "admin": "مدير"
+      },
+      "stopSharing": "إيقاف المشاركة"
+    },
+    "generator": {
+      "title": "مولد كلمات المرور",
+      "length": "طول كلمة المرور",
+      "includeUppercase": "تضمين الحروف الكبيرة",
+      "includeLowercase": "تضمين الحروف الصغيرة",
+      "includeNumbers": "تضمين الأرقام",
+      "includeSymbols": "تضمين الرموز",
+      "excludeSimilar": "استبعاد الأحرف المتشابهة",
+      "excludeAmbiguous": "استبعاد الأحرف الملتبسة",
+      "generate": "إنشاء كلمة مرور",
+      "copy": "نسخ كلمة المرور"
+    },
+    "security": {
+      "title": "لوحة الأمان",
+      "overall": "الأمان العام",
+      "issues": "مشاكل الأمان",
+      "weak": "كلمات مرور ضعيفة",
+      "reused": "كلمات مرور مكررة",
+      "old": "كلمات مرور قديمة",
+      "compromised": "كلمات مرور مخترقة",
+      "lastScan": "آخر فحص أمان",
+      "scanNow": "فحص الآن"
+    },
+    "empty": {
+      "title": "لا توجد كلمات مرور حتى الآن",
+      "description": "أضف كلمة المرور الأولى لتبدأ بإدارة كلمات المرور بشكل آمن.",
+      "action": "إضافة كلمة مرور"
+    },
+    "form": {
+      "required": "مطلوب",
+      "optional": "اختياري",
+      "createTitle": "إنشاء كلمة مرور جديدة",
+      "editTitle": "تعديل كلمة المرور",
+      "save": "حفظ كلمة مرور",
+      "cancel": "إلغاء"
+    }
+  },
+  "settings": {
+    "account": {
+      "title": "الحساب",
+      "description": "إدارة تفاصيل حسابك"
+    }
+  },
+  "chat": {
+    "seeLess": "رؤية أقل",
+    "seeMore": "رؤية المزيد",
+    "bar": {
+      "openChatLabel": "فتح الدردشة"
+    },
+    "welcome": {
+      "title": "مرحباً في الدردشة",
+      "description": "ابدأ محادثة جديدة أو استكشف الأمثلة.",
+      "startNewChat": "بدء دردشة جديدة",
+      "exploreExamples": "استكشاف الأمثلة",
+      "recentChatsTitle": "الدردشات الأخيرة",
+      "viewAllHistory": "عرض كل السجل"
+    },
+    "history": {
+      "title": "سجل الدردشة",
+      "noHistory": "لا يوجد سجل دردشة",
+      "archiveAllButton": "أرشفة الكل",
+      "refreshButton": "تحديث"
+    },
+    "page": {
+      "mobileTitle": "الدردشة",
+      "desktopTitle": "الدردشة (سطح المكتب)",
+      "settingsTitle": "إعدادات الدردشة",
+      "closeSettings": {
+        "label": "إغلاق الإعدادات"
+      },
+      "modelTitle": "نموذج الذكاء الاصطناعي",
+      "modelLabel": "النموذج",
+      "selectModelPlaceholder": "اختر نموذجًا",
+      "temperatureLabel": "درجة الحرارة",
+      "temperatureDescription": "اضبط الإبداع مقابل الاتساق.",
+      "moreSettingsButton": "المزيد من الإعدادات",
+      "contextFilesLabel": "ملفات السياق",
+      "uploadFileButton": "رفع ملف",
+      "fileSizeLimit": "الحد الأقصى لحجم الملف 5 ميجا بايت.",
+      "noFilesUploaded": "لم يتم رفع أي ملفات",
+      "input": {
+        "attachFileLabel": "إرفاق ملف",
+        "placeholder": "اكتب رسالتك هنا...",
+        "micLabel": "استخدام الميكروفون",
+        "sendLabel": "إرسال"
+      }
+    }
+  },
+  "pagination": {
+    "pageSize": "حجم الصفحة",
+    "itemsPerPage": "العناصر في كل صفحة",
+    "showing": "عرض {start} إلى {end} من {total}",
+    "previous": "السابق",
+    "total": "الإجمالي",
+    "next": "التالي",
+    "pageInfo": "صفحة {current} من {total}"
+  },
+  "documents": {
+    "title": "المستندات",
+    "documentCenter": "مركز المستندات",
+    "allFiles": "جميع الملفات",
+    "recentFiles": "الملفات الحديثة",
+    "sharedFiles": "الملفات المشتركة",
+    "starredFiles": "الملفات المفضلة",
+    "upload": "رفع",
+    "newFolder": "مجلد جديد",
+    "newFile": "ملف جديد",
+    "filter": "تصفية الملفات",
+    "filters": "فلاتر الملفات",
+    "category": "التصنيف",
+    "categories": "التصنيفات",
+    "type": "النوع",
+    "types": "الأنواع",
+    "folder": "مجلد",
+    "folders": "مجلدات",
+    "file": "ملف",
+    "files": "ملفات",
+    "shared": {
+      "title": "المستندات المشتركة",
+      "noSharedFiles": "لا توجد ملفات مشتركة",
+      "description": "الملفات التي تمت مشاركتها معك أو بواسطتك.",
+      "shareButton": "مشاركة ملف"
+    },
+    "datatable": {
+      "name": "الاسم",
+      "type": "النوع",
+      "size": "الحجم",
+      "modified": "تاريخ التعديل",
+      "actions": "الإجراءات",
+      "author": "المؤلف"
+    }
+  }
+}

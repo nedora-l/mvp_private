@@ -1,0 +1,690 @@
+{
+	"info": {
+		"_postman_id": "email-templates-admin-api",
+		"name": "Email Templates Admin API",
+		"description": "Comprehensive API collection for managing email templates - CRUD operations, status management, preview, cloning, and bulk operations",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "email-templates-admin"
+	},
+	"item": [
+		{
+			"name": "Template Management",
+			"item": [
+				{
+					"name": "Get All Templates",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/templates?page=0&size=10&sortBy=updatedAt&sortDir=desc&status=ACTIVE",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"templates"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"description": "Page number (0-based)"
+								},
+								{
+									"key": "size",
+									"value": "10",
+									"description": "Page size"
+								},
+								{
+									"key": "sortBy",
+									"value": "updatedAt",
+									"description": "Field to sort by"
+								},
+								{
+									"key": "sortDir",
+									"value": "desc",
+									"description": "Sort direction (asc/desc)"
+								},
+								{
+									"key": "status",
+									"value": "ACTIVE",
+									"description": "Filter by status (DRAFT, ACTIVE, INACTIVE, ARCHIVED, TESTING)"
+								},
+								{
+									"key": "category",
+									"value": "",
+									"description": "Filter by category",
+									"disabled": true
+								},
+								{
+									"key": "searchTerm",
+									"value": "",
+									"description": "Search in name, display name, description",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get all email templates with pagination, filtering, and search"
+					}
+				},
+				{
+					"name": "Get Template by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/templates/{{template_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"templates",
+								"{{template_id}}"
+							]
+						},
+						"description": "Get a specific email template by ID"
+					}
+				},
+				{
+					"name": "Get Template by Name",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/templates/by-name/{{template_name}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"templates",
+								"by-name",
+								"{{template_name}}"
+							]
+						},
+						"description": "Get a specific email template by unique name"
+					}
+				},
+				{
+					"name": "Create Template",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"welcome-email-v2\",\n  \"displayName\": \"Welcome Email V2\",\n  \"description\": \"Updated welcome email template with modern design\",\n  \"category\": \"welcome\",\n  \"subjectTemplate\": \"Welcome to {{companyName}}, {{userName}}!\",\n  \"htmlContent\": \"<div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;'>\\n  <h1 style='color: #2c3e50;'>Welcome to {{companyName}}!</h1>\\n  <p>Hi {{userName}},</p>\\n  <p>Thank you for joining us! We're excited to have you on board.</p>\\n  <div style='background-color: #f8f9fa; padding: 20px; border-radius: 5px; margin: 20px 0;'>\\n    <h3>Getting Started:</h3>\\n    <ul>\\n      <li>Complete your profile</li>\\n      <li>Explore our features</li>\\n      <li>Contact support if you need help</li>\\n    </ul>\\n  </div>\\n  <p>Best regards,<br>The {{companyName}} Team</p>\\n</div>\",\n  \"plainTextContent\": \"Welcome to {{companyName}}!\\n\\nHi {{userName}},\\n\\nThank you for joining us! We're excited to have you on board.\\n\\nGetting Started:\\n- Complete your profile\\n- Explore our features\\n- Contact support if you need help\\n\\nBest regards,\\nThe {{companyName}} Team\",\n  \"language\": \"en\",\n  \"tags\": [\"welcome\", \"onboarding\", \"user-registration\"],\n  \"metadata\": {\n    \"designer\": \"UI Team\",\n    \"version\": \"2.0\",\n    \"last_review\": \"2025-06-22\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/templates",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"templates"
+							]
+						},
+						"description": "Create a new email template"
+					}
+				},
+				{
+					"name": "Update Template",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"welcome-email-v2\",\n  \"displayName\": \"Welcome Email V2 - Updated\",\n  \"description\": \"Updated welcome email template with modern design and new content\",\n  \"category\": \"welcome\",\n  \"subjectTemplate\": \"Welcome to {{companyName}}, {{userName}}! 🎉\",\n  \"htmlContent\": \"<div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;'>\\n  <h1 style='color: #2c3e50;'>🎉 Welcome to {{companyName}}!</h1>\\n  <p>Hi {{userName}},</p>\\n  <p>Thank you for joining us! We're excited to have you on board.</p>\\n  <div style='background-color: #e8f5e8; padding: 20px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #28a745;'>\\n    <h3>🚀 Getting Started:</h3>\\n    <ul>\\n      <li>✅ Complete your profile</li>\\n      <li>🔍 Explore our features</li>\\n      <li>💬 Contact support if you need help</li>\\n    </ul>\\n  </div>\\n  <p>Best regards,<br>The {{companyName}} Team</p>\\n</div>\",\n  \"plainTextContent\": \"🎉 Welcome to {{companyName}}!\\n\\nHi {{userName}},\\n\\nThank you for joining us! We're excited to have you on board.\\n\\n🚀 Getting Started:\\n✅ Complete your profile\\n🔍 Explore our features\\n💬 Contact support if you need help\\n\\nBest regards,\\nThe {{companyName}} Team\",\n  \"language\": \"en\",\n  \"tags\": [\"welcome\", \"onboarding\", \"user-registration\", \"v2\"],\n  \"metadata\": {\n    \"designer\": \"UI Team\",\n    \"version\": \"2.1\",\n    \"last_review\": \"2025-06-22\",\n    \"emoji_support\": \"true\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/templates/{{template_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"templates",
+								"{{template_id}}"
+							]
+						},
+						"description": "Update an existing email template"
+					}
+				},
+				{
+					"name": "Delete Template",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/templates/{{template_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"templates",
+								"{{template_id}}"
+							]
+						},
+						"description": "Delete an email template (only if not in use)"
+					}
+				}
+			],
+			"description": "Basic CRUD operations for email templates"
+		},
+		{
+			"name": "Template Status Management",
+			"item": [
+				{
+					"name": "Activate Template",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/templates/{{template_id}}/activate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"templates",
+								"{{template_id}}",
+								"activate"
+							]
+						},
+						"description": "Activate a template to make it available for use"
+					}
+				},
+				{
+					"name": "Deactivate Template",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/templates/{{template_id}}/deactivate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"templates",
+								"{{template_id}}",
+								"deactivate"
+							]
+						},
+						"description": "Deactivate a template to prevent its use"
+					}
+				},
+				{
+					"name": "Set as Default Template",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/templates/{{template_id}}/set-default",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"templates",
+								"{{template_id}}",
+								"set-default"
+							]
+						},
+						"description": "Set this template as the default for its category"
+					}
+				}
+			],
+			"description": "Template status and workflow management"
+		},
+		{
+			"name": "Category Management",
+			"item": [
+				{
+					"name": "Get All Categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/templates/categories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"templates",
+								"categories"
+							]
+						},
+						"description": "Get all available template categories"
+					}
+				},
+				{
+					"name": "Get Templates by Category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/templates/category/{{category_name}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"templates",
+								"category",
+								"{{category_name}}"
+							]
+						},
+						"description": "Get all active templates in a specific category"
+					}
+				},
+				{
+					"name": "Get Default Template for Category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/templates/category/{{category_name}}/default",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"templates",
+								"category",
+								"{{category_name}}",
+								"default"
+							]
+						},
+						"description": "Get the default template for a specific category"
+					}
+				}
+			],
+			"description": "Template organization by categories"
+		},
+		{
+			"name": "Template Processing",
+			"item": [
+				{
+					"name": "Preview Template",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"userName\": \"John Doe\",\n  \"companyName\": \"ACME Corporation\",\n  \"welcomeMessage\": \"We're thrilled to have you join our community!\",\n  \"supportEmail\": \"support@acme.com\",\n  \"websiteUrl\": \"https://acme.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/templates/{{template_id}}/preview",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"templates",
+								"{{template_id}}",
+								"preview"
+							]
+						},
+						"description": "Preview template with variable substitution"
+					}
+				},
+				{
+					"name": "Extract Variables",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"subjectTemplate\": \"Welcome {{userName}} to {{companyName}}!\",\n  \"htmlContent\": \"<h1>Hello {{userName}}</h1><p>Welcome to {{companyName}}. Your account {{accountId}} is ready!</p>\",\n  \"plainTextContent\": \"Hello {{userName}}, welcome to {{companyName}}. Your account {{accountId}} is ready!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/templates/extract-variables",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"templates",
+								"extract-variables"
+							]
+						},
+						"description": "Extract all variables from template content"
+					}
+				}
+			],
+			"description": "Template preview and variable extraction"
+		},
+		{
+			"name": "Template Operations",
+			"item": [
+				{
+					"name": "Clone Template",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/templates/{{template_id}}/clone?newName=welcome-email-copy&newDisplayName=Welcome Email Copy",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"templates",
+								"{{template_id}}",
+								"clone"
+							],
+							"query": [
+								{
+									"key": "newName",
+									"value": "welcome-email-copy",
+									"description": "Unique name for the cloned template"
+								},
+								{
+									"key": "newDisplayName",
+									"value": "Welcome Email Copy",
+									"description": "Display name for the cloned template (optional)"
+								}
+							]
+						},
+						"description": "Clone/duplicate an existing template"
+					}
+				},
+				{
+					"name": "Bulk Operations",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"activate\",\n  \"templateIds\": [1, 2, 3, 4]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/templates/bulk-action",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"templates",
+								"bulk-action"
+							]
+						},
+						"description": "Perform bulk operations on multiple templates (activate, deactivate, delete)"
+					}
+				}
+			],
+			"description": "Advanced template operations"
+		},
+		{
+			"name": "Statistics & Analytics",
+			"item": [
+				{
+					"name": "Get Template Statistics",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/emails/templates/statistics",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"emails",
+								"templates",
+								"statistics"
+							]
+						},
+						"description": "Get comprehensive template statistics and analytics"
+					}
+				}
+			],
+			"description": "Template analytics and reporting"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Auto-generate template variables for testing",
+					"if (pm.request.url.path.includes('preview')) {",
+					"    console.log('Setting up template preview variables');",
+					"}",
+					"",
+					"// Set common template ID if not provided",
+					"if (!pm.environment.get('template_id')) {",
+					"    pm.environment.set('template_id', '1');",
+					"}",
+					"",
+					"// Set common template name if not provided",
+					"if (!pm.environment.get('template_name')) {",
+					"    pm.environment.set('template_name', 'welcome-email');",
+					"}",
+					"",
+					"// Set common category name if not provided",
+					"if (!pm.environment.get('category_name')) {",
+					"    pm.environment.set('category_name', 'welcome');",
+					"}"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "jwt_token",
+			"value": "your-jwt-token-here",
+			"type": "string"
+		},
+		{
+			"key": "template_id",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "template_name",
+			"value": "welcome-email",
+			"type": "string"
+		},
+		{
+			"key": "category_name",
+			"value": "welcome",
+			"type": "string"
+		}
+	]
+}

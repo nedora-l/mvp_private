@@ -1,0 +1,36 @@
+{
+  "directory": {
+    "title": "Employee Directory",
+    "search": {
+      "placeholder": "Search by name, title, or department..."
+    },
+    "filters": "Filters",
+    "tabs": {
+      "all": "All",
+      "byDepartment": "By Department",
+      "byLocation": "By Location",
+      "byRole": "By Role",
+      "byTeam": "By Team"
+    },
+    "showing": "Showing {{count}} employees",
+    "labels": {
+      "departments": "Departments",
+      "locations": "Locations",
+      "allDepartments": "All Departments",
+      "allLocations": "All Locations",
+      "allRoles": "Tous les Rôles",
+      "allTeams": "All Teams",
+      "teams": "Teams",
+      "roles": "RRoles"
+    },
+    "locations": {
+        "casaSidiMarouf": "Casablanca : Sidi Maarouf",
+        "casaMaarif": "Casablanca : Maarif",
+        "merrakesh": "Merrakesh"
+    },
+    "actions": {
+      "message": "Message",
+      "viewProfile": "View Profile"
+    }
+  }
+}

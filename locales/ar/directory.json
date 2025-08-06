@@ -1,0 +1,36 @@
+{
+  "directory": {
+    "title": "دليل الموظفين",
+    "search": {
+      "placeholder": "البحث عن طريق الاسم أو المسمى الوظيفي أو القسم..."
+    },
+    "filters": "الفلاتر",
+    "tabs": {
+      "all": "الكل",
+      "byDepartment": "حسب القسم",
+      "byLocation": "حسب الموقع",
+      "byRole": "حسب الدور",
+      "byTeam": "حسب الفريق"
+    },
+    "showing": "عرض {{count}} موظف",
+    "labels": {
+      "departments": "الأقسام",
+      "locations": "المواقع",
+      "allDepartments": "جميع الأقسام",
+      "allLocations": "جميع المواقع",
+      "allRoles": "جميع الأدوار",
+      "allTeams": "جميع الفرق",
+      "teams": "الفرق",
+      "roles": "الأدوار"
+    },
+    "locations": {
+      "casaSidiMarouf": "الدار البيضاء : سيدي معروف",
+      "casaMaarif": "الدار البيضاء : المعاريف",
+      "merrakesh": "مراكش"
+    },
+    "actions": {
+      "message": "مراسلة",
+      "viewProfile": "عرض الملف الشخصي"
+    }
+  }
+}
