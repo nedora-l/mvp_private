@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useI18n } from "@/lib/i18n/use-i18n";
 import { AppComponentDictionaryProps, BasePageProps } from "@/lib/interfaces/common/dictionary-props-component";
 import AddTopicModal, { availableIcons } from "./AddTopicModal";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 
 import { useSession } from "next-auth/react"
 import { helpCenterTopics } from "@/lib/data/help-center-data";
@@ -33,7 +33,7 @@ const HelpCenterComponentPage = ({
   locale   
 }: DirectoriesTabsClientProps) => {
   const { t } = useI18n(dictionary);
-  const { toast } = useToast();
+  // Toast via sonner (imported above)
   const [topics, setTopics] = useState(helpCenterTopics);
 
   const { data: session, status } = useSession();

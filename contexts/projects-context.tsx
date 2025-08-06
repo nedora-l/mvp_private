@@ -7,6 +7,22 @@ export interface Project {
   id: string;
   name: string;
   type: string;
+  boardType?: string; // Type de board (Scrum, Kanban, XP, Simple)
+  customType?: string;
+  description: string;
+  status: string;
+  startDate: string;
+  endDate: string;
+  members: string;
+  jiraId?: string; // ID Jira du projet
+  jiraKey?: string; // Clé Jira du projet (ex: ECS)
+}
+
+// Type pour la création d'un projet (sans ID)
+export interface ProjectCreate {
+  name: string;
+  type: string;
+  boardType?: string;
   customType?: string;
   description: string;
   status: string;
@@ -34,7 +50,8 @@ const initialProjects: Project[] = [
 interface ProjectsContextType {
   projects: Project[];
   loading: boolean;
-  addProject: (project: Project) => Promise<void>;
+  fetchProjects: () => Promise<void>;
+  addProject: (project: ProjectCreate) => Promise<any>;
   editProject: (index: number, project: Project) => Promise<void>;
   deleteProject: (index: number) => Promise<void>;
 }
@@ -51,21 +68,38 @@ export const ProjectsProvider = ({ children }: { children: ReactNode }) => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Fonction pour charger les projets depuis l'API v0 locale
+  // Fonction pour charger les projets depuis MCP ou v0
   const fetchProjects = async () => {
     try {
-      console.log("🔄 Fetching projects from local API v0...");
-      const response = await fetch('/api/v0/projects');
+      setLoading(true);
+      console.log("🔄 Fetching projects from MCP...");
+      
+      // 🚀 Essai MCP d'abord, puis fallback v0
+      let response = await fetch('/api/mcp/projects');
+      
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        console.log("⚠️ MCP indisponible, fallback vers v0");
+        response = await fetch('/api/v0/projects');
       }
+      
       const data = await response.json();
       console.log("📦 Raw API response:", data);
-      setProjects(data.projects || []);
-      console.log("✅ Projects loaded from API v0:", data.projects?.length || 0);
-      console.log("📋 Projects list:", data.projects);
+      
+      if (data.success) {
+        setProjects(data.projects || []);
+        console.log(`✅ ${data.projects?.length || 0} projets chargés depuis ${data.source || 'v0'}`);
+        
+        // Affichage des infos de connexion Jira
+        if (data.source === 'jira') {
+          console.log(`🔗 Connecté à Jira: ${data.domain}`);
+          console.log(`� ${data.count} projets Jira synchronisés`);
+        }
+      } else {
+        throw new Error(data.error || 'Erreur de chargement');
+      }
     } catch (error) {
-      console.warn("❌ Local API not available, using mock data:", error);
+      console.warn("❌ Erreur lors du chargement des projets:", error);
+      console.log("🔄 Fallback vers données mock...");
       setProjects(initialProjects);
     } finally {
       setLoading(false);
@@ -77,11 +111,13 @@ export const ProjectsProvider = ({ children }: { children: ReactNode }) => {
     fetchProjects();
   }, []); // Pas de dépendance à la session
 
-  // Ajout avec API v0 locale
-  const addProject = async (project: Project) => {
+  // Ajout avec MCP (Jira) d'abord, puis fallback v0 locale
+  const addProject = async (project: ProjectCreate) => {
     try {
-      console.log("🔄 Adding project via local API v0...");
-      const response = await fetch('/api/v0/projects', {
+      console.log("🔄 Adding project via MCP/Jira...");
+      
+      // 🚀 Essai MCP d'abord pour Jira et fallbacks automatiques
+      let response = await fetch('/api/mcp/projects', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -89,14 +125,38 @@ export const ProjectsProvider = ({ children }: { children: ReactNode }) => {
         body: JSON.stringify(project),
       });
 
+      // Si MCP échoue, fallback vers v0
+      if (!response.ok) {
+        console.log("⚠️ MCP indisponible, fallback vers v0");
+        response = await fetch('/api/v0/projects', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(project),
+        });
+      }
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
+      const result = await response.json();
+      
+      // Feedback selon la source
+      if (result.source === 'jira') {
+        console.log(`✅ Projet créé sur Jira: ${result.jiraKey}`);
+      } else if (result.source?.includes('local')) {
+        console.log(`✅ Projet créé localement: ${result.warning || 'OK'}`);
+      }
+
       await fetchProjects(); // Recharger la liste
       console.log("✅ Project added successfully");
+      
+      return result; // Retourner le résultat pour feedback UI
     } catch (error) {
       console.error("❌ Error adding project:", error);
+      throw error; // Relancer pour gestion UI
     }
   };
 
@@ -146,7 +206,7 @@ export const ProjectsProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <ProjectsContext.Provider value={{ projects, loading, addProject, editProject, deleteProject }}>
+    <ProjectsContext.Provider value={{ projects, loading, fetchProjects, addProject, editProject, deleteProject }}>
       {children}
     </ProjectsContext.Provider>
   );

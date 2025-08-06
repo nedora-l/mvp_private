@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { AlertCircle, ArrowLeft } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 // Import the new components
@@ -105,7 +105,7 @@ export function ObjectDetailsPage({
     isSystemLocked: false,
   });
 
-  const { toast } = useToast();
+  // Toast via sonner (imported above)
 
   // Refresh functions
   const refreshDetails = () => {

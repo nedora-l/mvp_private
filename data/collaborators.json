@@ -1,0 +1,299 @@
+[
+  {
+    "id": "1",
+    "name": "Alice Martin",
+    "role": "Manager",
+    "email": "alice.martin@company.com",
+    "department": "Direction",
+    "active": true,
+    "dateAdded": "2025-08-01"
+  },
+  {
+    "id": "2",
+    "name": "Bob Dupont",
+    "role": "Dev Team",
+    "email": "bob.dupont@company.com",
+    "department": "IT",
+    "active": true,
+    "dateAdded": "2025-08-01"
+  },
+  {
+    "id": "3",
+    "name": "Charlie Lambert",
+    "role": "AI Team",
+    "email": "charlie.lambert@company.com",
+    "department": "IT",
+    "active": true,
+    "dateAdded": "2025-08-01"
+  },
+  {
+    "id": "4",
+    "name": "Diana Rousseau",
+    "role": "RH",
+    "email": "diana.rousseau@company.com",
+    "department": "RH",
+    "active": true,
+    "dateAdded": "2025-08-01"
+  },
+  {
+    "id": "5",
+    "name": "Emma Durand",
+    "role": "Dev Team",
+    "email": "emma.durand@company.com",
+    "department": "IT",
+    "active": true,
+    "dateAdded": "2025-08-01"
+  },
+  {
+    "id": "6",
+    "name": "Felix Bernard",
+    "role": "Sécurité",
+    "email": "felix.bernard@company.com",
+    "department": "Sécurité",
+    "active": true,
+    "dateAdded": "2025-08-01"
+  },
+  {
+    "id": "7",
+    "name": "Grace Moreau",
+    "role": "Manager",
+    "email": "grace.moreau@company.com",
+    "department": "Marketing",
+    "active": true,
+    "dateAdded": "2025-08-01"
+  },
+  {
+    "id": "8",
+    "name": "Hugo Petit",
+    "role": "AI Team",
+    "email": "hugo.petit@company.com",
+    "department": "IT",
+    "active": true,
+    "dateAdded": "2025-08-01"
+  },
+  {
+    "id": "9",
+    "name": "Iris Lefebvre",
+    "role": "Sécurité",
+    "email": "iris.lefebvre@company.com",
+    "department": "Sécurité",
+    "active": true,
+    "dateAdded": "2025-08-01"
+  },
+  {
+    "id": "10",
+    "name": "Jack Roux",
+    "role": "RH",
+    "email": "jack.roux@company.com",
+    "department": "RH",
+    "active": true,
+    "dateAdded": "2025-08-01"
+  },
+  {
+    "id": "11",
+    "name": "Si yasser ",
+    "role": "Sécurité",
+    "email": "yasser_scarface@email.com",
+    "department": "Sécurité",
+    "active": true,
+    "dateAdded": "2025-08-06"
+  },
+  {
+    "id": "12",
+    "name": "Rita rh",
+    "role": "RH",
+    "email": "rita@email.fr",
+    "department": "RH",
+    "active": true,
+    "dateAdded": "2025-08-06"
+  },
+  {
+    "id": "13",
+    "name": "Mouhcine",
+    "role": "AI Team",
+    "email": "mouhcine@email.com",
+    "department": "Marketing",
+    "active": true,
+    "dateAdded": "2025-08-06"
+  },
+  {
+    "id": "14",
+    "name": "SI Rachid Taryaoui",
+    "role": "Manager",
+    "email": "rachid@gmail.com",
+    "department": "Sécurité",
+    "active": true,
+    "dateAdded": "2025-08-06"
+  },
+  {
+    "id": "15",
+    "name": "Jean-Pierre Bossard",
+    "role": "CEO",
+    "email": "ceo@company.com",
+    "department": "Direction",
+    "active": true,
+    "dateAdded": "2025-08-06"
+  },
+  {
+    "id": "16",
+    "name": "Marie Directrice",
+    "role": "DRH",
+    "email": "drh@company.com",
+    "department": "Direction",
+    "active": true,
+    "dateAdded": "2025-08-06"
+  },
+  {
+    "id": "17",
+    "name": "Paul Finance",
+    "role": "CFO",
+    "email": "cfo@company.com",
+    "department": "Finance",
+    "active": true,
+    "dateAdded": "2025-08-06"
+  },
+  {
+    "id": "18",
+    "name": "Sophie Tech",
+    "role": "CTO",
+    "email": "cto@company.com",
+    "department": "IT",
+    "active": true,
+    "dateAdded": "2025-08-06"
+  },
+  {
+    "id": "19",
+    "name": "Laura Comptable",
+    "role": "Comptable",
+    "email": "compta@company.com",
+    "department": "Finance",
+    "active": true,
+    "dateAdded": "2025-08-06"
+  },
+  {
+    "id": "20",
+    "name": "Marc Auditeur",
+    "role": "Auditeur",
+    "email": "audit@company.com",
+    "department": "Finance",
+    "active": true,
+    "dateAdded": "2025-08-06"
+  },
+  {
+    "id": "21",
+    "name": "Julie Marketing",
+    "role": "Chef Marketing",
+    "email": "marketing@company.com",
+    "department": "Marketing",
+    "active": true,
+    "dateAdded": "2025-08-06"
+  },
+  {
+    "id": "22",
+    "name": "Tom Sales",
+    "role": "Commercial",
+    "email": "sales@company.com",
+    "department": "Commercial",
+    "active": true,
+    "dateAdded": "2025-08-06"
+  },
+  {
+    "id": "23",
+    "name": "Anna Juridique",
+    "role": "Juriste",
+    "email": "legal@company.com",
+    "department": "Juridique",
+    "active": true,
+    "dateAdded": "2025-08-06"
+  },
+  {
+    "id": "24",
+    "name": "Kevin Support",
+    "role": "Support Client",
+    "email": "support@company.com",
+    "department": "Commercial",
+    "active": true,
+    "dateAdded": "2025-08-06"
+  },
+  {
+    "id": "25",
+    "name": "Lisa Design",
+    "role": "UX/UI Designer",
+    "email": "design@company.com",
+    "department": "IT",
+    "active": true,
+    "dateAdded": "2025-08-06"
+  },
+  {
+    "id": "26",
+    "name": "Alex DevOps",
+    "role": "DevOps",
+    "email": "devops@company.com",
+    "department": "IT",
+    "active": true,
+    "dateAdded": "2025-08-06"
+  },
+  {
+    "id": "27",
+    "name": "Sarah QA",
+    "role": "QA Tester",
+    "email": "qa@company.com",
+    "department": "IT",
+    "active": true,
+    "dateAdded": "2025-08-06"
+  },
+  {
+    "id": "28",
+    "name": "Mike Stagiaire",
+    "role": "Stagiaire Dev",
+    "email": "stagiaire.dev@company.com",
+    "department": "IT",
+    "active": true,
+    "dateAdded": "2025-08-06"
+  },
+  {
+    "id": "29",
+    "name": "Emma Stagiaire",
+    "role": "Stagiaire RH",
+    "email": "stagiaire.rh@company.com",
+    "department": "RH",
+    "active": true,
+    "dateAdded": "2025-08-06"
+  },
+  {
+    "id": "30",
+    "name": "Lucas Alternant",
+    "role": "Alternant Marketing",
+    "email": "alternant@company.com",
+    "department": "Marketing",
+    "active": true,
+    "dateAdded": "2025-08-06"
+  },
+  {
+    "id": "31",
+    "name": "Chloe Consultante",
+    "role": "Consultante",
+    "email": "consultant@company.com",
+    "department": "Direction",
+    "active": true,
+    "dateAdded": "2025-08-06"
+  },
+  {
+    "id": "32",
+    "name": "David Maintenance",
+    "role": "Technicien",
+    "email": "tech@company.com",
+    "department": "IT",
+    "active": true,
+    "dateAdded": "2025-08-06"
+  },
+  {
+    "id": "33",
+    "name": "Yassine abarrouz",
+    "role": "Dev Team",
+    "email": "y.abarouz@gmail.com",
+    "department": "IT",
+    "active": true,
+    "dateAdded": "2025-08-06"
+  }
+]

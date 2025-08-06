@@ -2,7 +2,17 @@
 
 # 🗺️ Roadmap Globale D&A Workspace
 
-## 1. Initialisation
+## 🚦 Avancement des étapes
+
+| Étape                                 | Statut      | Notes |
+| ------------------------------------- | ----------- | ----- |
+| Module Projects CRUD complet (v0)    | ✅ Terminé  | API locale + JSON |
+| Système collaborateurs avec rôles    | ✅ Terminé  | Hardcodé pour v0 |
+| Gestion collaborateurs (CRUD v0)     | 🟡 En cours | JSON local |
+| Amélioration UI/UX (design, feedback) | 🔴 À faire  | Polish interface |
+| Intégration des modules MCP           | � À faire  | **PLUS TARD** |
+| Documentation des méthodes MCP        | � À faire  | **PLUS TARD** |
+| Préparation de l'intégration AI       | 🔴 À faire  | **PLUS TARD** |itialisation
 
 - Créer un dossier pour chaque module principal (Projets, Tâches, Tableaux, etc.).
 - Ajouter un composant principal pour chaque module, accessible directement depuis la sidebar.

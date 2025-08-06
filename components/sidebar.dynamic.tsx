@@ -47,6 +47,7 @@ import {
   ClipboardList,
   LayoutDashboard,
   Palette,
+  DollarSign,
   Cog,
   Smile,
   Server,
@@ -222,7 +223,7 @@ export const navigationConfigs = {
     navigation: [
       { name: "Accueil", href: "/apps/projects", icon: Home },
       { name: "Tâches", href: "/apps/projects/tasks", icon: ListChecks },
-      { name: "Tableaux", href: "/apps/projects/boards", icon: LayoutGrid },
+      { name: "Tableaux", href: "/apps/projects/board", icon: LayoutGrid },
       { name: "Calendrier", href: "/apps/projects/calendar", icon: Calendar },
       { name: "Documents", href: "/apps/projects/documents", icon: Folder },
       {
@@ -233,8 +234,9 @@ export const navigationConfigs = {
           { name: "Vue d'ensemble", href: "/apps/projects/gestion/overview", icon: LineChart },
           { name: "Liste des Projets", href: "/apps/projects/gestion/liste", icon: FileText },
           { name: "Tâches", href: "/apps/projects/gestion/tasks", icon: ListChecks },
-          { name: "Tableaux", href: "/apps/projects/gestion/boards", icon: LayoutGrid },
-          { name: "Sprints", href: "/apps/projects/gestion/sprints", icon: Target },
+          { name: "Tableaux", href: "/apps/projects/gestion/board", icon: LayoutGrid },
+          { name: "Sprints", href: "/apps/projects/gestion/sprint", icon: Target },
+          { name: "Budget", href: "/apps/projects/gestion/budget", icon: DollarSign },
           { name: "Backlog", href: "/apps/projects/gestion/backlog", icon: ClipboardList },
           { name: "Rapports", href: "/apps/projects/gestion/reports", icon: PieChart },
           { name: "Recherche", href: "/apps/projects/gestion/search", icon: Server },

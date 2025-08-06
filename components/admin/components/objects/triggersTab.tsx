@@ -14,7 +14,7 @@ import { Plus, Edit, Trash2, RefreshCw } from "lucide-react";
 import { MetaDataRecordDto, MetaDataTriggerDto } from "@/lib/services/server/dynamicdb/dyn.db.metadata.server.service";
 import { objectsApiClient } from "@/lib/services/client/admin/objects/objects.client.service";
 import { useCallback, useEffect, useState } from "react";
-import { toast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 
 
 interface TriggersTabProps {

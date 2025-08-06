@@ -1,43 +1,68 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter, CardDescription } from "@/components/ui/card";
+import { useCollaborators } from "@/contexts/collaborators-context";
 
 /**
  * Modèle extensible pour la création de projet (v0)
  * Prévu pour mapping direct avec MCP servers, Jira, Trello, etc.
- * Tous les champs sont documentés pour faciliter l’intégration future.
+ * Tous les champs sont documentés pour faciliter l'intégration future.
  */
 interface ProjectForm {
   name: string; // Nom du projet (obligatoire)
-  type: string; // Type d’outil (Jira, Trello, Slack, etc.)
+  type: string; // Type d'outil (Jira, Trello, Slack, etc.)
+  boardType?: string; // Type de board (Scrum, Kanban, XP pour Jira)
   customType?: string; // Type personnalisé si "Autre" est choisi
   description: string; // Description courte
-  status: string; // Statut du projet (En cours, Terminé, En attente...)
+  status: string; // Statut du projet (en-cours, termine, pause, attente)
   startDate: string; // Date de début (ISO)
   endDate: string; // Date de fin (ISO)
   members: string; // Membres impliqués (séparés par virgule)
 }
 
+const ROLE_COLORS = {
+  "Manager": "bg-purple-100 text-purple-800",
+  "Dev Team": "bg-blue-100 text-blue-800", 
+  "AI Team": "bg-green-100 text-green-800",
+  "RH": "bg-orange-100 text-orange-800",
+  "Sécurité": "bg-red-100 text-red-800"
+};
+
 const initialForm: ProjectForm = {
   name: "",
   type: "Jira",
+  boardType: "",
   customType: "",
   description: "",
-  status: "En cours",
+  status: "en-cours",
   startDate: "",
   endDate: "",
   members: ""
 };
 
 export default function ProjectCreateModal({ onCreate }: { onCreate: (project: ProjectForm) => void }) {
+  const { collaborators } = useCollaborators();
   const [form, setForm] = useState<ProjectForm>(initialForm);
   const [error, setError] = useState<string>("");
   const [success, setSuccess] = useState<boolean>(false);
+  const [selectedMembers, setSelectedMembers] = useState<{name: string, role: string}[]>([]);
 
   // Gestion du changement de champ pour tous les inputs
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
     setError("");
+  };
+
+  // Gestion de la sélection des collaborateurs
+  const handleMemberToggle = (member: {name: string, role: string}) => {
+    const isSelected = selectedMembers.some(m => m.name === member.name);
+    const newSelectedMembers = isSelected
+      ? selectedMembers.filter(m => m.name !== member.name)
+      : [...selectedMembers, member];
+    
+    setSelectedMembers(newSelectedMembers);
+    // Format: "Alice Martin (Manager), Bob Dupont (Dev Team)"
+    setForm({ ...form, members: newSelectedMembers.map(m => `${m.name} (${m.role})`).join(", ") });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -46,10 +71,36 @@ export default function ProjectCreateModal({ onCreate }: { onCreate: (project: P
       setError("Le titre du projet est obligatoire.");
       return;
     }
-    onCreate(form);
+    if (form.type === "Jira" && !form.boardType) {
+      setError("Veuillez choisir une méthode agile pour les projets Jira.");
+      return;
+    }
+    if (form.type === "Autre" && !form.customType?.trim()) {
+      setError("Veuillez spécifier le type personnalisé.");
+      return;
+    }
+    
+    // Ajout automatique du boardType selon le type pour non-Jira
+    const projectData = {
+      ...form,
+      boardType: form.type === "Jira" ? form.boardType : getBoardTypeForType(form.type)
+    };
+    
+    onCreate(projectData);
     setSuccess(true);
     setForm(initialForm);
+    setSelectedMembers([]);
     setTimeout(() => setSuccess(false), 2000);
+  };
+
+  // Fonction pour déterminer le boardType selon le type de projet
+  const getBoardTypeForType = (type: string) => {
+    switch (type) {
+      case "Trello": return "Kanban";
+      case "Slack": return "Simple";
+      case "Autre": return "Simple";
+      default: return "Simple";
+    }
   };
 
   return (
@@ -59,13 +110,12 @@ export default function ProjectCreateModal({ onCreate }: { onCreate: (project: P
           {form.type === "Jira" && <img src="/logo/jira.svg" alt="Jira" className="h-8" />}
           {form.type === "Trello" && <img src="/logo/trello.svg" alt="Trello" className="h-8" />}
           {form.type === "Slack" && <img src="/logo/slack.svg" alt="Slack" className="h-8" />}
-          {form.type === "Autre" && <span className="text-3xl text-slate-400">�️</span>}
+          {form.type === "Autre" && <span className="text-3xl text-slate-400">🛠️</span>}
         </div>
         <CardTitle className="text-xl font-bold text-blue-700">Créer un nouveau projet</CardTitle>
         <CardDescription className="text-xs text-slate-500 pt-1">* Champs obligatoires et extensibles pour mapping API</CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
-        {/* Ajout du scroll vertical et limitation de la hauteur */}
         <CardContent className="space-y-6 pt-2 max-h-[70vh] overflow-y-auto scrollbar-thin scrollbar-thumb-blue-200 scrollbar-track-violet-50">
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-blue-700">Titre du projet *</label>
@@ -80,6 +130,7 @@ export default function ProjectCreateModal({ onCreate }: { onCreate: (project: P
               autoFocus
             />
           </div>
+          
           <div>
             <label htmlFor="type" className="block text-sm font-medium text-blue-700">Type</label>
             <select
@@ -109,7 +160,29 @@ export default function ProjectCreateModal({ onCreate }: { onCreate: (project: P
                 />
               </div>
             )}
+            {form.type === "Jira" && (
+              <div className="mt-2">
+                <label htmlFor="boardType" className="block text-sm font-medium text-blue-700">Méthode Agile *</label>
+                <select
+                  id="boardType"
+                  name="boardType"
+                  value={form.boardType}
+                  onChange={handleChange}
+                  className="w-full border-2 border-blue-200 focus:border-violet-400 rounded-lg px-3 py-2 transition-all duration-200 outline-none focus:ring-2 focus:ring-violet-200 bg-white"
+                  required
+                >
+                  <option value="">🎯 Choisir la méthode agile...</option>
+                  <option value="Scrum">🏃 Scrum (Sprints, Backlog, Review)</option>
+                  <option value="Kanban">📋 Kanban (Flux continu)</option>
+                  <option value="XP">⚡ XP (Extreme Programming)</option>
+                </select>
+                <p className="mt-1 text-xs text-gray-600">
+                  Cette méthode déterminera l'organisation de votre board Jira
+                </p>
+              </div>
+            )}
           </div>
+          
           <div>
             <label htmlFor="description" className="block text-sm font-medium text-blue-700">Description</label>
             <textarea
@@ -121,6 +194,7 @@ export default function ProjectCreateModal({ onCreate }: { onCreate: (project: P
               rows={2}
             />
           </div>
+          
           <div>
             <label htmlFor="status" className="block text-sm font-medium text-blue-700">Statut</label>
             <select
@@ -130,11 +204,13 @@ export default function ProjectCreateModal({ onCreate }: { onCreate: (project: P
               onChange={handleChange}
               className="w-full border-2 border-blue-200 focus:border-violet-400 rounded-lg px-3 py-2 transition-all duration-200 outline-none focus:ring-2 focus:ring-violet-200 bg-white"
             >
-              <option value="En cours">En cours</option>
-              <option value="Terminé">Terminé</option>
-              <option value="En attente">En attente</option>
+              <option value="en-cours">En cours</option>
+              <option value="termine">Terminé</option>
+              <option value="pause">En pause</option>
+              <option value="attente">En attente</option>
             </select>
           </div>
+          
           <div className="flex gap-4">
             <div className="flex-1">
               <label htmlFor="startDate" className="block text-sm font-medium text-blue-700">Date de début</label>
@@ -159,18 +235,43 @@ export default function ProjectCreateModal({ onCreate }: { onCreate: (project: P
               />
             </div>
           </div>
+          
           <div>
-            <label htmlFor="members" className="block text-sm font-medium text-blue-700">Membres (séparés par virgule)</label>
-            <input
-              id="members"
-              name="members"
-              type="text"
-              value={form.members}
-              onChange={handleChange}
-              className="w-full border-2 border-blue-200 focus:border-violet-400 rounded-lg px-3 py-2 transition-all duration-200 outline-none focus:ring-2 focus:ring-violet-200 bg-white"
-              placeholder="ex: Alice, Bob, Charlie"
-            />
+            <label className="block text-sm font-medium text-blue-700 mb-2">Collaborateurs</label>
+            <div className="grid grid-cols-1 gap-2 max-h-40 overflow-y-auto border border-blue-200 rounded-lg p-3">
+              {collaborators.map((member) => (
+                <label key={member.name} className="flex items-center justify-between p-2 rounded hover:bg-blue-50 transition-colors">
+                  <div className="flex items-center space-x-3">
+                    <input
+                      type="checkbox"
+                      checked={selectedMembers.some(m => m.name === member.name)}
+                      onChange={() => handleMemberToggle(member)}
+                      className="rounded border-blue-300 text-blue-600 focus:ring-blue-500"
+                    />
+                    <span className="font-medium text-sm">{member.name}</span>
+                  </div>
+                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${ROLE_COLORS[member.role as keyof typeof ROLE_COLORS] || 'bg-gray-100 text-gray-800'}`}>
+                    {member.role}
+                  </span>
+                </label>
+              ))}
+            </div>
+            {selectedMembers.length > 0 && (
+              <div className="mt-3 p-2 bg-blue-50 rounded-lg">
+                <div className="text-xs font-medium text-blue-700 mb-2">
+                  Sélectionnés: {selectedMembers.length} collaborateur(s)
+                </div>
+                <div className="flex flex-wrap gap-1">
+                  {selectedMembers.map((member, idx) => (
+                    <span key={idx} className={`px-2 py-1 rounded-full text-xs font-medium ${ROLE_COLORS[member.role as keyof typeof ROLE_COLORS] || 'bg-gray-100 text-gray-800'}`}>
+                      {member.name}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
+          
           {error && <div className="text-red-600 text-sm animate-shake">{error}</div>}
           {success && (
             <div className="flex items-center justify-center gap-2 text-green-600 text-sm animate-bounce-in">
@@ -180,7 +281,9 @@ export default function ProjectCreateModal({ onCreate }: { onCreate: (project: P
           )}
         </CardContent>
         <CardFooter>
-          <Button type="submit" className="w-full bg-gradient-to-r from-blue-500 to-violet-500 text-white font-semibold py-2 rounded-lg shadow-md hover:scale-105 transition-transform duration-150">Ajouter le projet</Button>
+          <Button type="submit" className="w-full bg-gradient-to-r from-blue-500 to-violet-500 text-white font-semibold py-2 rounded-lg shadow-md hover:scale-105 transition-transform duration-150">
+            Ajouter le projet
+          </Button>
         </CardFooter>
       </form>
     </Card>

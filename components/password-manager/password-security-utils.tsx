@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { toast } from "@/hooks/use-toast"
+import { toast } from "sonner"
 import { 
   Dialog, 
   DialogContent, 
