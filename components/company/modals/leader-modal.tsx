@@ -23,7 +23,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 import { orgApiClient } from "@/lib/services/client/org/organization.client.service";
 import { OrganizationLeaderDto } from "@/lib/interfaces/apis/organization";
 
@@ -55,7 +55,7 @@ export function LeaderModal({
   existingLeaders,
 }: LeaderModalProps) {
   const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
+  // Sonner toast is imported at top
   const isEditing = !!leader;
   const form = useForm<LeaderFormData>({
     resolver: zodResolver(leaderSchema),

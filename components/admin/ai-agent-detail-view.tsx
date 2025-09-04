@@ -9,7 +9,7 @@ import { Progress } from "@/components/ui/progress"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Dictionary } from "@/locales/dictionary"
 import { AIAgent } from "@/lib/interfaces/apis/ai-agents/common"
-import { useToast } from "@/hooks/use-toast"
+import { toast } from "sonner"
 import { 
   ArrowLeft,
   Bot, 
@@ -67,7 +67,6 @@ export function AIAgentDetailView({ agentId, dictionary, locale }: AIAgentDetail
   const [agent, setAgent] = useState<AIAgent | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const { toast } = useToast()
   const router = useRouter()
 
   useEffect(() => {
@@ -100,10 +99,7 @@ export function AIAgentDetailView({ agentId, dictionary, locale }: AIAgentDetail
   }
 
   const handleEdit = () => {
-    toast({
-      title: "Edit Feature",
-      description: "Edit functionality would be implemented here",
-    })
+    toast.info("Edit functionality would be implemented here")
   }
   const handleToggleStatus = () => {
     if (!agent) return
@@ -111,17 +107,11 @@ export function AIAgentDetailView({ agentId, dictionary, locale }: AIAgentDetail
     const newStatus = agent.status === 'active' ? 'inactive' : 'active'
     setAgent({ ...agent, status: newStatus })
     
-    toast({
-      title: "Status Updated",
-      description: `Agent ${newStatus === 'active' ? 'activated' : 'deactivated'} successfully`,
-    })
+    toast.success(`Agent ${newStatus === 'active' ? 'activated' : 'deactivated'} successfully`)
   }
 
   const handleClone = () => {
-    toast({
-      title: "Clone Feature",
-      description: "Clone functionality would be implemented here",
-    })
+    toast.info("Clone functionality would be implemented here")
   }
 
   const handleExport = () => {
@@ -145,10 +135,7 @@ export function AIAgentDetailView({ agentId, dictionary, locale }: AIAgentDetail
     document.body.removeChild(a)
     URL.revokeObjectURL(url)
     
-    toast({
-      title: "Configuration Exported",
-      description: "Agent configuration downloaded successfully",
-    })
+    toast.success("Agent configuration downloaded successfully")
   }
 
   if (isLoading) {

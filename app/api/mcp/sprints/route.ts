@@ -68,39 +68,15 @@ export async function GET(request: NextRequest) {
       }, { status: 400 });
     }
 
-    // Si pas de token, fallback local
+    // ✅ PLUS DE FALLBACK - Token Jira requis
     if (!JIRA_CONFIG.token || JIRA_CONFIG.token === "") {
-      console.log("⚠️ Token Jira manquant, utilisation des données mock");
-      const mockSprints = [
-        {
-          id: 1,
-          name: "Sprint 1",
-          goal: "Sprint de développement initial",
-          state: "active",
-          startDate: "2025-08-01",
-          endDate: "2025-08-15",
-          boardId: boardId,
-          storyPoints: 21,
-          completedPoints: 8
-        },
-        {
-          id: 2,
-          name: "Sprint 2",
-          goal: "Finalisation des fonctionnalités principales",
-          state: "future",
-          startDate: "2025-08-16",
-          endDate: "2025-08-30",
-          boardId: boardId,
-          storyPoints: 0,
-          completedPoints: 0
-        }
-      ];
-      
-      return NextResponse.json({
-        success: true,
-        sprints: mockSprints,
-        source: 'local'
-      });
+      console.error("❌ Token Jira manquant - Configuration requise");
+      return NextResponse.json({ 
+        success: false, 
+        sprints: [],
+        source: 'jira-error',
+        error: 'Token Jira non configuré'
+      }, { status: 401 });
     }
 
     // Récupération des sprints Jira
@@ -176,27 +152,13 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error("❌ Erreur API Jira sprints:", error);
     
-    // Fallback vers données mock
-    const mockSprints = [
-      {
-        id: 1,
-        name: "Sprint 1 (Fallback)",
-        goal: "Sprint de développement - Données de fallback",
-        state: "active",
-        startDate: "2025-08-01",
-        endDate: "2025-08-15",
-        storyPoints: 21,
-        completedPoints: 8,
-        velocity: 38
-      }
-    ];
-    
+    // ✅ PLUS DE FALLBACK LOCAL - Return error directement
     return NextResponse.json({
-      success: true,
-      sprints: mockSprints,
-      source: 'local-fallback',
-      error: error instanceof Error ? error.message : 'Erreur inconnue'
-    });
+      success: false,
+      sprints: [],
+      source: 'jira-error',
+      error: error instanceof Error ? error.message : 'Erreur de connexion Jira'
+    }, { status: 500 });
   }
 }
 
@@ -214,26 +176,13 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
 
-    // Si pas de token, utiliser mock
+    // ✅ PLUS DE FALLBACK - Token Jira requis
     if (!JIRA_CONFIG.token || JIRA_CONFIG.token === "") {
-      console.log("⚠️ Token Jira manquant, création mock");
-      const mockSprint = {
-        id: Date.now(),
-        name: data.name,
-        goal: data.goal || '',
-        state: 'future',
-        startDate: data.startDate || '',
-        endDate: data.endDate || '',
-        boardId: data.boardId,
-        storyPoints: 0,
-        completedPoints: 0
-      };
-      
-      return NextResponse.json({
-        success: true,
-        sprint: mockSprint,
-        source: 'local'
-      });
+      console.error("❌ Token Jira manquant - Configuration requise");
+      return NextResponse.json({ 
+        success: false, 
+        error: 'Token Jira non configuré' 
+      }, { status: 401 });
     }
 
     // Création du sprint sur Jira
@@ -300,13 +249,13 @@ export async function PUT(request: NextRequest) {
       }, { status: 400 });
     }
 
-    // Si pas de token, simulation
+    // ✅ PLUS DE FALLBACK - Token Jira requis
     if (!JIRA_CONFIG.token || JIRA_CONFIG.token === "") {
+      console.error("❌ Token Jira manquant - Configuration requise");
       return NextResponse.json({
-        success: true,
-        sprint: data,
-        source: 'local'
-      });
+        success: false,
+        error: 'Token Jira non configuré'
+      }, { status: 401 });
     }
 
     // Modification du sprint sur Jira
@@ -356,12 +305,13 @@ export async function DELETE(request: NextRequest) {
       }, { status: 400 });
     }
 
-    // Si pas de token, simulation
+    // ✅ PLUS DE FALLBACK - Token Jira requis
     if (!JIRA_CONFIG.token || JIRA_CONFIG.token === "") {
+      console.error("❌ Token Jira manquant - Configuration requise");
       return NextResponse.json({
-        success: true,
-        source: 'local'
-      });
+        success: false,
+        error: 'Token Jira non configuré'
+      }, { status: 401 });
     }
 
     // Suppression du sprint sur Jira

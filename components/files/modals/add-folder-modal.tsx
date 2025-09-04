@@ -18,7 +18,7 @@ import { Dictionary } from "@/locales/dictionary"
 import { CreateFileFolderRequestDto, FileFolderDto } from "@/lib/interfaces/apis/files"
 import { filesApiClient } from "@/lib/services/client/files/files.client.service"
 import { getStoredToken } from "@/lib/services/auth/token-storage"
-import { useToast } from "@/hooks/use-toast"
+import { toast } from "sonner"
 
 export interface AddFolderModalProps {
   dictionary: Dictionary
@@ -44,7 +44,6 @@ export function AddFolderModal({
     path: ""
   })
   const [isLoading, setIsLoading] = useState(false)
-  const { toast } = useToast()
 
   const handleInputChange = (field: keyof CreateFileFolderRequestDto, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }))

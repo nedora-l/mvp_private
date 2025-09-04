@@ -1,13 +1,12 @@
 "use client";
-import React, { createContext, useContext, useState, ReactNode } from "react";
-import { mockProjects } from "@/app/[locale]/apps/projects/gestion/mockProjects";
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-// Type du projet (reprend le modèle v0)
+// ✅ Clean Jira-native Project interface
 export interface Project {
-  id: string;
+  id: number;
   name: string;
   type: string;
-  boardType?: string; // Type de board (Scrum, Kanban, XP, Simple)
+  boardType?: string; // Type de board (Scrum, Kanban, etc.)
   customType?: string;
   description: string;
   status: string;
@@ -16,9 +15,11 @@ export interface Project {
   members: string;
   jiraId?: string; // ID Jira du projet
   jiraKey?: string; // Clé Jira du projet (ex: ECS)
+  key?: string; // 🔧 FIX: Propriété key pour compatibilité
+  source?: string; // Source des données ('jira')
 }
 
-// Type pour la création d'un projet (sans ID)
+// ✅ Clean Jira-native ProjectCreate interface
 export interface ProjectCreate {
   name: string;
   type: string;
@@ -30,22 +31,6 @@ export interface ProjectCreate {
   endDate: string;
   members: string;
 }
-
-// Mock data initiale (à adapter selon ton fichier mockProjects)
-const initialProjects: Project[] = [
-  // La mock data est chargée uniquement au premier lancement si le localStorage est vide
-  ...mockProjects.map(p => ({
-    id: p.id.toString(),
-    name: p.name,
-    type: p.type,
-    customType: '',
-    description: p.description || '',
-    status: '',
-    startDate: '',
-    endDate: '',
-    members: '',
-  }))
-];
 
 interface ProjectsContextType {
   projects: Project[];
@@ -68,39 +53,51 @@ export const ProjectsProvider = ({ children }: { children: ReactNode }) => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Fonction pour charger les projets depuis MCP ou v0
+  // ✅ JIRA-NATIVE - Fetch projects from v1 API (migrated from MCP)
   const fetchProjects = async () => {
     try {
       setLoading(true);
-      console.log("🔄 Fetching projects from MCP...");
+      console.log("🔄 [v1] Fetching projects from Jira via v1 API...");
       
-      // 🚀 Essai MCP d'abord, puis fallback v0
-      let response = await fetch('/api/mcp/projects');
+      const response = await fetch('/api/v1/jira/projects');
       
       if (!response.ok) {
-        console.log("⚠️ MCP indisponible, fallback vers v0");
-        response = await fetch('/api/v0/projects');
+        throw new Error(`HTTP error: ${response.status}`);
       }
       
       const data = await response.json();
-      console.log("📦 Raw API response:", data);
+      console.log("📦 Raw v1 API response:", data);
       
-      if (data.success) {
-        setProjects(data.projects || []);
-        console.log(`✅ ${data.projects?.length || 0} projets chargés depuis ${data.source || 'v0'}`);
+      if (data.status === 200 && data.data?._embedded?.projects) {
+        // Conversion du format v1 vers l'interface Project existante
+        const convertedProjects = data.data._embedded.projects.map((project: any) => ({
+          id: project.id,
+          name: project.title, // v1 utilise 'title', on convertit vers 'name'
+          type: project.boardType || 'Kanban',
+          boardType: project.boardType,
+          customType: project.boardType,
+          description: project.description,
+          status: 'Active', // Par défaut
+          startDate: project.startsAt,
+          endDate: project.endsAt,
+          members: 'Team', // Par défaut
+          jiraId: project.jiraId,
+          jiraKey: project.jiraKey,
+          key: project.jiraKey || project.key || `PROJ-${project.id}`, // 🔧 FIX: Assurer la présence de key
+          source: data.source || 'jira'
+        }));
         
-        // Affichage des infos de connexion Jira
-        if (data.source === 'jira') {
-          console.log(`🔗 Connecté à Jira: ${data.domain}`);
-          console.log(`� ${data.count} projets Jira synchronisés`);
-        }
+        setProjects(convertedProjects);
+        console.log(`✅ [v1] ${convertedProjects.length} projects loaded from ${data.source || 'Jira'}`);
+        console.log(`🔗 [v1] Connected to Jira via v1 API`);
+        console.log(`📊 [v1] ${data.data.page.totalElements} Jira projects synchronized`);
       } else {
-        throw new Error(data.error || 'Erreur de chargement');
+        console.warn('⚠️ [v1] No projects returned from v1 API');
+        setProjects([]); // Empty array if no projects
       }
     } catch (error) {
-      console.warn("❌ Erreur lors du chargement des projets:", error);
-      console.log("🔄 Fallback vers données mock...");
-      setProjects(initialProjects);
+      console.error("❌ [v1] Error fetching projects from v1 API:", error);
+      setProjects([]); // Empty array on error
     } finally {
       setLoading(false);
     }
@@ -111,97 +108,124 @@ export const ProjectsProvider = ({ children }: { children: ReactNode }) => {
     fetchProjects();
   }, []); // Pas de dépendance à la session
 
-  // Ajout avec MCP (Jira) d'abord, puis fallback v0 locale
+  // ✅ JIRA-NATIVE - Add project via v1 API (migrated from MCP)
   const addProject = async (project: ProjectCreate) => {
     try {
-      console.log("🔄 Adding project via MCP/Jira...");
+      console.log("🔄 [v1] Adding project via Jira v1 API...");
       
-      // 🚀 Essai MCP d'abord pour Jira et fallbacks automatiques
-      let response = await fetch('/api/mcp/projects', {
+      // 🔧 FIX: Mapping correct des données du formulaire vers l'API v1
+      const v1ProjectData = {
+        title: project.name, // 🔧 FIX: name → title
+        description: project.description,
+        boardType: project.boardType || 'Kanban',
+        startsAt: project.startDate,
+        endsAt: project.endDate,
+        jiraKey: project.name.substring(0, 3).toUpperCase() // Génération automatique de la clé Jira
+      };
+      
+      console.log(`🛠️ [v1] Données mappées vers v1:`, JSON.stringify(v1ProjectData, null, 2));
+      
+      const response = await fetch('/api/v1/jira/projects', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(project),
+        body: JSON.stringify(v1ProjectData),
       });
 
-      // Si MCP échoue, fallback vers v0
       if (!response.ok) {
-        console.log("⚠️ MCP indisponible, fallback vers v0");
-        response = await fetch('/api/v0/projects', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(project),
-        });
-      }
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`HTTP error: ${response.status}`);
       }
 
       const result = await response.json();
       
-      // Feedback selon la source
-      if (result.source === 'jira') {
-        console.log(`✅ Projet créé sur Jira: ${result.jiraKey}`);
-      } else if (result.source?.includes('local')) {
-        console.log(`✅ Projet créé localement: ${result.warning || 'OK'}`);
+      if (result.status === 201) {
+        console.log(`✅ [v1] Project created successfully in Jira: ${result.data.jiraKey || 'N/A'}`);
+        await fetchProjects(); // Reload project list
+        return result;
+      } else {
+        throw new Error(result.message || 'Failed to create project');
       }
-
-      await fetchProjects(); // Recharger la liste
-      console.log("✅ Project added successfully");
-      
-      return result; // Retourner le résultat pour feedback UI
     } catch (error) {
-      console.error("❌ Error adding project:", error);
-      throw error; // Relancer pour gestion UI
+      console.error("❌ [v1] Error adding project via v1 API:", error);
+      throw error; // Re-throw for UI error handling
     }
   };
 
-  // Édition avec API v0 locale
+  // ✅ JIRA-NATIVE - Edit project via v1 API (migrated from MCP)
   const editProject = async (index: number, project: Project) => {
     try {
-      console.log("🔄 Editing project via local API v0...");
-      const response = await fetch(`/api/v0/projects/${project.id}`, {
+      console.log("🔄 [v1] Editing project via Jira v1 API...");
+      
+      // Conversion du format Project vers le format v1
+      const v1ProjectData = {
+        title: project.name,
+        description: project.description,
+        boardType: project.boardType || 'Kanban',
+        startsAt: project.startDate,
+        endsAt: project.endDate,
+        jiraKey: project.jiraKey
+      };
+      
+      const response = await fetch('/api/v1/jira/projects', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(project),
+        body: JSON.stringify(v1ProjectData),
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`HTTP error: ${response.status}`);
       }
 
-      await fetchProjects(); // Recharger la liste
-      console.log("✅ Project edited successfully");
+      const result = await response.json();
+      
+      if (result.status === 200) {
+        console.log(`✅ [v1] Project edited successfully in Jira: ${project.jiraKey || project.id}`);
+        await fetchProjects(); // Reload project list
+      } else {
+        throw new Error(result.message || 'Failed to edit project');
+      }
     } catch (error) {
-      console.error("❌ Error editing project:", error);
+      console.error("❌ [v1] Error editing project via v1 API:", error);
+      throw error; // Re-throw for UI error handling
     }
   };
 
-  // Suppression avec API v0 locale
+  // ✅ JIRA-NATIVE - Delete project via v1 API (migrated from MCP)
   const deleteProject = async (index: number) => {
     try {
-      const projectId = projects[index]?.id;
-      if (!projectId) return;
+      const project = projects[index];
+      if (!project) {
+        throw new Error('Project not found at index ' + index);
+      }
       
-      console.log("🔄 Deleting project via local API v0...");
-      const response = await fetch(`/api/v0/projects/${projectId}`, {
+      console.log("🔄 [v1] Deleting project via Jira v1 API...");
+      
+      // Note: v1 API utilise DELETE avec query params, pas body
+      const response = await fetch(`/api/v1/jira/projects?jiraKey=${project.jiraKey}`, {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        }
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`HTTP error: ${response.status}`);
       }
 
-      await fetchProjects(); // Recharger la liste
-      console.log("✅ Project deleted successfully");
+      const result = await response.json();
+      
+      if (result.status === 200) {
+        console.log(`✅ [v1] Project deleted successfully from Jira: ${project.jiraKey || project.id}`);
+        await fetchProjects(); // Reload project list
+      } else {
+        throw new Error(result.message || 'Failed to delete project');
+      }
     } catch (error) {
-      console.error("❌ Error deleting project:", error);
+      console.error("❌ [v1] Error deleting project via v1 API:", error);
+      throw error; // Re-throw for UI error handling
     }
   };
 

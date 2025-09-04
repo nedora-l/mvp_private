@@ -77,15 +77,36 @@ export default function TasksPage() {
   // Statistiques - même style que D&A Workspace
   const stats = useMemo(() => {
     const total = filteredTasks.length;
-    const enCours = filteredTasks.filter(t => t.status === "En cours").length;
-    const terminees = filteredTasks.filter(t => t.status === "Terminé").length;
-    const critiques = filteredTasks.filter(t => t.priority === "Critique").length;
+    
+    // 🔧 FIX : Utiliser les vrais statuts Jira au lieu de valeurs hardcodées
+    const enCours = filteredTasks.filter(t => 
+      t.status === "In Progress" || 
+      t.status === "En cours" || 
+      t.status?.toLowerCase().includes("progress")
+    ).length;
+    
+    const terminees = filteredTasks.filter(t => 
+      t.status === "Done" || 
+      t.status === "Terminé" || 
+      t.status === "Closed" ||
+      t.status === "Resolved" ||
+      t.status?.toLowerCase().includes("done") ||
+      t.status?.toLowerCase().includes("closed")
+    ).length;
+    
+    const critiques = filteredTasks.filter(t => 
+      t.priority === "Highest" || 
+      t.priority === "Critique" || 
+      t.priority === "Critical" ||
+      t.priority?.toLowerCase().includes("highest") ||
+      t.priority?.toLowerCase().includes("critical")
+    ).length;
     
     return { total, enCours, terminees, critiques };
   }, [filteredTasks]);
 
   // Fonctions utilitaires - synchronisation dynamique
-  const getProjectName = (projectId: number) => {
+  const getProjectName = (projectId: number | string) => {
     // Recherche flexible : compare number avec number ET string avec string
     const project = projects.find(p => 
       Number(p.id) === Number(projectId) || 
@@ -418,19 +439,32 @@ export default function TasksPage() {
                             </div>
 
                             {/* Métadonnées - synchronisation dynamique */}
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-600">
-                              <div className="flex items-center gap-2">
-                                <Building2 className="h-4 w-4" />
-                                <span>{getProjectName(task.projectId)}</span>
+                            <div className="flex flex-wrap gap-4 text-sm text-gray-500">
+                              <div className="flex items-center gap-1">
+                                <Building2 className="w-4 h-4" />
+                                <span>{getProjectName(typeof task.projectId === 'number' ? task.projectId : 0)}</span>
                               </div>
-                              <div className="flex items-center gap-2">
-                                <User className="h-4 w-4" />
-                                <span>{getCollaboratorName(task.assignedTo)}</span>
-                              </div>
+                              {task.assignee && (
+                                <div className="flex items-center gap-1">
+                                  <User className="w-4 h-4" />
+                                  <span>{task.assignee}</span>
+                                </div>
+                              )}
                               {task.dueDate && (
-                                <div className="flex items-center gap-2">
-                                  <Calendar className="h-4 w-4" />
-                                  <span>{new Date(task.dueDate).toLocaleDateString('fr-FR')}</span>
+                                <div className="flex items-center gap-1">
+                                  <Calendar className="w-4 h-4" />
+                                  <span>Échéance: {new Date(task.dueDate).toLocaleDateString()}</span>
+                                </div>
+                              )}
+                              {/* ✅ NOUVEAU : Affichage des subtasks */}
+                              {task.hasSubtasks && task.subtasksCount && task.subtasksCount > 0 && (
+                                <div className="flex items-center gap-1 text-blue-600 bg-blue-50 px-2 py-1 rounded">
+                                  <span className="text-xs">📋 {task.subtasksCount} subtask{task.subtasksCount > 1 ? 's' : ''}</span>
+                                </div>
+                              )}
+                              {task.isSubtask && task.parentKey && (
+                                <div className="flex items-center gap-1 text-purple-600 bg-purple-50 px-2 py-1 rounded">
+                                  <span className="text-xs">🔗 Subtask de {task.parentKey}</span>
                                 </div>
                               )}
                             </div>

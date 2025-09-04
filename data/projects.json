@@ -12,17 +12,14 @@
   },
   {
     "id": 101,
-    "name": "TestJira (ECS)",
+    "name": "test 3 ",
     "type": "Jira",
-    "boardType": "Kanban",
-    "description": "Projet Kanban depuis Jira - TestJira",
+    "description": "Projet Jira software",
     "customType": "",
     "status": "en-cours",
-    "startDate": "2025-08-01",
-    "endDate": "2025-10-31",
-    "members": "Project Manager (Direction), Business Analyst (IT), Junior Developer (IT)",
-    "jiraKey": "ECS",
-    "jiraId": "10001"
+    "startDate": "2025-08-15",
+    "endDate": "2025-11-23",
+    "members": "abarouz yassine (Dev Team)"
   },
   {
     "id": 102,
@@ -280,6 +277,39 @@
     "status": "termine",
     "startDate": "2025-08-08",
     "endDate": "2025-08-22",
+    "members": "abarouz yassine (Dev Team)"
+  },
+  {
+    "id": 118,
+    "name": "Test 1 de creation",
+    "type": "Local",
+    "description": "cccc",
+    "customType": "",
+    "status": "en-cours",
+    "startDate": "2025-08-07",
+    "endDate": "2025-08-20",
+    "members": "abarouz yassine (Dev Team)"
+  },
+  {
+    "id": 119,
+    "name": "test 3 ",
+    "type": "Jira",
+    "description": "www",
+    "customType": "",
+    "status": "en-cours",
+    "startDate": "2025-08-07",
+    "endDate": "2025-08-08",
+    "members": "abarouz yassine (Dev Team)"
+  },
+  {
+    "id": 120,
+    "name": "test 2 rachid ",
+    "type": "Jira",
+    "description": "testing apis ",
+    "customType": "",
+    "status": "en-cours",
+    "startDate": "2025-08-08",
+    "endDate": "2025-09-07",
     "members": "abarouz yassine (Dev Team)"
   }
 ]

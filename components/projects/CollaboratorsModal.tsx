@@ -84,16 +84,17 @@ export default function CollaboratorsModal({ isOpen, onClose, onCollaboratorCrea
       
       if (editingCollaborator) {
         await editCollaborator(editingCollaborator.id, formData);
-        toast({
-          title: "Collaborateur modifié",
-          description: `${formData.name} a été mis à jour avec succès.`,
-        });
+        toast.success(`✅ ${formData.name} a été mis à jour avec succès`);
       } else {
         const newCollaborator = await addCollaborator(formData);
-        toast({
-          title: "Collaborateur ajouté",
-          description: `${formData.name} a été ajouté avec succès.`,
-        });
+        
+        // Gérer les différents types de réponse
+        if (newCollaborator && newCollaborator.needsManualProcess) {
+          toast.info(`ℹ️ Processus d'invitation manuel requis pour ${formData.email}`);
+        } else if (newCollaborator) {
+          toast.success(`✅ ${formData.name} a été ajouté avec succès`);
+        }
+        
         // Notifier le parent qu'un nouveau collaborateur a été créé
         if (onCollaboratorCreated && newCollaborator) {
           onCollaboratorCreated(newCollaborator);
@@ -103,11 +104,7 @@ export default function CollaboratorsModal({ isOpen, onClose, onCollaboratorCrea
       resetForm();
     } catch (error) {
       setFormError('Erreur lors de la sauvegarde');
-      toast({
-        title: "Erreur",
-        description: "Une erreur est survenue lors de la sauvegarde.",
-        variant: "destructive",
-      });
+      toast.error("❌ Une erreur est survenue lors de la sauvegarde");
     } finally {
       setSubmitting(false);
     }
@@ -128,16 +125,9 @@ export default function CollaboratorsModal({ isOpen, onClose, onCollaboratorCrea
     if (confirm(`Êtes-vous sûr de vouloir supprimer ${name} ?`)) {
       try {
         await deleteCollaborator(id);
-        toast({
-          title: "Collaborateur supprimé",
-          description: `${name} a été supprimé avec succès.`,
-        });
+        toast.success(`✅ ${name} a été supprimé avec succès`);
       } catch (error) {
-        toast({
-          title: "Erreur",
-          description: "Une erreur est survenue lors de la suppression.",
-          variant: "destructive",
-        });
+        toast.error("❌ Une erreur est survenue lors de la suppression");
       }
     }
   };
@@ -164,16 +154,16 @@ export default function CollaboratorsModal({ isOpen, onClose, onCollaboratorCrea
               </Button>
             </div>
 
-            {/* Avertissement pour la synchronisation Jira */}
-            <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
+            {/* Avertissement pour les limitations Jira Cloud */}
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <div className="flex items-start gap-2">
-                <AlertTriangle className="h-4 w-4 text-amber-600 mt-0.5 flex-shrink-0" />
+                <AlertTriangle className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
                 <div className="text-sm">
-                  <p className="font-medium text-amber-800">Synchronisation Jira</p>
-                  <p className="text-amber-700 mt-1">
-                    Les collaborateurs créés ici sont stockés localement dans DA Workspace. 
-                    Ils ne seront pas automatiquement ajoutés à Jira. Pour ajouter des utilisateurs à Jira, 
-                    utilisez l'interface d'administration Jira directement.
+                  <p className="font-medium text-blue-800">Limitation Jira Cloud</p>
+                  <p className="text-blue-700 mt-1">
+                    Jira Cloud ne permet pas de créer des utilisateurs via API. 
+                    Utilisez l'interface d'administration Atlassian pour inviter de nouveaux utilisateurs.
+                    Une fois invités dans Jira, ils apparaîtront automatiquement ici.
                   </p>
                 </div>
               </div>

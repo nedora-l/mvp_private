@@ -39,7 +39,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { toast } from "@/hooks/use-toast"
+import { toast } from "sonner"
 import {
   Form,
   FormControl,

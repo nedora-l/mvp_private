@@ -7,7 +7,7 @@ export interface JiraSyncStatus {
   isConnected: boolean;
   lastSync: Date | null;
   taskCount: number;
-  source: 'jira' | 'local' | 'hybrid';
+  source: 'jira' | 'jira-error';
   error?: string;
 }
 
@@ -17,7 +17,7 @@ export class JiraSyncManager {
     isConnected: false,
     lastSync: null,
     taskCount: 0,
-    source: 'local'
+    source: 'jira-error'
   };
   private syncInterval: NodeJS.Timeout | null = null;
 
@@ -70,14 +70,14 @@ export class JiraSyncManager {
           isConnected: true,
           lastSync: new Date(),
           taskCount: data.jiraTasks || 0,
-          source: data.mockTasks > 0 ? 'hybrid' : 'jira'
+          source: 'jira'
         };
       } else {
         this.syncStatus = {
           isConnected: false,
           lastSync: this.syncStatus.lastSync,
           taskCount: data.tasks?.length || 0,
-          source: 'local',
+          source: 'jira-error',
           error: data.error || 'Jira non disponible'
         };
       }
@@ -86,7 +86,7 @@ export class JiraSyncManager {
         isConnected: false,
         lastSync: this.syncStatus.lastSync,
         taskCount: 0,
-        source: 'local',
+        source: 'jira-error',
         error: error instanceof Error ? error.message : 'Erreur réseau'
       };
     }

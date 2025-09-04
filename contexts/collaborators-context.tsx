@@ -36,119 +36,180 @@ export function CollaboratorsProvider({ children }: { children: React.ReactNode 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Récupérer les collaborateurs (v0 → MCP)
+  // Récupérer les collaborateurs (UNIQUEMENT Jira v1 - migré de MCP)
   const fetchCollaborators = async () => {
     try {
       setLoading(true);
       setError(null);
       
-      console.log("🔄 Tentative connexion Jira...");
+      console.log("🔄 [v1] Récupération collaborateurs depuis Jira...");
       
-      // 🚀 Essai MCP Jira avec fallback sécurisé
-      try {
-        const mcpResponse = await fetch('/api/mcp/collaborators');
-        if (mcpResponse.ok) {
-          const mcpData = await mcpResponse.json();
-          if (mcpData.success && mcpData.source === 'jira') {
-            setCollaborators(mcpData.collaborators);
-            console.log(`✅ ${mcpData.collaborators?.length || 0} collaborateurs chargés depuis JIRA !`);
-            return;
-          }
-        }
-      } catch (mcpError) {
-        console.log("⚠️ Jira indisponible, fallback vers v0");
+      // ✅ UNIQUEMENT v1 Jira - Plus de fallback MCP
+      const response = await fetch('/api/v1/jira/collaborators');
+      
+      if (!response.ok) {
+        throw new Error(`Erreur HTTP: ${response.status}`);
       }
+
+      const v1Data = await response.json();
       
-      // Fallback v0
-      const response = await fetch('/api/v0/collaborators');
-      const data = await response.json();
-      
-      if (data.success) {
-        setCollaborators(data.collaborators);
-        console.log(`✅ ${data.collaborators?.length || 0} collaborateurs chargés depuis v0`);
+      if (v1Data.status === 200 && v1Data.data?._embedded?.collaborators) {
+        // Conversion du format v1 vers l'interface Collaborator existante
+        const convertedCollaborators = v1Data.data._embedded.collaborators.map((collaborator: any) => ({
+          id: collaborator.id,
+          name: collaborator.name,
+          role: collaborator.role,
+          email: collaborator.email,
+          department: collaborator.department,
+          active: collaborator.active,
+          dateAdded: collaborator.dateAdded
+        }));
+        
+        setCollaborators(convertedCollaborators);
+        console.log(`✅ [v1] ${convertedCollaborators.length} collaborateurs chargés depuis Jira via v1 API`);
+        console.log(`📊 [v1] Total: ${v1Data.data.page.totalElements} collaborateurs`);
       } else {
-        throw new Error(data.error || 'Erreur de chargement');
+        setCollaborators([]); // ✅ Array vide si erreur - Plus de fallback
+        console.warn('⚠️ [v1] Aucun collaborateur retourné par l\'API v1');
       }
     } catch (error) {
-      console.error('❌ Erreur fetch collaborateurs:', error);
-      setError(error instanceof Error ? error.message : 'Erreur inconnue');
+      console.error('❌ [v1] Erreur fetch collaborateurs:', error);
+      setError(error instanceof Error ? error.message : 'Erreur de connexion Jira');
+      setCollaborators([]); // ✅ Array vide en cas d'erreur
     } finally {
       setLoading(false);
     }
   };
 
-  // Ajouter un collaborateur
+  // Ajouter un collaborateur (invitation Jira v1 - migré de MCP)
   const addCollaborator = async (collaboratorData: CollaboratorForm): Promise<Collaborator | null> => {
     try {
       setError(null);
-      const response = await fetch('/api/v0/collaborators', {
+      console.log("🔄 [v1] Invitation collaborateur via Jira...");
+      
+      // ✅ UNIQUEMENT v1 Jira - POST pour inviter
+      const response = await fetch('/api/v1/jira/collaborators', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(collaboratorData),
+        body: JSON.stringify({
+          email: collaboratorData.email,
+          name: collaboratorData.name,
+          role: collaboratorData.role,
+          department: collaboratorData.department
+        }),
       });
 
-      if (!response.ok) {
-        throw new Error('Erreur lors de la création du collaborateur');
+      const v1Result = await response.json();
+      
+      if (!response.ok || v1Result.status !== 201) {
+        // Gérer les limitations Jira de manière informative
+        if (response.status === 422 && v1Result.jiraLimitation) {
+          console.log('ℹ️ [v1] Limitation Jira détectée:', v1Result.message);
+          setError(`${v1Result.message}\n\nProcessus manuel requis :\n${v1Result.instructions?.steps?.join('\n') || ''}`);
+          // Retourner un objet informatif au lieu de null
+          return {
+            error: v1Result.message,
+            instructions: v1Result.instructions,
+            needsManualProcess: true
+          } as any;
+        }
+        
+        throw new Error(v1Result.message || `Erreur HTTP ${response.status}: ${response.statusText}`);
       }
 
-      const newCollaborator = await response.json();
-      setCollaborators(prev => [...prev, newCollaborator]);
-      console.log('✅ Collaborateur ajouté:', newCollaborator);
-      return newCollaborator;
+      if (v1Result.status === 201 && v1Result.data) {
+        // Conversion du format v1 vers l'interface Collaborator
+        const newCollaborator: Collaborator = {
+          id: v1Result.data.id,
+          name: v1Result.data.name,
+          role: v1Result.data.role,
+          email: v1Result.data.email,
+          department: v1Result.data.department,
+          active: v1Result.data.active,
+          dateAdded: v1Result.data.dateAdded
+        };
+        
+        // Refresh la liste après ajout
+        await fetchCollaborators();
+        console.log('✅ [v1] Collaborateur invité avec succès via v1 API:', newCollaborator);
+        return newCollaborator;
+      } else {
+        throw new Error(v1Result.message || 'Erreur lors de l\'invitation');
+      }
     } catch (error) {
-      console.error('❌ Erreur ajout collaborateur:', error);
-      setError(error instanceof Error ? error.message : 'Erreur inconnue');
+      console.error('❌ [v1] Erreur invitation collaborateur:', error);
+      setError(error instanceof Error ? error.message : 'Erreur d\'invitation');
       return null;
     }
   };
 
-  // Modifier un collaborateur
+  // Modifier un collaborateur (rôle/assignation Jira v1 - migré de MCP)
   const editCollaborator = async (id: string, collaboratorData: CollaboratorForm) => {
     try {
       setError(null);
-      const response = await fetch(`/api/v0/collaborators/${id}`, {
+      console.log("🔄 [v1] Modification collaborateur via Jira...");
+      
+      // ✅ UNIQUEMENT v1 Jira - PUT pour assigner rôles
+      const response = await fetch('/api/v1/jira/collaborators', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(collaboratorData),
+        body: JSON.stringify({
+          id,
+          ...collaboratorData
+        }),
       });
 
       if (!response.ok) {
-        throw new Error('Erreur lors de la modification du collaborateur');
+        throw new Error(`Erreur HTTP ${response.status}: ${response.statusText}`);
       }
 
-      const updatedCollaborator = await response.json();
-      setCollaborators(prev => 
-        prev.map(c => c.id === id ? updatedCollaborator : c)
-      );
-      console.log('✅ Collaborateur modifié:', updatedCollaborator);
+      const v1Result = await response.json();
+      
+      if (v1Result.status === 200) {
+        // Refresh la liste après modification
+        await fetchCollaborators();
+        console.log('✅ [v1] Collaborateur modifié avec succès via v1 API');
+      } else {
+        throw new Error(v1Result.message || 'Erreur lors de la modification');
+      }
     } catch (error) {
-      console.error('❌ Erreur modification collaborateur:', error);
-      setError(error instanceof Error ? error.message : 'Erreur inconnue');
+      console.error('❌ [v1] Erreur modification collaborateur:', error);
+      setError(error instanceof Error ? error.message : 'Erreur de modification');
       throw error;
     }
   };
 
-  // Supprimer un collaborateur
+  // Supprimer un collaborateur (retirer de projet/org Jira v1 - migré de MCP)
   const deleteCollaborator = async (id: string) => {
     try {
       setError(null);
-      const response = await fetch(`/api/v0/collaborators/${id}`, {
+      console.log("🔄 [v1] Suppression collaborateur via Jira...");
+      
+      // ✅ UNIQUEMENT v1 Jira - DELETE pour retirer
+      const response = await fetch(`/api/v1/jira/collaborators?id=${id}`, {
         method: 'DELETE',
       });
 
       if (!response.ok) {
-        throw new Error('Erreur lors de la suppression du collaborateur');
+        throw new Error(`Erreur HTTP ${response.status}: ${response.statusText}`);
       }
 
-      setCollaborators(prev => prev.filter(c => c.id !== id));
-      console.log('✅ Collaborateur supprimé:', id);
+      const v1Result = await response.json();
+      
+      if (v1Result.status === 200) {
+        // Refresh la liste après suppression
+        await fetchCollaborators();
+        console.log('✅ [v1] Collaborateur retiré avec succès via v1 API');
+      } else {
+        throw new Error(v1Result.message || 'Erreur lors de la suppression');
+      }
     } catch (error) {
-      console.error('❌ Erreur suppression collaborateur:', error);
-      setError(error instanceof Error ? error.message : 'Erreur inconnue');
+      console.error('❌ [v1] Erreur suppression collaborateur:', error);
+      setError(error instanceof Error ? error.message : 'Erreur de suppression');
       throw error;
     }
   };

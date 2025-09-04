@@ -24,7 +24,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { directoryApiClient } from "@/lib/services/client/directory/directory.client.service";
-import { useToast } from "@/components/ui/use-toast";
+import { toast } from "sonner";
 import { Eye, EyeOff, RefreshCw, UserPlus } from 'lucide-react';
 import zxcvbn from 'zxcvbn';
 

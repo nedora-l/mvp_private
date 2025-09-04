@@ -1,29 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useProjects } from "@/contexts/projects-context";
 
 export default function OverviewPage() {
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const res = await fetch("/api/v0/projects");
-        if (!res.ok) throw new Error("Erreur lors du chargement des projets");
-        const data = await res.json();
-        setProjects(data.projects || []);
-      } catch (err: any) {
-        setError(err.message || "Erreur inconnue");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProjects();
-  }, []);
+  const { projects, loading, error } = useProjects();
 
   const total = projects.length;
   const byType = projects.reduce((acc: Record<string, number>, p: any) => {

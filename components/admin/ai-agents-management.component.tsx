@@ -54,7 +54,7 @@ import { getAIAgentsClientApi, toggleAIAgentStatusClientApi, deleteAIAgentClient
 import { CreateAIAgentModal } from "@/components/admin/modals/create-ai-agent-modal"
 import { AIAgentDetailsModal } from "@/components/admin/modals/ai-agent-details-modal"
 import { EditAIAgentModal } from "@/components/admin/modals/edit-ai-agent-modal"
-import { useToast } from "@/hooks/use-toast"
+import { toast } from "sonner"
 import { formatDistanceToNow } from "date-fns"
 
 interface AIAgentsManagementProps {
@@ -102,7 +102,6 @@ export function AIAgentsManagement({ dictionary, locale }: AIAgentsManagementPro
   const [selectedAgent, setSelectedAgent] = useState<AIAgent | null>(null)
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false)
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
-  const { toast } = useToast()
 
   const fetchAgents = async () => {
     setIsLoading(true)

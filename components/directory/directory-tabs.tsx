@@ -501,8 +501,7 @@ export default function DirectoriesTabsClient({
                   <th className="text-left p-4 font-medium text-gray-900">Actions</th>
                 </tr>
               </thead>
-              <tbody>
-                {filteredEmployees.map((employee) => (
+              <tbody>{filteredEmployees.map((employee) => (
                   <tr key={employee.id} className="border-b hover:bg-gray-50 transition-colors">
                     <td className="p-4">
                       <div className="flex items-center gap-3">

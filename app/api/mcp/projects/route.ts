@@ -49,16 +49,15 @@ export async function GET(request: NextRequest) {
   try {
     console.log("🔗 Connexion à Jira pour récupérer les projets...");
     
-    // Si pas de token, fallback vers data locale
+    // ✅ PLUS DE FALLBACK - Token Jira requis
     if (!JIRA_CONFIG.token || JIRA_CONFIG.token === "") {
-      console.log("⚠️ Token Jira manquant, utilisation des données locales");
-      const fs = await import('fs/promises');
-      const localData = await fs.readFile('./data/projects.json', 'utf-8');
+      console.error("❌ Token Jira manquant - Configuration requise");
       return NextResponse.json({ 
-        success: true, 
-        projects: JSON.parse(localData),
-        source: 'local' 
-      });
+        success: false, 
+        projects: [],
+        source: 'jira-error',
+        error: 'Token Jira non configuré'
+      }, { status: 401 });
     }
 
     // Récupération des projets Jira
@@ -80,7 +79,7 @@ export async function GET(request: NextRequest) {
     const projects = jiraProjects.map((project, index) => {
       const boardType = mapJiraProjectType(project.projectTypeKey);
       return {
-        id: String(index + 100), // ID unique pour éviter les conflits
+        id: index + 100, // ID unique numérique pour éviter les conflits
         name: project.name,
         type: "Jira",
         boardType: boardType,
@@ -105,25 +104,16 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error("❌ Erreur API Jira projets:", error);
     
-    // Fallback vers données locales en cas d'erreur
-    try {
-      const fs = await import('fs/promises');
-      const localData = await fs.readFile('./data/projects.json', 'utf-8');
-      return NextResponse.json({ 
-        success: true, 
-        projects: JSON.parse(localData),
-        source: 'local-fallback',
-        error: error instanceof Error ? error.message : 'Erreur inconnue'
-      });
-    } catch (fallbackError) {
-      return NextResponse.json(
-        { 
-          success: false, 
-          error: `Jira API failed and no local fallback: ${error instanceof Error ? error.message : 'Unknown error'}` 
-        }, 
-        { status: 500 }
-      );
-    }
+    // ✅ PLUS DE FALLBACK LOCAL - Return error directement
+    return NextResponse.json(
+      { 
+        success: false, 
+        projects: [],
+        source: 'jira-error',
+        error: error instanceof Error ? error.message : 'Erreur de connexion Jira'
+      }, 
+      { status: 500 }
+    );
   }
 }
 
@@ -141,38 +131,13 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
 
-    // Si ce n'est pas un projet Jira, rediriger vers l'API locale
-    if (data.type !== 'Jira') {
-      console.log("📍 Projet non-Jira, redirection vers API locale");
-      const localResponse = await fetch(`http://localhost:3000/api/v0/projects`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      
-      if (localResponse.ok) {
-        const result = await localResponse.json();
-        return NextResponse.json({ success: true, project: result, source: 'local' });
-      } else {
-        throw new Error('Erreur API locale');
-      }
-    }
-
-    // Si pas de token Jira, utiliser l'API locale comme fallback
+    // ✅ PLUS DE FALLBACK - Token Jira requis
     if (!JIRA_CONFIG.token || JIRA_CONFIG.token === "") {
-      console.log("⚠️ Token Jira manquant, fallback vers API locale");
-      const localResponse = await fetch(`http://localhost:3000/api/v0/projects`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      
-      if (localResponse.ok) {
-        const result = await localResponse.json();
-        return NextResponse.json({ success: true, project: result, source: 'local-fallback' });
-      } else {
-        throw new Error('Erreur fallback API locale');
-      }
+      console.error("❌ Token Jira manquant - Configuration requise pour créer un projet");
+      return NextResponse.json({ 
+        success: false, 
+        error: 'Token Jira non configuré'
+      }, { status: 401 });
     }
 
     // Préparation des données pour Jira
@@ -196,26 +161,7 @@ export async function POST(request: NextRequest) {
     if (!response.ok) {
       const errorText = await response.text();
       console.error("❌ Erreur création Jira:", response.status, errorText);
-      
-      // Fallback vers API locale si Jira refuse
-      console.log("🔄 Fallback création locale après échec Jira");
-      const localResponse = await fetch(`http://localhost:3000/api/v0/projects`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({...data, type: 'Local'}) // Marquer comme Local
-      });
-      
-      if (localResponse.ok) {
-        const result = await localResponse.json();
-        return NextResponse.json({ 
-          success: true, 
-          project: result, 
-          source: 'local-fallback',
-          warning: `Jira indisponible (${response.status}), projet créé localement`
-        });
-      }
-      
-      throw new Error(`Jira API Error: ${response.status}`);
+      throw new Error(`Jira API Error: ${response.status} - ${errorText}`);
     }
 
     const jiraProject = await response.json();
@@ -223,7 +169,7 @@ export async function POST(request: NextRequest) {
 
     // Formatage pour compatibilité avec notre app
     const project = {
-      id: String(Date.now()), // ID unique temporaire
+      id: Date.now(), // ID unique temporaire numérique
       name: jiraProject.name,
       type: "Jira",
       boardType: data.boardType || "Kanban",
@@ -246,31 +192,10 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("❌ Erreur création projet MCP:", error);
     
-    // Dernier fallback vers API locale
-    try {
-      const data = await request.json();
-      const localResponse = await fetch(`http://localhost:3000/api/v0/projects`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({...data, type: 'Local'})
-      });
-      
-      if (localResponse.ok) {
-        const result = await localResponse.json();
-        return NextResponse.json({ 
-          success: true, 
-          project: result, 
-          source: 'local-emergency',
-          warning: 'Erreur Jira, projet créé localement'
-        });
-      }
-    } catch (fallbackError) {
-      console.error("❌ Fallback local failed:", fallbackError);
-    }
-    
+    // ✅ PLUS DE FALLBACK LOCAL - Return error directement
     return NextResponse.json({
       success: false,
-      error: error instanceof Error ? error.message : 'Erreur de création'
+      error: error instanceof Error ? error.message : 'Erreur de création de projet Jira'
     }, { status: 500 });
   }
 }

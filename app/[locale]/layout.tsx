@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getDictionary } from "@/locales/dictionaries";
 import { AuthProvider } from "@/components/contexts/auth-context";
+import { SubtasksProvider } from "@/contexts/subtasks-context";
 
 export const metadata: Metadata = {
   title: "D&A Workspace",
@@ -23,7 +24,9 @@ export default async function LocaleLayout({
 
   return (
     <AuthProvider>
-      {children}
+      <SubtasksProvider>
+        {children}
+      </SubtasksProvider>
     </AuthProvider>
   );
 }

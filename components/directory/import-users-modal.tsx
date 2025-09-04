@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { Upload, File, X, Play, Pause, CheckCircle, XCircle, Clock } from "lucide-react";
 import { useDropzone } from 'react-dropzone';
-import { toast } from "@/components/ui/use-toast";
+import { toast } from "sonner";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";

@@ -30,7 +30,7 @@ import {
   FileQuestionIcon
 } from "lucide-react"
 import { Dictionary } from "@/locales/dictionary"
-import { useToast } from "@/hooks/use-toast"
+import { toast } from "sonner"
 import { getStoredToken } from "@/lib/services/auth/token-storage"
 import { FileFolderDto } from "@/lib/interfaces/apis"
 
@@ -92,7 +92,6 @@ export function AddFileModal({
   const [isLoading, setIsLoading] = useState(false)
   const [uploadMethod, setUploadMethod] = useState<"browse" | "drag">("browse")
   const fileInputRef = useRef<HTMLInputElement>(null)
-  const { toast } = useToast()
 
   const handleFileSelect = (files: FileList | null) => {
     if (!files) return

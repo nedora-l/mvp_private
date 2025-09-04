@@ -140,22 +140,21 @@ export async function GET(request: NextRequest) {
   try {
     console.log("🔗 Connexion à Jira pour récupérer les tâches...");
     
-    // Si pas de token, fallback vers data locale
+    // ✅ PLUS DE FALLBACK - Token Jira requis
     if (!JIRA_CONFIG.token || JIRA_CONFIG.token === "") {
-      console.log("⚠️ Token Jira manquant, utilisation des données locales");
-      const fs = await import('fs/promises');
-      const localData = await fs.readFile('./data/tasks.json', 'utf-8');
+      console.error("❌ Token Jira manquant - Configuration requise");
       return NextResponse.json({ 
-        success: true, 
-        tasks: JSON.parse(localData),
-        source: 'local' 
-      });
+        success: false, 
+        tasks: [],
+        source: 'jira-error',
+        error: 'Token Jira non configuré'
+      }, { status: 401 });
     }
 
     // Récupération des tâches depuis tous les projets Jira
     const searchUrl = `https://${JIRA_CONFIG.domain}/rest/api/3/search`;
     
-    const jqlQuery = `project in (SSP, ECS) ORDER BY created DESC`;
+    const jqlQuery = `ORDER BY created DESC`;
     
     const response = await fetch(searchUrl, {
       method: 'POST',
@@ -187,11 +186,42 @@ export async function GET(request: NextRequest) {
     
     console.log(`✅ ${jiraIssues.length} tâches récupérées depuis Jira`);
 
-    // Mapping des projets pour correspondance ID (synchro avec projects API)
-    const projectMapping: { [key: string]: number } = {
-      'SSP': 100,  // Sample Scrum Project → même ID que projects
-      'ECS': 101   // TestJira → même ID que projects
-    };
+    // Récupération dynamique du mapping des projets depuis l'API projects
+    let projectMapping: { [key: string]: number } = {};
+    
+    try {
+      const projectsResponse = await fetch(`http://localhost:3000/api/mcp/projects`, {
+        method: 'GET',
+        headers: getJiraHeaders()
+      });
+      
+      if (projectsResponse.ok) {
+        const projectsData = await projectsResponse.json();
+        if (projectsData.success && projectsData.projects) {
+          // Créer le mapping dynamique JiraKey → ID
+          projectsData.projects.forEach((project: any) => {
+            if (project.jiraKey) {
+              projectMapping[project.jiraKey] = project.id;
+            }
+          });
+          console.log(`✅ Mapping projets dynamique:`, projectMapping);
+        }
+      }
+    } catch (error) {
+      console.warn("⚠️ Erreur récupération projets pour mapping:", error);
+    }
+    
+    // Fallback si le mapping échoue
+    if (Object.keys(projectMapping).length === 0) {
+      projectMapping = {
+        'RACHID': 100,
+        'SSP': 101, 
+        'TEST2RAC': 102,
+        'TEST3': 103,
+        'ECS': 104
+      };
+      console.log("⚠️ Utilisation du mapping de fallback");
+    }
 
     // Conversion vers format D&A Workspace
     const tasks: Task[] = jiraIssues.map((issue, index) => {
@@ -216,72 +246,34 @@ export async function GET(request: NextRequest) {
       };
     });
 
-    // Ajouter quelques tâches mock pour les projets non-Jira (Slack, Trello)
-    const mockTasks: Task[] = [
-      {
-        id: 9001,
-        projectId: 102, // Slack (aligné avec l'API projects)
-        title: "Slack Bot Configuration",
-        status: "En cours",
-        description: "Configuration du bot Slack pour notifications automatiques",
-        priority: "Moyenne",
-        createdAt: "2025-08-06",
-        dueDate: "2025-08-15",
-        assignedTo: "Alice Martin (Manager)",
-        sprintId: undefined
-      },
-      {
-        id: 9002,
-        projectId: 103, // Trello (aligné avec l'API projects)
-        title: "Trello Board Setup",
-        status: "À faire",
-        description: "Configuration du board Trello pour l'équipe marketing",
-        priority: "Faible",
-        createdAt: "2025-08-06",
-        dueDate: "2025-08-20",
-        assignedTo: "Julie Marketing (Chef Marketing)",
-        sprintId: undefined
-      }
-    ];
-
-    const allTasks = [...tasks, ...mockTasks];
+    console.log(`✅ ${tasks.length} tâches Jira récupérées et mappées`);
 
     return NextResponse.json({
       success: true,
-      tasks: allTasks,
+      tasks: tasks,
       source: 'jira',
       jiraTasks: tasks.length,
-      mockTasks: mockTasks.length,
-      totalTasks: allTasks.length,
+      totalTasks: tasks.length,
       projects: Object.keys(projectMapping)
     });
 
   } catch (error) {
     console.error("❌ Erreur API Jira tâches:", error);
     
-    // Fallback vers données locales en cas d'erreur
-    try {
-      const fs = await import('fs/promises');
-      const localData = await fs.readFile('./data/tasks.json', 'utf-8');
-      return NextResponse.json({ 
-        success: true, 
-        tasks: JSON.parse(localData),
-        source: 'local-fallback',
-        error: error instanceof Error ? error.message : 'Erreur inconnue'
-      });
-    } catch (fallbackError) {
-      return NextResponse.json(
-        { 
-          success: false, 
-          error: `Jira API failed and no local fallback: ${error instanceof Error ? error.message : 'Unknown error'}` 
-        }, 
-        { status: 500 }
-      );
-    }
+    // ✅ PLUS DE FALLBACK LOCAL - Return error directement
+    return NextResponse.json(
+      { 
+        success: false, 
+        tasks: [],
+        source: 'jira-error',
+        error: error instanceof Error ? error.message : 'Erreur de connexion Jira'
+      }, 
+      { status: 500 }
+    );
   }
 }
 
-// POST /api/mcp/tasks - Créer une tâche (Jira ou fallback v0)
+// POST /api/mcp/tasks - Créer une tâche Jira
 export async function POST(request: NextRequest) {
   let taskData;
   
@@ -289,41 +281,62 @@ export async function POST(request: NextRequest) {
     taskData = await request.json();
     console.log("📝 Création tâche:", taskData);
 
-    // Mapping projet ID → clé Jira pour les projets Jira
-    const projectKeyMapping: { [key: number]: string } = {
-      100: 'SSP',  // Sample Scrum Project
-      101: 'ECS'   // TestJira (ECS)
-    };
+    // Récupération dynamique du mapping des projets pour POST
+    let projectKeyMapping: { [key: number]: string } = {};
+    
+    try {
+      const projectsResponse = await fetch(`http://localhost:3000/api/mcp/projects`, {
+        method: 'GET'
+      });
+      
+      if (projectsResponse.ok) {
+        const projectsData = await projectsResponse.json();
+        if (projectsData.success && projectsData.projects) {
+          // Créer le mapping dynamique ID → JiraKey
+          projectsData.projects.forEach((project: any) => {
+            if (project.jiraKey && project.id) {
+              projectKeyMapping[project.id] = project.jiraKey;
+            }
+          });
+          console.log(`✅ Mapping POST projets dynamique:`, projectKeyMapping);
+        }
+      }
+    } catch (error) {
+      console.warn("⚠️ Erreur récupération projets pour POST:", error);
+    }
+    
+    // Fallback si le mapping échoue
+    if (Object.keys(projectKeyMapping).length === 0) {
+      projectKeyMapping = {
+        100: 'RACHID',
+        101: 'SSP', 
+        102: 'TEST2RAC',
+        103: 'TEST3',
+        104: 'ECS'
+      };
+      console.log("⚠️ Utilisation du mapping POST de fallback");
+    }
 
     const projectKey = projectKeyMapping[taskData.projectId];
     
-    // Si pas de token Jira OU projet non-Jira, fallback vers v0
-    if (!JIRA_CONFIG.token || !projectKey) {
-      console.log("⚠️ Fallback vers v0 pour création tâche");
-      
-      const v0Response = await fetch(`${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/api/v0/tasks`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(taskData),
-      });
-
-      if (v0Response.ok) {
-        const result = await v0Response.json();
-        return NextResponse.json({
-          success: true,
-          task: result,
-          source: 'local'
-        });
-      } else {
-        const errorText = await v0Response.text();
-        console.error("❌ Erreur v0 POST:", v0Response.status, errorText);
-        throw new Error(`Fallback v0 failed: ${v0Response.status} - ${errorText}`);
-      }
+    // ✅ PLUS DE FALLBACK - Token Jira et projectKey requis
+    if (!JIRA_CONFIG.token) {
+      console.error("❌ Token Jira manquant - Configuration requise pour créer une tâche");
+      return NextResponse.json({
+        success: false,
+        error: 'Token Jira non configuré'
+      }, { status: 401 });
     }
 
-    // Si on arrive ici, c'est un projet Jira - procéder avec l'API Jira
+    if (!projectKey) {
+      console.error("❌ Clé de projet manquante - Impossible de créer la tâche");
+      return NextResponse.json({
+        success: false,
+        error: 'Clé de projet requise (projectKey)'
+      }, { status: 400 });
+    }
+
+    // Créer la tâche Jira
     const createUrl = `https://${JIRA_CONFIG.domain}/rest/api/3/issue`;
     
     const jiraIssue = {
@@ -379,43 +392,15 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("❌ Erreur création tâche:", error);
     
-    // 🔄 Fallback vers v0 en cas d'erreur Jira (si taskData est disponible)
-    if (taskData) {
-      console.log("🔄 Tentative de fallback vers v0 pour création...");
-      try {
-        const v0Response = await fetch(`${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/api/v0/tasks`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(taskData),
-        });
-
-        if (v0Response.ok) {
-          const result = await v0Response.json();
-          console.log("✅ Fallback v0 réussi pour création");
-          return NextResponse.json({
-            success: true,
-            task: result,
-            source: 'local'
-          });
-        } else {
-          const errorText = await v0Response.text();
-          console.error("❌ Erreur v0 POST (fallback):", v0Response.status, errorText);
-        }
-      } catch (fallbackError) {
-        console.error("❌ Fallback v0 échoué:", fallbackError);
-      }
-    }
-    
+    // ✅ PLUS DE FALLBACK LOCAL - Return error directement
     return NextResponse.json(
-      { success: false, error: error instanceof Error ? error.message : 'Erreur création' },
+      { success: false, error: error instanceof Error ? error.message : 'Erreur création tâche Jira' },
       { status: 500 }
     );
   }
 }
 
-// PUT /api/mcp/tasks - Mettre à jour une tâche dans Jira avec fallback v0
+// PUT /api/mcp/tasks - Mettre à jour une tâche dans Jira
 export async function PUT(request: NextRequest) {
   let taskData;
   
@@ -423,45 +408,21 @@ export async function PUT(request: NextRequest) {
     taskData = await request.json();
     console.log("✏️ Modification tâche:", taskData);
 
-    // Si pas de token Jira OU pas une tâche Jira, fallback vers v0
-    if (!JIRA_CONFIG.token || (!taskData.jiraKey && !taskData.jiraId)) {
-      console.log("⚠️ Fallback vers v0 pour modification tâche");
-      
-      // Préparer les données pour v0 (qui a besoin de projectId)
-      const v0TaskData = {
-        ...taskData,
-        projectId: taskData.projectId || 1, // Default project si manquant
-      };
-      
-      // Faire appel à l'endpoint v0
-      try {
-        const v0Response = await fetch(`${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/api/v0/tasks`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(v0TaskData),
-        });
+    // ✅ PLUS DE FALLBACK - Token Jira et jiraKey/jiraId requis
+    if (!JIRA_CONFIG.token) {
+      console.error("❌ Token Jira manquant - Configuration requise");
+      return NextResponse.json({
+        success: false,
+        error: 'Token Jira non configuré'
+      }, { status: 401 });
+    }
 
-        if (v0Response.ok) {
-          const result = await v0Response.json();
-          return NextResponse.json({
-            success: true,
-            task: result,
-            source: 'local'
-          });
-        } else {
-          const errorText = await v0Response.text();
-          console.error("❌ Erreur v0 PUT:", v0Response.status, errorText);
-          throw new Error(`Fallback v0 failed: ${v0Response.status} - ${errorText}`);
-        }
-      } catch (fallbackError) {
-        console.error("❌ Fallback v0 échoué:", fallbackError);
-        return NextResponse.json(
-          { success: false, error: 'Modification impossible - Jira et fallback échoués' },
-          { status: 500 }
-        );
-      }
+    if (!taskData.jiraKey && !taskData.jiraId) {
+      console.error("❌ jiraKey ou jiraId requis pour modifier une tâche Jira");
+      return NextResponse.json({
+        success: false,
+        error: 'jiraKey ou jiraId requis'
+      }, { status: 400 });
     }
 
     const issueKey = taskData.jiraKey || taskData.jiraId;
@@ -543,49 +504,15 @@ export async function PUT(request: NextRequest) {
   } catch (error) {
     console.error("❌ Erreur modification tâche Jira:", error);
     
-    // 🔄 Fallback vers v0 en cas d'erreur Jira (si taskData est disponible)
-    if (taskData) {
-      console.log("🔄 Tentative de fallback vers v0 pour modification...");
-      try {
-        // Préparer les données pour v0
-        const v0TaskData = {
-          ...taskData,
-          projectId: taskData.projectId || 1, // Default project si manquant
-        };
-        
-        const v0Response = await fetch(`${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/api/v0/tasks`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(v0TaskData),
-        });
-
-        if (v0Response.ok) {
-          const result = await v0Response.json();
-          console.log("✅ Fallback v0 réussi pour modification");
-          return NextResponse.json({
-            success: true,
-            task: result,
-            source: 'local'
-          });
-        } else {
-          const errorText = await v0Response.text();
-          console.error("❌ Erreur v0 PUT (fallback):", v0Response.status, errorText);
-        }
-      } catch (fallbackError) {
-        console.error("❌ Fallback v0 échoué:", fallbackError);
-      }
-    }
-    
+    // ✅ PLUS DE FALLBACK LOCAL - Return error directement
     return NextResponse.json(
-      { success: false, error: error instanceof Error ? error.message : 'Erreur modification Jira' },
+      { success: false, error: error instanceof Error ? error.message : 'Erreur modification tâche Jira' },
       { status: 500 }
     );
   }
 }
 
-// DELETE /api/mcp/tasks - Supprimer une tâche dans Jira avec fallback v0
+// DELETE /api/mcp/tasks - Supprimer une tâche dans Jira
 export async function DELETE(request: NextRequest) {
   let taskId, jiraKey;
   
@@ -596,32 +523,21 @@ export async function DELETE(request: NextRequest) {
     
     console.log("🗑️ Suppression tâche:", { taskId, jiraKey });
 
-    // Si pas de token Jira ou pas une tâche Jira, fallback v0
-    if (!JIRA_CONFIG.token || !jiraKey) {
-      console.log("⚠️ Fallback vers v0 pour suppression tâche");
-      
-      try {
-        const v0Response = await fetch(`${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/api/v0/tasks?id=${taskId}`, {
-          method: 'DELETE'
-        });
+    // ✅ PLUS DE FALLBACK - Token Jira et jiraKey requis
+    if (!JIRA_CONFIG.token) {
+      console.error("❌ Token Jira manquant - Configuration requise");
+      return NextResponse.json({
+        success: false,
+        error: 'Token Jira non configuré'
+      }, { status: 401 });
+    }
 
-        if (v0Response.ok) {
-          const result = await v0Response.json();
-          return NextResponse.json({
-            success: true,
-            task: result,
-            source: 'local'
-          });
-        } else {
-          throw new Error('Fallback v0 failed');
-        }
-      } catch (fallbackError) {
-        console.error("❌ Fallback v0 échoué:", fallbackError);
-        return NextResponse.json(
-          { success: false, error: 'Suppression impossible - Jira et fallback échoués' },
-          { status: 500 }
-        );
-      }
+    if (!jiraKey) {
+      console.error("❌ jiraKey requis pour supprimer une tâche Jira");
+      return NextResponse.json({
+        success: false,
+        error: 'jiraKey requis'
+      }, { status: 400 });
     }
 
     if (!jiraKey && !taskId) {
@@ -659,30 +575,9 @@ export async function DELETE(request: NextRequest) {
   } catch (error) {
     console.error("❌ Erreur suppression tâche Jira:", error);
     
-    // 🔄 Fallback vers v0 en cas d'erreur Jira (si taskId est disponible)
-    if (taskId) {
-      console.log("🔄 Tentative de fallback vers v0 pour suppression...");
-      try {
-        const v0Response = await fetch(`${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/api/v0/tasks?id=${taskId}`, {
-          method: 'DELETE'
-        });
-
-        if (v0Response.ok) {
-          const result = await v0Response.json();
-          console.log("✅ Fallback v0 réussi pour suppression");
-          return NextResponse.json({
-            success: true,
-            task: result,
-            source: 'local'
-          });
-        }
-      } catch (fallbackError) {
-        console.error("❌ Fallback v0 échoué:", fallbackError);
-      }
-    }
-    
+    // ✅ PLUS DE FALLBACK LOCAL - Return error directement
     return NextResponse.json(
-      { success: false, error: error instanceof Error ? error.message : 'Erreur suppression Jira' },
+      { success: false, error: error instanceof Error ? error.message : 'Erreur suppression tâche Jira' },
       { status: 500 }
     );
   }
